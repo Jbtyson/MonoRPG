@@ -1,0 +1,3 @@
+splashScreen background :
+	http://www.dealspwn.com/writer/wordpress/wp-content/uploads/2012/09/starshipbridge-740x300.jpg
+
