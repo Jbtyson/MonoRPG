@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
@@ -11,29 +12,30 @@ namespace SpaceRPG
 {
     public class SplashScreen : GameScreen
     {
-        Texture2D image;
-        string path;
+        [XmlElement("Image")]
+        public Image image;
 
         public override void LoadContent()
         {
             base.LoadContent();
-            path = "SplashScreen/background";
-            image = content.Load<Texture2D>(path);
+            image.LoadContent();
         }
 
         public override void UnloadContent()
         {
             base.UnloadContent();
+            image.UnloadContent();
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            image.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(image, Vector2.Zero, Color.White);
+            image.Draw(spriteBatch);
         }
     }
 }
