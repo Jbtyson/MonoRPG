@@ -27,11 +27,12 @@ namespace SpaceRPG
         public Image()
         {
             Path = string.Empty;
-            FontName = "Fonts/Orbitron";
+            FontName = "Fonts/Font";
             Position = Vector2.Zero;
             Scale = Vector2.One;
             Alpha = 1.0f;
             SourceRect = Rectangle.Empty;
+            Text = "";
         }
 
         public void LoadContent()
