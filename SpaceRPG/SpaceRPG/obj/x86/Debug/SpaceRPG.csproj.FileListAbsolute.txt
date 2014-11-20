@@ -24,3 +24,4 @@ C:\Users\James Tyson\Documents\GitHub\spaceRPG\SpaceRPG\SpaceRPG\SharpDX.Direct2
 C:\Users\James Tyson\Documents\GitHub\spaceRPG\SpaceRPG\SpaceRPG\SharpDX.XInput.xml
 C:\Users\James Tyson\Documents\GitHub\spaceRPG\SpaceRPG\SpaceRPG\SharpDX.RawInput.xml
 C:\Users\James Tyson\Documents\GitHub\spaceRPG\SpaceRPG\SpaceRPG\SharpDX.Direct3D9.xml
+C:\Users\James Tyson\Documents\GitHub\spaceRPG\SpaceRPG\SpaceRPG\Content\ScreenManager\FadeImage.png

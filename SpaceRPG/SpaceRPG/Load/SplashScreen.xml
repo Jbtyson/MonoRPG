@@ -3,7 +3,6 @@
   <Image>
     <Path>SplashScreen/background</Path>
     <Effects>FadeEffect</Effects>
-    <IsActive>true</IsActive>
     <Alpha>0.5</Alpha>
     <Position>
       <X>0</X>

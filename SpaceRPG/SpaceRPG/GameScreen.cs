@@ -16,9 +16,12 @@ namespace SpaceRPG
         [XmlIgnore]
         public Type Type;
 
+        public string XmlPath;
+
         public GameScreen()
         {
             Type = this.GetType();
+            XmlPath = "Load/" +Type.ToString().Replace("SpaceRPG.", "") + ".xml";
         }
 
         public virtual void LoadContent()
