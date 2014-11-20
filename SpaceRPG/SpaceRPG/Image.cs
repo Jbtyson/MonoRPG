@@ -16,6 +16,7 @@ namespace SpaceRPG
         public string Text, FontName, Path;
         public Vector2 Position, Scale;
         public Rectangle SourceRect;
+        public bool IsActive;
 
         [XmlIgnore]
         public Texture2D Texture;
@@ -24,15 +25,53 @@ namespace SpaceRPG
         RenderTarget2D renderTarget;
         SpriteFont font;
 
+        Dictionary<string, ImageEffect> effectList;
+        public string Effects;
+
+        public FadeEffect FadeEffect;
+
         public Image()
         {
-            Path = string.Empty;
+            Path = Text = Effects = string.Empty;
             FontName = "Fonts/Font";
             Position = Vector2.Zero;
             Scale = Vector2.One;
             Alpha = 1.0f;
             SourceRect = Rectangle.Empty;
-            Text = "";
+            effectList = new Dictionary<string, ImageEffect>();
+        }
+
+        void SetEffect<T>(ref T effect)
+        {
+            if (effect == null)
+                effect = (T)Activator.CreateInstance(typeof(T));
+            else
+            {
+                (effect as ImageEffect).IsActive = true;
+                var obj = this;
+                (effect as ImageEffect).LoadContent(ref obj);
+            }
+
+            effectList.Add(effect.GetType().ToString().Replace("SpaceRPG.", ""), (effect as ImageEffect));
+        }
+
+        public void ActivateEffect(string effect)
+        {
+            if (effectList.ContainsKey(effect))
+            {
+                effectList[effect].IsActive = true;
+                var obj = this;
+                effectList[effect].LoadContent(ref obj);
+            }
+        }
+
+        public void DeactivateEffect(string effect)
+        {
+            if (effectList.ContainsKey(effect))
+            {
+                effectList[effect].IsActive = false;
+                effectList[effect].UnloadContent();
+            }
         }
 
         public void LoadContent()
@@ -70,15 +109,32 @@ namespace SpaceRPG
             Texture = renderTarget;
 
             ScreenManager.Instance.GraphicsDevice.SetRenderTarget(null);
+
+            // Handle effects
+            SetEffect<FadeEffect>(ref FadeEffect);
+
+            if (Effects != String.Empty)
+            {
+                string[] split = Effects.Split(':');
+                foreach (string item in split)
+                    ActivateEffect(item);
+            }
         }
 
         public void UnloadContent()
         {
             content.Unload();
+            foreach (var effect in effectList)
+                DeactivateEffect(effect.Key);
         }
 
         public void Update(GameTime gametime)
         {
+            foreach (var effect in effectList)
+            {
+                if(effect.Value.IsActive)
+                    effect.Value.Update(gametime);
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
