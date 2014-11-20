@@ -33,7 +33,7 @@ namespace SpaceRPG
             base.Update(gameTime);
             image.Update(gameTime);
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Enter) && !ScreenManager.Instance.IsTransitioning)
+            if (InputManager.Instance.KeyPressed(Keys.Enter) && !ScreenManager.Instance.IsTransitioning)
                 ScreenManager.Instance.ChangeScreens("SplashScreen");
         }
 
