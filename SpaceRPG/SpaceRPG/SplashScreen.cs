@@ -34,7 +34,7 @@ namespace SpaceRPG
             image.Update(gameTime);
 
             if (InputManager.Instance.KeyPressed(Keys.Enter) && !ScreenManager.Instance.IsTransitioning)
-                ScreenManager.Instance.ChangeScreens("SplashScreen");
+                ScreenManager.Instance.ChangeScreens("TitleScreen");
         }
 
         public override void Draw(SpriteBatch spriteBatch)
