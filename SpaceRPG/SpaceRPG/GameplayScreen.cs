@@ -19,7 +19,7 @@ namespace SpaceRPG
             base.LoadContent();
 
             XmlManager<Player> playerLoader = new XmlManager<Player>();
-            player = playerLoader.Load("Load/Gameplay/Player.xml");
+            player = playerLoader.Load("Load/Gameplay/Characters/Player.xml");
             player.LoadContent();
 
             XmlManager<Map> mapLaoder = new XmlManager<Map>();
