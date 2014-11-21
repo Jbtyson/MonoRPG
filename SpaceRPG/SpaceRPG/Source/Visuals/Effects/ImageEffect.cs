@@ -9,11 +9,18 @@ using Microsoft.Xna.Framework;
 
 namespace SpaceRPG
 {
+    /// <summary>
+    /// ImageEffect is a base class for all image effects
+    /// </summary>
     public class ImageEffect
     {
-        protected Image image;
+        protected Image _image;
+
         public bool IsActive;
 
+        /// <summary>
+        /// Default Constructor
+        /// </summary>
         public ImageEffect()
         {
             IsActive = false;
@@ -21,7 +28,7 @@ namespace SpaceRPG
 
         public virtual void LoadContent(ref Image image)
         {
-            this.image = image;
+            this._image = image;
         }
 
         public virtual void UnloadContent()

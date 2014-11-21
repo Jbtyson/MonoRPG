@@ -11,48 +11,69 @@ using Microsoft.Xna.Framework.Input;
 
 namespace SpaceRPG
 {
+    /// <summary>
+    /// MenuManager helps facilite menu transitions
+    /// </summary>
     public class MenuManager
     {
-        Menu menu;
-        bool isTransitioning;
+        private Menu _menu;
+        private bool _isTransitioning;
 
+        /// <summary>
+        /// Default Constructor
+        /// </summary>
         public MenuManager()
         {
-            menu = new Menu();
-            menu.OnMenuChange += menu_OnMenuChange;
+            _menu = new Menu();
+            _menu.OnMenuChange += menu_OnMenuChange;
         }
 
+        /// <summary>
+        /// Handles a transition between menus
+        /// </summary>
+        /// <param name="gameTime"></param>
         void Transition(GameTime gameTime)
         {
-            if (isTransitioning)
+            if (_isTransitioning)
             {
-                for (int i = 0; i < menu.Items.Count; i++)
+                for (int i = 0; i < _menu.Items.Count; i++)
                 {
-                    menu.Items[i].Image.Update(gameTime);
-                    float first = menu.Items[0].Image.Alpha;
-                    float last = menu.Items[menu.Items.Count - 1].Image.Alpha;
+                    // Update all of the items, and then grab the first and last alpha values
+                    _menu.Items[i].Image.Update(gameTime);
+                    float first = _menu.Items[0].Image.Alpha;
+                    float last = _menu.Items[_menu.Items.Count - 1].Image.Alpha;
+
+                    // If the transition has faded out the original menu
                     if (first == 0.0f && last == 0.0f)
-                        menu.ID = menu.Items[menu.ItemNumber].LinkID;
+                        _menu.ID = _menu.Items[_menu.ItemNumber].LinkID;
+                    // If the transition has faded in the linked menu
                     else if (first == 1.0f && last == 1.0f)
                     {
-                        isTransitioning = false;
-                        foreach (MenuItem item in menu.Items)
-                        item.Image.RestoreEffects();
+                        _isTransitioning = false;
+                        foreach (MenuItem item in _menu.Items)
+                            item.Image.RestoreEffects();
                     }
                 }
             }
         }
 
+        /// <summary>
+        /// Handles the onMenuChance event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void menu_OnMenuChange(object sender, EventArgs e)
         {
+            // Unload the old menu, and load in the new menu
             XmlManager<Menu> xmlMenuManager = new XmlManager<Menu>();
-            menu.UnloadContent();
-            menu = xmlMenuManager.Load(menu.ID);
-            menu.LoadContent();
-            menu.OnMenuChange += menu_OnMenuChange;
-            menu.Transition(0.0f);
+            _menu.UnloadContent();
+            _menu = xmlMenuManager.Load(_menu.ID);
+            _menu.LoadContent();
+            _menu.OnMenuChange += menu_OnMenuChange;
+            _menu.Transition(0.0f);
 
-            foreach (MenuItem item in menu.Items)
+            // Add a fade effect to all of the images
+            foreach (MenuItem item in _menu.Items)
             {
                 item.Image.StoreEffects();
                 item.Image.ActivateEffect("FadeEffect");
@@ -62,27 +83,29 @@ namespace SpaceRPG
         public void LoadContent(string menuPath)
         {
             if (menuPath != String.Empty)
-                menu.ID = menuPath;
+                _menu.ID = menuPath;
         }
 
         public void UnloadContent()
         {
-            menu.UnloadContent();
+            _menu.UnloadContent();
         }
 
         public void Update(GameTime gameTime)
         {
-            if(!isTransitioning)
-                menu.Update(gameTime);
-            if (InputManager.Instance.KeyPressed(Keys.Enter) && !isTransitioning)
+            if(!_isTransitioning)
+                _menu.Update(gameTime);
+            if (InputManager.Instance.KeyPressed(Keys.Enter) && !_isTransitioning)
             {
-                if (menu.Items[menu.ItemNumber].LinkType == "Screen")
-                    ScreenManager.Instance.ChangeScreens(menu.Items[menu.ItemNumber].LinkID);
+                // Linked to screen
+                if (_menu.Items[_menu.ItemNumber].LinkType == "Screen")
+                    ScreenManager.Instance.ChangeScreens(_menu.Items[_menu.ItemNumber].LinkID);
+                // Linked to Menu
                 else
                 {
-                    isTransitioning = true;
-                    menu.Transition(1.0f);
-                    foreach (MenuItem item in menu.Items)
+                    _isTransitioning = true;
+                    _menu.Transition(1.0f);
+                    foreach (MenuItem item in _menu.Items)
                     {
                         item.Image.StoreEffects();
                         item.Image.ActivateEffect("FadeEffect");
@@ -94,7 +117,7 @@ namespace SpaceRPG
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            menu.Draw(spriteBatch);
+            _menu.Draw(spriteBatch);
         }
     }
 }

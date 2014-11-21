@@ -10,25 +10,28 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace SpaceRPG
 {
+    /// <summary>
+    /// Tile represents a single square on the grid
+    /// </summary>
     public class Tile
     {
-        Vector2 position;
-        Rectangle sourceRect;
+        private Vector2 _position;
+        private Rectangle _sourceRect;
 
         public Rectangle SourceRect
         {
-            get { return sourceRect; }
+            get { return _sourceRect; }
         }
 
         public Vector2 Position
         {
-            get { return position; }
+            get { return _position; }
         }
 
         public void LoadContent(Vector2 position, Rectangle sourceRect)
         {
-            this.position = position;
-            this.sourceRect = sourceRect;
+            this._position = position;
+            this._sourceRect = sourceRect;
         }
 
         public void UnloadContent()

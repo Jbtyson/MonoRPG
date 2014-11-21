@@ -9,54 +9,80 @@ using Microsoft.Xna.Framework.Input;
 
 namespace SpaceRPG
 {
+    /// <summary>
+    /// Input manager is a singleton class to help us manage inputs
+    /// </summary>
     public class InputManager
     {
-        KeyboardState currentKeyState, prevKeyState;
+        private KeyboardState _currentKeyState, _prevKeyState;
+        private static InputManager _instance;
 
-        private static InputManager instance;
+        /// <summary>
+        /// Singleton instance of InputManager
+        /// </summary>
         public static InputManager Instance
         {
             get
             {
-                if (instance == null)
-                    instance = new InputManager();
-
-                return instance;
+                if (_instance == null)
+                    _instance = new InputManager();
+                return _instance;
             }
         }
 
+        /// <summary>
+        /// Basic update function
+        /// </summary>
         public void Update()
         {
-            prevKeyState = currentKeyState;
+            // Save the keyboard state
+            _prevKeyState = _currentKeyState;
+
+            // Lock input during screen transitions
             if (!ScreenManager.Instance.IsTransitioning)
-                currentKeyState = Keyboard.GetState();
+                _currentKeyState = Keyboard.GetState();
         }
 
+        /// <summary>
+        /// Checks for a key(s) press
+        /// </summary>
+        /// <param name="keys">Key(s) to check for</param>
+        /// <returns>True if the key(s) have been pressed/returns>
         public bool KeyPressed(params Keys[] keys)
         {
             foreach (Keys key in keys)
             {
-                if (currentKeyState.IsKeyDown(key) && prevKeyState.IsKeyUp(key))
+                if (_currentKeyState.IsKeyDown(key) && _prevKeyState.IsKeyUp(key))
                     return true;
             }
             return false;
         }
 
+        /// <summary>
+        /// Checks for a key release
+        /// </summary>
+        /// <param name="keys">Key(s) to check for</param>
+        /// <returns>True if the key(s) have been released/returns>
         public bool KeyReleased(params Keys[] keys)
         {
             foreach (Keys key in keys)
             {
-                if (currentKeyState.IsKeyUp(key) && prevKeyState.IsKeyDown(key))
+                if (_currentKeyState.IsKeyUp(key) && _prevKeyState.IsKeyDown(key))
                     return true;
             }
             return false;
         }
 
-        public bool KeyDowns(params Keys[] keys)
+        /// <summary>
+        /// Checks for a key being currently held down
+        /// </summary>
+        /// <param name="keys">Key(s) to check for</param>
+        /// <returns>True if the key(s) is currently down/returns>
+        public bool KeyDown(params Keys[] keys)
         {
             foreach (Keys key in keys)
             {
-                if (currentKeyState.IsKeyDown(key))
+                if (_currentKeyState.IsKeyDown(key))
                     return true;
             }
             return false;

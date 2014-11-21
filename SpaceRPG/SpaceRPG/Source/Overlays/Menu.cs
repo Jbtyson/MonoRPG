@@ -12,41 +12,55 @@ using Microsoft.Xna.Framework.Input;
 
 namespace SpaceRPG
 {
+    /// <summary>
+    /// Menu provides basic menu functionality
+    /// </summary>
     public class Menu
     {
+        private int _itemNumber;
+        private string _id;
+
+        /// <summary>
+        /// Event that handles a menu being changed
+        /// </summary>
         public event EventHandler OnMenuChange;
 
-        public string Axis;
-        public string Effects;
         [XmlElement("Item")]
         public List<MenuItem> Items;
-        int itemNumber;
-        string id;
+        public string Axis;
+        public string Effects;
 
         public int ItemNumber
         {
-            get { return itemNumber; }
+            get { return _itemNumber; }
         }
 
         public string ID
         {
-            get { return id; }
+            get { return _id; }
             set
             {
-                id = value;
+                _id = value;
                 OnMenuChange(this, null);
             }
         }
 
+        /// <summary>
+        /// Default Constructor
+        /// </summary>
         public Menu()
         {
-            id = String.Empty;
-            itemNumber = 0;
+            _id = String.Empty;
+            _itemNumber = 0;
             Effects = String.Empty;
             Axis = "Y";
             Items = new List<MenuItem>();
         }
 
+        /// <summary>
+        /// Handle a menu transition
+        /// </summary>
+        /// <param name="alpha"></param>
         public void Transition(float alpha)
         {
             foreach (MenuItem item in Items)
@@ -60,15 +74,19 @@ namespace SpaceRPG
             }
         }
 
+        /// <summary>
+        /// Aligns the menu items centered along an axis
+        /// </summary>
         void AlignMenuItems()
         {
             Vector2 dimensions = Vector2.Zero;
+            // Add the size of each item to the dimensions and find the middle
             foreach (MenuItem item in Items)
                 dimensions += new Vector2(item.Image.SourceRect.Width, item.Image.SourceRect.Height);
-
             dimensions = new Vector2((ScreenManager.Instance.Dimensions.X - dimensions.X) / 2,
                 (ScreenManager.Instance.Dimensions.Y - dimensions.Y) / 2);
 
+            // Place each item in its correct spot based on the axis of alignment
             foreach (MenuItem item in Items)
             {
                 if (Axis == "X")
@@ -77,7 +95,6 @@ namespace SpaceRPG
                 else if (Axis == "Y")
                     item.Image.Position = new Vector2((ScreenManager.Instance.Dimensions.X - 
                         item.Image.SourceRect.Width) / 2, dimensions.Y);
-
                 dimensions += new Vector2(item.Image.SourceRect.Width, item.Image.SourceRect.Height);
             }
 
@@ -85,6 +102,7 @@ namespace SpaceRPG
 
         public void LoadContent()
         {
+            // Load all of the effects
             string[] split = Effects.Split(':');
             foreach (MenuItem item in Items)
             {
@@ -103,29 +121,32 @@ namespace SpaceRPG
 
         public void Update(GameTime gameTime)
         {
+            // Change the item number based on input
             if (Axis == "X")
             {
                 if (InputManager.Instance.KeyPressed(Keys.Right))
-                    itemNumber++;
+                    _itemNumber++;
                 else if (InputManager.Instance.KeyPressed(Keys.Left))
-                    itemNumber--;
+                    _itemNumber--;
             }
             else if (Axis == "Y")
             {
                 if (InputManager.Instance.KeyPressed(Keys.Down))
-                    itemNumber++;
+                    _itemNumber++;
                 else if (InputManager.Instance.KeyPressed(Keys.Up))
-                    itemNumber--;
+                    _itemNumber--;
             }
 
-            if (itemNumber < 0)
-                itemNumber = 0;
-            else if (itemNumber > Items.Count - 1)
-                itemNumber = Items.Count - 1;
+            // Clamp the menu selection
+            if (_itemNumber < 0)
+                _itemNumber = 0;
+            else if (_itemNumber > Items.Count - 1)
+                _itemNumber = Items.Count - 1;
 
+            // Highlight the item currently selected
             for (int i = 0; i < Items.Count; i++)
             {
-                if (i == itemNumber)
+                if (i == _itemNumber)
                     Items[i].Image.IsActive = true;
                 else
                     Items[i].Image.IsActive = false;

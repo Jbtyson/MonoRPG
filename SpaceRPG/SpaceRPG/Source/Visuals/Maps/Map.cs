@@ -12,12 +12,18 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace SpaceRPG
 {
+    /// <summary>
+    /// Map represents a ...map
+    /// </summary>
     public class Map
     {
         [XmlElement("Layer")]
         public List<Layer> Layers;
         public Vector2 TileDimensions;
 
+        /// <summary>
+        /// Default Constructor
+        /// </summary>
         public Map()
         {
             Layers = new List<Layer>();

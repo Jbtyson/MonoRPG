@@ -13,6 +13,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace SpaceRPG
 {
+    /// <summary>
+    /// SplashScreen is a screen that simply displays an image at the start of the game while it loads
+    /// </summary>
     public class SplashScreen : GameScreen
     {
         [XmlElement("Image")]
@@ -35,6 +38,8 @@ namespace SpaceRPG
             base.Update(gameTime);
             image.Update(gameTime);
 
+            // Transition to title screen on enter key
+            // TODO: In the future make this automatic
             if (InputManager.Instance.KeyPressed(Keys.Enter) && !ScreenManager.Instance.IsTransitioning)
                 ScreenManager.Instance.ChangeScreens("TitleScreen");
         }

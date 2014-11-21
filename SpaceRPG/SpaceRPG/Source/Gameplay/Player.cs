@@ -12,12 +12,18 @@ using Microsoft.Xna.Framework.Input;
 
 namespace SpaceRPG
 {
+    /// <summary>
+    /// Player represents the player object in the world
+    /// </summary>
     public class Player : GameObject
     {
         public Image Image;
         public Vector2 Velocity;
         public float MoveSpeed;
 
+        /// <summary>
+        /// Default Constructor
+        /// </summary>
         public Player()
         {
             Velocity = Vector2.Zero;
@@ -26,28 +32,28 @@ namespace SpaceRPG
         public override void LoadContent()
         {
             base.LoadContent();
-
             Image.LoadContent();
         }
 
         public override void UnloadContent()
         {
             base.UnloadContent();
-
             Image.UnloadContent();
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            // Set the image to active for now, we will set to false at the end of the update loop if necessary
             Image.IsActive = true;
 
-            if (InputManager.Instance.KeyDowns(Keys.Down))
+            // Vertical movement
+            if (InputManager.Instance.KeyDown(Keys.Down))
             {
                 Velocity.Y = MoveSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
                 Image.SpriteSheetEffect.CurrentFrame.Y = 0;
             }
-            else if (InputManager.Instance.KeyDowns(Keys.Up))
+            else if (InputManager.Instance.KeyDown(Keys.Up))
             {
                 Velocity.Y = -MoveSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
                 Image.SpriteSheetEffect.CurrentFrame.Y = 3;
@@ -55,12 +61,13 @@ namespace SpaceRPG
             else
                 Velocity.Y = 0;
 
-            if (InputManager.Instance.KeyDowns(Keys.Right))
+            //  Horizontal movement
+            if (InputManager.Instance.KeyDown(Keys.Right))
             {
                 Velocity.X = MoveSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
                 Image.SpriteSheetEffect.CurrentFrame.Y = 2;
             }
-            else if (InputManager.Instance.KeyDowns(Keys.Left))
+            else if (InputManager.Instance.KeyDown(Keys.Left))
             {
                 Velocity.X = -MoveSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
                 Image.SpriteSheetEffect.CurrentFrame.Y = 1;
@@ -68,17 +75,20 @@ namespace SpaceRPG
             else
                 Velocity.X = 0;
 
+            // Set the image.isActive to false if the player is standing still so that the correct sprite is displayed
             if (Velocity.X == 0 && Velocity.Y == 0)
                 Image.IsActive = false;
 
+            // Update our image
             Image.Update(gameTime);
+
+            // Update our position in the world
             Image.Position += Velocity;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-
             Image.Draw(spriteBatch);
         }
     }

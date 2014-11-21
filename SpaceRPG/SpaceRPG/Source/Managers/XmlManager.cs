@@ -9,15 +9,27 @@ using System.IO;
 
 namespace SpaceRPG
 {
+    /// <summary>
+    /// XmlManager provides xml serialization and deserialization functionality
+    /// </summary>
+    /// <typeparam name="T">Type of object being serialize/deserialized</typeparam>
     public class XmlManager<T>
     {
         public Type Type;
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public XmlManager()
         {
             Type = typeof(T);
         }
 
+        /// <summary>
+        /// Loads an object from a given xml path
+        /// </summary>
+        /// <param name="path">Path to load from</param>
+        /// <returns>Object of type T created</returns>
         public T Load(string path)
         {
             T instance;
@@ -29,6 +41,11 @@ namespace SpaceRPG
             return instance;
         }
 
+        /// <summary>
+        /// Saves an object to a given xml path
+        /// </summary>
+        /// <param name="path">Path to save in</param>
+        /// <param name="obj">Object to serialze</param>
         public void Save(string path, object obj)
         {
             using (TextWriter writer = new StreamWriter(path))

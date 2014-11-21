@@ -12,14 +12,20 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace SpaceRPG
 {
+    /// <summary>
+    /// GameScreen represents a base class for all screens
+    /// </summary>
     public class GameScreen
     {
-        protected ContentManager content;
+        protected ContentManager _content;
+
         [XmlIgnore]
         public Type Type;
-
         public string XmlPath;
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public GameScreen()
         {
             Type = this.GetType();
@@ -28,13 +34,13 @@ namespace SpaceRPG
 
         public virtual void LoadContent()
         {
-            content = new ContentManager(
+            _content = new ContentManager(
                 ScreenManager.Instance.Content.ServiceProvider, "Content");
         }
 
         public virtual void UnloadContent()
         {
-            content.Unload();
+            _content.Unload();
         }
 
         public virtual void Update(GameTime gameTime)

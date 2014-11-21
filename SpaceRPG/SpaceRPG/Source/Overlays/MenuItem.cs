@@ -7,6 +7,9 @@ using System.Text;
 
 namespace SpaceRPG
 {
+    /// <summary>
+    /// MenuItem represents a single item in a menu
+    /// </summary>
     public class MenuItem
     {
         public string LinkType;

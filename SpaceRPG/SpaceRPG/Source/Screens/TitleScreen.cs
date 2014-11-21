@@ -10,37 +10,44 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace SpaceRPG
 {
+    /// <summary>
+    /// TitleScreen displays the title menu
+    /// </summary>
     public class TitleScreen : GameScreen
     {
-        MenuManager menuManager;
+        private MenuManager _menuManager;
 
+        /// <summary>
+        /// Default Constructor
+        /// </summary>
         public TitleScreen()
         {
-            menuManager = new MenuManager();
+            _menuManager = new MenuManager();
         }
 
         public override void LoadContent()
         {
             base.LoadContent();
-            menuManager.LoadContent("Load/Menus/TitleMenu.xml");
+            // Load the title menu
+            _menuManager.LoadContent("Load/Menus/TitleMenu.xml");
         }
 
         public override void UnloadContent()
         {
             base.UnloadContent();
-            menuManager.UnloadContent();
+            _menuManager.UnloadContent();
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            menuManager.Update(gameTime);
+            _menuManager.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            menuManager.Draw(spriteBatch);
+            _menuManager.Draw(spriteBatch);
         }
 
     }
