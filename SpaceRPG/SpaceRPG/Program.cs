@@ -1,4 +1,6 @@
-﻿#region Using Statements
+﻿// Program.cs
+// James Tyson
+#region Using Statements
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +20,7 @@ namespace SpaceRPG
         [STAThread]
         static void Main()
         {
-            using (var game = new Game1())
+            using (var game = new RPG())
                 game.Run();
         }
     }

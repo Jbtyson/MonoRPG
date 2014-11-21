@@ -52,3 +52,4 @@ C:\Users\James\Documents\GitHub\spacerpg\SpaceRPG\SpaceRPG\SharpDX.RawInput.xml
 C:\Users\James\Documents\GitHub\spacerpg\SpaceRPG\SpaceRPG\SharpDX.Direct3D9.xml
 C:\Users\James\Documents\GitHub\spacerpg\SpaceRPG\SpaceRPG\SpaceRPG.exe
 C:\Users\James\Documents\GitHub\spacerpg\SpaceRPG\SpaceRPG\SpaceRPG.pdb
+C:\Users\James\Documents\GitHub\spacerpg\SpaceRPG\SpaceRPG\obj\x86\Debug\SpaceRPG.csprojResolveAssemblyReference.cache
