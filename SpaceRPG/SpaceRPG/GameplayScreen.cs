@@ -12,6 +12,7 @@ namespace SpaceRPG
     public class GameplayScreen : GameScreen
     {
         Player player;
+        Map map;
 
         public override void LoadContent()
         {
@@ -20,6 +21,10 @@ namespace SpaceRPG
             XmlManager<Player> playerLoader = new XmlManager<Player>();
             player = playerLoader.Load("Load/Gameplay/Player.xml");
             player.LoadContent();
+
+            XmlManager<Map> mapLaoder = new XmlManager<Map>();
+            map = mapLaoder.Load("Load/Gameplay/Maps/Map1.xml");
+            map.LoadContent();
         }
 
         public override void UnloadContent()
@@ -33,13 +38,17 @@ namespace SpaceRPG
         {
             base.Update(gameTime);
 
+            // Update player and then map
             player.Update(gameTime);
+            map.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
 
+            // Draw map before player
+            map.Draw(spriteBatch);
             player.Draw(spriteBatch);
         }
     }
