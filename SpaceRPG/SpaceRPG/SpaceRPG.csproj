@@ -40,6 +40,8 @@
   <ItemGroup>
     <Compile Include="FadeEffect.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="GameObject.cs" />
+    <Compile Include="GameplayScreen.cs" />
     <Compile Include="GameScreen.cs" />
     <Compile Include="Image.cs" />
     <Compile Include="ImageEffect.cs" />
@@ -47,10 +49,12 @@
     <Compile Include="Menu.cs" />
     <Compile Include="MenuItem.cs" />
     <Compile Include="MenuManager.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScreenManager.cs" />
     <Compile Include="SplashScreen.cs" />
+    <Compile Include="SpriteSheetEffect.cs" />
     <Compile Include="TitleScreen.cs" />
     <Compile Include="XmlManager.cs" />
   </ItemGroup>
@@ -62,6 +66,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Gameplay\player.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\ScreenManager\FadeImage.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -69,6 +76,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.ico" />
+    <Content Include="Load\Gameplay\Player.xml" />
     <Content Include="Load\Menus\TestMenu.xml" />
     <Content Include="Load\Menus\TitleMenu.xml" />
     <Content Include="Load\ScreenManager.xml" />

@@ -29,6 +29,7 @@ namespace SpaceRPG
         public string Effects;
 
         public FadeEffect FadeEffect;
+        public SpriteSheetEffect SpriteSheetEffect;
 
         public Image()
         {
@@ -137,6 +138,7 @@ namespace SpaceRPG
 
             // Handle effects
             SetEffect<FadeEffect>(ref FadeEffect);
+            SetEffect<SpriteSheetEffect>(ref SpriteSheetEffect);
 
             if (Effects != String.Empty)
             {
