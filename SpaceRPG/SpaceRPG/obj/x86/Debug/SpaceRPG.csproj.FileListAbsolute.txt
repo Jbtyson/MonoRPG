@@ -53,3 +53,5 @@ C:\Users\James\Documents\GitHub\spacerpg\SpaceRPG\SpaceRPG\SharpDX.Direct3D9.xml
 C:\Users\James\Documents\GitHub\spacerpg\SpaceRPG\SpaceRPG\SpaceRPG.exe
 C:\Users\James\Documents\GitHub\spacerpg\SpaceRPG\SpaceRPG\SpaceRPG.pdb
 C:\Users\James\Documents\GitHub\spacerpg\SpaceRPG\SpaceRPG\obj\x86\Debug\SpaceRPG.csprojResolveAssemblyReference.cache
+C:\Users\James Tyson\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\obj\x86\Debug\SpaceRPG.exe
+C:\Users\James Tyson\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\obj\x86\Debug\SpaceRPG.pdb
