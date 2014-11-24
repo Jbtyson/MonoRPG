@@ -8,6 +8,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace SpaceRPG
 {
@@ -47,6 +48,13 @@ namespace SpaceRPG
             // Update player and then map so that the players actions matter this frame
             _player.Update(gameTime);
             _map.Update(gameTime);
+
+            // Initiate Combat
+            if (InputManager.Instance.KeyPressed(Keys.Enter) && !ScreenManager.Instance.IsTransitioning)
+            {
+                CombatScreen.EncounterId = "Load/Gameplay/Levels/Tutorial/Encounter1.xml";
+                ScreenManager.Instance.ChangeScreens("CombatScreen");
+            }                
         }
 
         public override void Draw(SpriteBatch spriteBatch)

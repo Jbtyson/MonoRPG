@@ -17,10 +17,6 @@ namespace SpaceRPG
     /// </summary>
     public class Player : GameObject
     {
-        public Image Image;
-        public Vector2 Velocity;
-        public float MoveSpeed;
-
         /// <summary>
         /// Default Constructor
         /// </summary>

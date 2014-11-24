@@ -59,11 +59,11 @@ namespace SpaceRPG
         public ScreenManager()
         {
             Dimensions = new Vector2(1024, 576);
-            //currentScreen = new SplashScreen();
+            //_currentScreen = new SplashScreen();
             _currentScreen = new GameplayScreen();
             _xmlGameScreenManager = new XmlManager<GameScreen>();
             _xmlGameScreenManager.Type = _currentScreen.Type;
-            //currentScreen = xmlGameScreenManager.Load("Load/Screens/SplashScreen.xml");
+            //_currentScreen = _xmlGameScreenManager.Load("Load/Screens/SplashScreen.xml");
             IsTransitioning = false;
         }
 

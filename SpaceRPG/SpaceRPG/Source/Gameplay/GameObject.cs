@@ -16,6 +16,12 @@ namespace SpaceRPG
     /// </summary>
     public class GameObject
     {
+        public string Name;
+        public float MoveSpeed;
+        public Image Image;
+        public Vector2 Position;
+        public Vector2 Velocity;
+
         /// <summary>
         /// Loads content
         /// </summary>

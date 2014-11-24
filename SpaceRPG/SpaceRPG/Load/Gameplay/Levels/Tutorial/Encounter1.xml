@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Encounter>
+  <Enemy>
+    <Name>Goblin</Name>
+    <Image>
+      <Path>Gameplay/Characters/Enemies/enemy</Path>
+      <Effects>SpriteSheetEffect</Effects>
+    </Image>
+    <MoveSpeed>100</MoveSpeed>
+    <Stats>
+      <Health>100</Health>
+      <Attack>25</Attack>
+      <Defense>15</Defense>
+      <Level>3</Level>
+    </Stats>
+    <Position>
+      <X>500</X>
+      <Y>150</Y>
+    </Position>
+  </Enemy>
+
+  <Enemy>
+    <Name>Goblin</Name>
+    <Image>
+      <Path>Gameplay/Characters/Enemies/enemy</Path>
+      <Effects>SpriteSheetEffect</Effects>
+    </Image>
+    <MoveSpeed>100</MoveSpeed>
+    <Stats>
+      <Health>100</Health>
+      <Attack>25</Attack>
+      <Defense>15</Defense>
+      <Level>3</Level>
+    </Stats>
+    <Position>
+      <X>500</X>
+      <Y>200</Y>
+    </Position>
+  </Enemy>
+</Encounter>

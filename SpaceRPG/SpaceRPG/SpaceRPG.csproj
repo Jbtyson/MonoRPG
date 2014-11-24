@@ -38,6 +38,14 @@
     <StartupObject>SpaceRPG.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Source\Gameplay\Combat\Party.cs" />
+    <Compile Include="Source\Managers\CombatManager.cs" />
+    <Compile Include="Source\Screens\CombatScreen.cs" />
+    <Compile Include="Source\Gameplay\Combat\Encounter.cs" />
+    <Compile Include="Source\Gameplay\Combat\Enemy.cs" />
+    <Compile Include="Source\Gameplay\Combat\ICombat.cs" />
+    <Compile Include="Source\Gameplay\Combat\Ally.cs" />
+    <Compile Include="Source\Gameplay\Combat\Stats.cs" />
     <Compile Include="Source\Visuals\Effects\FadeEffect.cs" />
     <Compile Include="RPG.cs" />
     <Compile Include="Source\Gameplay\GameObject.cs" />
@@ -69,6 +77,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Gameplay\Characters\Enemies\enemy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Gameplay\Characters\player.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -80,6 +91,10 @@
     </Content>
     <Content Include="Content\SplashScreen\background.png" />
     <Content Include="Icon.ico" />
+    <Content Include="Load\Gameplay\Combat\CombatManager.xml" />
+    <Content Include="Load\Gameplay\Combat\Party.xml" />
+    <Content Include="Load\Gameplay\Levels\Tutorial\Encounter1.xml" />
+    <Content Include="Load\Gameplay\Maps\TestMap.xml" />
     <Content Include="Load\Gameplay\Maps\Map1.xml" />
     <Content Include="Load\Gameplay\Characters\Player.xml" />
     <Content Include="Load\Menus\TitleMenu.xml" />
