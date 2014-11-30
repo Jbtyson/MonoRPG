@@ -18,6 +18,7 @@ namespace SpaceRPG
     public class Layer
     {
         private List<Tile> _tiles;
+        private string _state;
         
         /// <summary>
         /// TileMap is a grid of tiles to represent the world
@@ -38,7 +39,9 @@ namespace SpaceRPG
 
         [XmlElement("TileMap")]
         public TileMap TMap;
+        public string SolidTiles;
         public Image Image;
+        
 
         public Layer()
         {
@@ -63,15 +66,22 @@ namespace SpaceRPG
                 {
                     if (s != String.Empty)
                     {
+                        _state = "Passive";
                         position.X += tileDimensions.X;
-                        _tiles.Add(new Tile());
+                        if (!s.Contains("x"))
+                        {
+                            _tiles.Add(new Tile());
 
-                        string str = s.Replace("[", String.Empty);
-                        int val1 = int.Parse(str.Substring(0, str.IndexOf(':')));
-                        int val2 = int.Parse(str.Substring(str.IndexOf(':') + 1));
-                        _tiles[_tiles.Count - 1].LoadContent(position, new Rectangle(val1 * (int)tileDimensions.X, val2 * (int)tileDimensions.Y, 
-                            (int)tileDimensions.X, (int)tileDimensions.Y));
+                            string str = s.Replace("[", String.Empty);
+                            int val1 = int.Parse(str.Substring(0, str.IndexOf(':')));
+                            int val2 = int.Parse(str.Substring(str.IndexOf(':') + 1));
 
+                            if (SolidTiles.Contains("[" + val1.ToString() + ":" + val2.ToString() + "]"))
+                                _state = "Solid";
+
+                            _tiles[_tiles.Count - 1].LoadContent(_state, position, new Rectangle(val1 * (int)tileDimensions.X, val2 * (int)tileDimensions.Y,
+                                (int)tileDimensions.X, (int)tileDimensions.Y));
+                        }
                     }
                 }
             }
@@ -82,7 +92,7 @@ namespace SpaceRPG
             Image.UnloadContent();
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, ref Player player)
         {
 
         }

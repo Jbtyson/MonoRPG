@@ -17,6 +17,7 @@ namespace SpaceRPG
     {
         private Vector2 _position;
         private Rectangle _sourceRect;
+        private string _state;
 
         public Rectangle SourceRect
         {
@@ -28,8 +29,9 @@ namespace SpaceRPG
             get { return _position; }
         }
 
-        public void LoadContent(Vector2 position, Rectangle sourceRect)
+        public void LoadContent(string state, Vector2 position, Rectangle sourceRect)
         {
+            this._state = state;
             this._position = position;
             this._sourceRect = sourceRect;
         }
@@ -39,7 +41,7 @@ namespace SpaceRPG
 
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, ref Player player)
         {
 
         }
