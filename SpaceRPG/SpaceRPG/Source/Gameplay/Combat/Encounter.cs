@@ -16,6 +16,7 @@ namespace SpaceRPG
     {
         [XmlElement("Enemy")]
         public List<Enemy> Enemies;
+        public Reward Rewards;
 
         public Encounter()
         {

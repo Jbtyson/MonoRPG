@@ -39,11 +39,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Source\Gameplay\Combat\Party.cs" />
+    <Compile Include="Source\Gameplay\Items\Reward.cs" />
+    <Compile Include="Source\Gameplay\Items\Item.cs" />
     <Compile Include="Source\Managers\CombatManager.cs" />
     <Compile Include="Source\Screens\CombatScreen.cs" />
     <Compile Include="Source\Gameplay\Combat\Encounter.cs" />
     <Compile Include="Source\Gameplay\Combat\Enemy.cs" />
-    <Compile Include="Source\Gameplay\Combat\ICombat.cs" />
     <Compile Include="Source\Gameplay\Combat\Ally.cs" />
     <Compile Include="Source\Gameplay\Combat\Stats.cs" />
     <Compile Include="Source\Visuals\Effects\FadeEffect.cs" />
