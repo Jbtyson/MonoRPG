@@ -1,3 +1,6 @@
 splashScreen background :
 	http://www.dealspwn.com/writer/wordpress/wp-content/uploads/2012/09/starshipbridge-740x300.jpg
+	
+player spritesheet :
+	http://www.famitsu.com/freegame/tool/chibi/index1.html
 
