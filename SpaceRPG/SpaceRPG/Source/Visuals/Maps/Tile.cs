@@ -43,7 +43,30 @@ namespace SpaceRPG
 
         public void Update(GameTime gameTime, ref Player player)
         {
+            if (_state == "Solid")
+            {
+                // Get the rects
+                Rectangle tileRect = new Rectangle((int)Position.X, (int)Position.Y, 
+                    _sourceRect.Width, _sourceRect.Height);
+                Rectangle playerRect = new Rectangle((int)player.Image.Position.X, (int)player.Image.Position.Y,
+                    player.Image.SourceRect.Width, player.Image.SourceRect.Height);
 
+                // Check for intersection
+                // This needs to be fixed to prevent jumping around if you change directions while intersecting
+                if (playerRect.Intersects(tileRect))
+                {
+                    if (player.Velocity.X < 0)
+                        player.Image.Position.X = tileRect.Right;
+                    else if (player.Velocity.X > 0)
+                        player.Image.Position.X = tileRect.Left - player.Image.SourceRect.Width;
+                    else if (player.Velocity.Y < 0)
+                        player.Image.Position.Y = tileRect.Bottom;
+                    else if (player.Velocity.Y > 0)
+                        player.Image.Position.Y = tileRect.Top - player.Image.SourceRect.Height;
+
+                    player.Velocity = Vector2.Zero;
+                }
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)

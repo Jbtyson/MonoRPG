@@ -38,6 +38,7 @@ namespace SpaceRPG
         {
             base.UnloadContent();
             _player.UnloadContent();
+            _map.UnloadContent();
         }
 
         public override void Update(GameTime gameTime)
@@ -46,7 +47,7 @@ namespace SpaceRPG
 
             // Update player and then map so that the players actions matter this frame
             _player.Update(gameTime);
-            _map.Update(gameTime);
+            _map.Update(gameTime, ref _player);
         }
 
         public override void Draw(SpriteBatch spriteBatch)

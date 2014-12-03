@@ -47,6 +47,7 @@ namespace SpaceRPG
         {
             Image = new Image();
             _tiles = new List<Tile>();
+            SolidTiles = String.Empty;
         }
 
         public void LoadContent(Vector2 tileDimensions) 
@@ -94,7 +95,8 @@ namespace SpaceRPG
 
         public void Update(GameTime gameTime, ref Player player)
         {
-
+            foreach (Tile tile in _tiles)
+                tile.Update(gameTime, ref player);
         }
 
         public void Draw(SpriteBatch spriteBatch)
