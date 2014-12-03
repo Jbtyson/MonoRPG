@@ -17,7 +17,7 @@ namespace SpaceRPG
     /// </summary>
     public class Layer
     {
-        private List<Tile> _tiles;
+        private List<Tile> _underlayTiles, _overlayTiles;
         private string _state;
         
         /// <summary>
@@ -39,15 +39,17 @@ namespace SpaceRPG
 
         [XmlElement("TileMap")]
         public TileMap TMap;
-        public string SolidTiles;
+        public string SolidTiles, OverlayTiles;
         public Image Image;
         
 
         public Layer()
         {
             Image = new Image();
-            _tiles = new List<Tile>();
+            _overlayTiles = new List<Tile>();
+            _underlayTiles = new List<Tile>();
             SolidTiles = String.Empty;
+            OverlayTiles = String.Empty;
         }
 
         public void LoadContent(Vector2 tileDimensions) 
@@ -71,7 +73,7 @@ namespace SpaceRPG
                         position.X += tileDimensions.X;
                         if (!s.Contains("x"))
                         {
-                            _tiles.Add(new Tile());
+                            Tile tile = new Tile();
 
                             string str = s.Replace("[", String.Empty);
                             int val1 = int.Parse(str.Substring(0, str.IndexOf(':')));
@@ -80,8 +82,13 @@ namespace SpaceRPG
                             if (SolidTiles.Contains("[" + val1.ToString() + ":" + val2.ToString() + "]"))
                                 _state = "Solid";
 
-                            _tiles[_tiles.Count - 1].LoadContent(_state, position, new Rectangle(val1 * (int)tileDimensions.X, val2 * (int)tileDimensions.Y,
+                            tile.LoadContent(_state, position, new Rectangle(val1 * (int)tileDimensions.X, val2 * (int)tileDimensions.Y,
                                 (int)tileDimensions.X, (int)tileDimensions.Y));
+
+                            if (OverlayTiles.Contains("[" + val1.ToString() + ":" + val2.ToString() + "]"))
+                                _overlayTiles.Add(tile);
+                            else
+                                _underlayTiles.Add(tile);
                         }
                     }
                 }
@@ -95,13 +102,23 @@ namespace SpaceRPG
 
         public void Update(GameTime gameTime, ref Player player)
         {
-            foreach (Tile tile in _tiles)
+            foreach (Tile tile in _underlayTiles)
+                tile.Update(gameTime, ref player);
+
+            foreach (Tile tile in _overlayTiles)
                 tile.Update(gameTime, ref player);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, string drawType)
         {
-            foreach (Tile tile in _tiles)
+            List<Tile> tiles;
+            if (drawType == "Underlay")
+                tiles = _underlayTiles;
+            else
+                tiles = _overlayTiles;
+            
+            
+            foreach (Tile tile in tiles)
             {
                 Image.Position = tile.Position;
                 Image.SourceRect = tile.SourceRect;

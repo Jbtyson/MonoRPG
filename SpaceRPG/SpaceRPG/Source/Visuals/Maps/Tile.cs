@@ -38,7 +38,7 @@ namespace SpaceRPG
 
         public void UnloadContent()
         {
-
+        
         }
 
         public void Update(GameTime gameTime, ref Player player)

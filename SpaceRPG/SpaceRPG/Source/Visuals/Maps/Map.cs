@@ -54,11 +54,11 @@ namespace SpaceRPG
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, string drawType)
         {
             foreach (Layer l in Layers)
             {
-                l.Draw(spriteBatch);
+                l.Draw(spriteBatch, drawType);
             }
         }
     }

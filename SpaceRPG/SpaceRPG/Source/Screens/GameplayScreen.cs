@@ -54,9 +54,10 @@ namespace SpaceRPG
         {
             base.Draw(spriteBatch);
 
-            // Draw map before player so that the player appears on top
-            _map.Draw(spriteBatch);
+            // Draw the underlaying tiles, the player, and then the overlaying tiles
+            _map.Draw(spriteBatch, "Underlay");
             _player.Draw(spriteBatch);
+            _map.Draw(spriteBatch, "Overlay");
         }
     }
 }
