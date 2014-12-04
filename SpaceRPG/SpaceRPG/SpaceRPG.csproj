@@ -38,6 +38,7 @@
     <StartupObject>SpaceRPG.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Source\Screens\Camera.cs" />
     <Compile Include="Source\Visuals\Effects\FadeEffect.cs" />
     <Compile Include="RPG.cs" />
     <Compile Include="Source\Gameplay\GameObject.cs" />
