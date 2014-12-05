@@ -17,8 +17,12 @@ namespace SpaceRPG
     {
         public Stats Stats;
         public bool IsActive;
-        [XmlIgnore]
-        public ICombat Target;
+
+        public Enemy()
+        {
+            Stats = new Stats();
+            IsActive = false;
+        }
 
         public override void LoadContent()
         {
@@ -38,10 +42,6 @@ namespace SpaceRPG
             base.Update(gameTime);
             // Set the image to active for now, we will set to false at the end of the update loop if necessary
             Image.IsActive = true;
-
-            // Set the image.isActive to false if the player is standing still so that the correct sprite is displayed
-            //if (Velocity.X == 0 && Velocity.Y == 0)
-                //Image.IsActive = false;
 
             // Update our image
             Image.Update(gameTime);

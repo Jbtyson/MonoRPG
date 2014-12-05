@@ -50,7 +50,7 @@ namespace SpaceRPG
         /// <summary>
         /// Sets an effect to an image
         /// </summary>
-        /// <typeparam name="T">Tyoe of the effect</typeparam>
+        /// <typeparam name="T">Type of the effect</typeparam>
         /// <param name="effect">Effect being added</param>
         void SetEffect<T>(ref T effect)
         {

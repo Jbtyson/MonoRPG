@@ -18,14 +18,31 @@ namespace SpaceRPG
         public Stats Stats;
         public bool IsActive;
         public bool IsPlayerControlled;
-        [XmlIgnore]
-        public ICombat Target;
+        public List<Behavior> Behaviors;
+        [XmlElement("Behavior")]
+        public List<string> BehaviorLoadList;
+        
+
+        public Ally()
+        {
+            Stats = new Stats();
+            IsActive = false;
+            IsPlayerControlled = false;
+            BehaviorLoadList = new List<string>();
+        }
 
         public override void LoadContent()
         {
             base.LoadContent();
             Image.LoadContent();
             Image.Position = this.Position;
+
+            // Load behaviors
+            foreach (string s in BehaviorLoadList)
+            {
+                Type t = Type.GetType("SpaceRPG." + s);
+                Behaviors.Add((Behavior)Activator.CreateInstance(t));
+            }
         }
 
         public override void UnloadContent()
@@ -70,6 +87,12 @@ namespace SpaceRPG
                 }
                 else
                     Velocity.X = 0;
+            }
+            // If not player controlled, update the AI behavior
+            else
+            {
+                foreach (Behavior behavior in Behaviors)
+                    behavior.Update(gameTime, this);
             }
 
             // Set the image.isActive to false if the player is standing still so that the correct sprite is displayed

@@ -2,11 +2,14 @@
 <Party>
     <Ally>
       <Name>James</Name>
-      <IsPlayerControlled>true</IsPlayerControlled>
       <Image>
         <Path>Gameplay/Characters/player</Path>
         <Effects>SpriteSheetEffect</Effects>
       </Image>
+      
+      <Behavior>AggressiveMove</Behavior>
+      <Behavior>DefensiveMove</Behavior>
+      
       <MoveSpeed>100</MoveSpeed>
       <Stats>
         <Health>100</Health>
@@ -22,6 +25,7 @@
 
     <Ally>
       <Name>Ben</Name>
+      
       <Image>
         <Path>Gameplay/Characters/player</Path>
         <Effects>SpriteSheetEffect</Effects>
