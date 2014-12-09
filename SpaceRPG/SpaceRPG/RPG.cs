@@ -94,7 +94,7 @@ namespace SpaceRPG
                         null,
                         null,
                         null,
-                        ScreenManager.Instance.Camera.get_transformation(ScreenManager.Instance.GraphicsDevice));
+                        ScreenManager.Instance.Camera.GetTransformation(ScreenManager.Instance.GraphicsDevice));
             ScreenManager.Instance.Draw(spriteBatch);
             spriteBatch.End();
 

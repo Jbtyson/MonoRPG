@@ -84,9 +84,6 @@ namespace SpaceRPG
 
             // Update our position in the world
             Image.Position += Velocity;
-
-            // Update the camera position to our new position
-            ScreenManager.Instance.Camera.Pos = Image.Position;
         }
 
         public override void Draw(SpriteBatch spriteBatch)

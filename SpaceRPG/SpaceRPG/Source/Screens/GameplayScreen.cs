@@ -48,6 +48,9 @@ namespace SpaceRPG
             // Update player and then map so that the players actions matter this frame
             _player.Update(gameTime);
             _map.Update(gameTime, ref _player);
+
+            // Update the camera position to our new position
+            ScreenManager.Instance.Camera.Position = _player.Image.Position;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
