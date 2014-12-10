@@ -58,7 +58,9 @@ namespace SpaceRPG
                                          Matrix.CreateRotationZ(Rotation) *
                                          Matrix.CreateScale(new Vector3(Zoom, Zoom, 1)) *
                                          Matrix.CreateTranslation(new Vector3(ScreenManager.Instance.Dimensions.X * 0.5f, ScreenManager.Instance.Dimensions.Y * 0.5f, 0));
-             return _transform;
+            _transform.M41 = (float)(Math.Round(_transform.M41)); // removes horizontal white stripes betwwen tiles
+            _transform.M42 = (float)(Math.Round(_transform.M42)); // removes vertical white stripes between tiles
+            return _transform;
         }
     }
 }
