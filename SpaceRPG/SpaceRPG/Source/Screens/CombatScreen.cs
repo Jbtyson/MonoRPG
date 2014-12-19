@@ -36,7 +36,7 @@ namespace SpaceRPG
             // Load the combat manager
             XmlManager<CombatManager> combatManagerLoader = new XmlManager<CombatManager>();
             _combatManager = combatManagerLoader.Load("Load/Gameplay/Combat/CombatManager.xml");
-            _combatManager.LoadContent();
+            _combatManager.LoadContent(_map);
         }
 
         public override void UnloadContent()

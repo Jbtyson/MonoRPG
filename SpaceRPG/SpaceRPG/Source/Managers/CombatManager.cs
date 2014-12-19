@@ -16,15 +16,20 @@ namespace SpaceRPG
     {
         private Party _party;
         private Encounter _encounter;
+        private Grid _grid;
 
         public CombatManager()
         {
             _party = new Party();
             _encounter = new Encounter();
+            _grid = new Grid();
         }
 
-        public void LoadContent()
+        public void LoadContent(Map _map)
         {
+            // Create grid (game board)
+            _grid.LoadContent(_map);
+
             // Load the party
             XmlManager<Party> partyLoader = new XmlManager<Party>();
             _party = partyLoader.Load("Load/Gameplay/Combat/Party.xml");

@@ -41,6 +41,8 @@
     <Compile Include="Source\Gameplay\Combat\Behaviours\DefensiveMove.cs" />
     <Compile Include="Source\Gameplay\Combat\Behaviours\AggressiveMove.cs" />
     <Compile Include="Source\Gameplay\Combat\Behaviours\Behavior.cs" />
+    <Compile Include="Source\Gameplay\Combat\CombatTile.cs" />
+    <Compile Include="Source\Gameplay\Combat\Grid.cs" />
     <Compile Include="Source\Gameplay\Combat\Party.cs" />
     <Compile Include="Source\Gameplay\Items\Reward.cs" />
     <Compile Include="Source\Gameplay\Items\Item.cs" />
