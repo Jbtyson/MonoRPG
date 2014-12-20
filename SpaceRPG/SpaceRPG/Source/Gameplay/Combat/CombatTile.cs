@@ -13,19 +13,17 @@ namespace SpaceRPG
     class CombatTile
     {
 
-        //Just examples of potential tile properties.
-        private bool _walkable;
-        private bool _damaging;
-        private int _height;
-
-        public bool Walkable { get { return _walkable; } }
-        public bool Damaging { get {return _damaging;}}
-        public int Height { get { return _height; }}
+        //Just examples of potential tile properties. We'll need some more obvs.
+        public bool Walkable;
+        public int Height;
+        public bool Damaging;
+        public int TurnsToBurn;
 
         public CombatTile() {
-            _walkable = false;
-            _damaging = false;
-            _height = 0;
+            Walkable = false;
+            Damaging = false;
+            Height = 0;
+            TurnsToBurn = 0;
         }
 
         public void LoadContent(string tilevalues)
@@ -33,21 +31,23 @@ namespace SpaceRPG
             string[] tilevaluepair = tilevalues.Split(':');
 
             int type = Convert.ToInt32(tilevaluepair[0]);
-            _height = Convert.ToInt32(tilevaluepair[1]);
+            Height = Convert.ToInt32(tilevaluepair[1]);
 
+            //We can come up with many types, not just 3. (Double digit ints and negative ints can be read as well.)
             switch (type)
             {
                 case 1:
-                    _walkable = true;
-                    _damaging = false;
+                    Walkable = true;
+                    Damaging = false;
+                    TurnsToBurn = 1;
                     break;
                 case 2:
-                    _walkable = true;
-                    _damaging = true;
+                    Walkable = true;
+                    Damaging = true;
                     break;
                 default:
-                    _walkable = false;
-                    _damaging = false;
+                    Walkable = false;
+                    Damaging = false;
                     break;
             }
         }
