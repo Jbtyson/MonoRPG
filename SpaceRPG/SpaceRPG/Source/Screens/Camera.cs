@@ -53,10 +53,7 @@ namespace SpaceRPG
         /// <returns>Camera Transformation Matrix</returns>
         public Matrix GetTransformation(GraphicsDevice graphicsDevice)
         {
-             _transform =       // Thanks to o KB o for this solution
-              Matrix.CreateTranslation(new Vector3(-Position.X, -Position.Y, 0)) *
-                                         Matrix.CreateRotationZ(Rotation) *
-                                         Matrix.CreateScale(new Vector3(Zoom, Zoom, 1)) *
+             _transform = Matrix.CreateTranslation(new Vector3(-Position.X, -Position.Y, 0)) * Matrix.CreateRotationZ(Rotation) * Matrix.CreateScale(new Vector3(Zoom, Zoom, 1)) *
                                          Matrix.CreateTranslation(new Vector3(ScreenManager.Instance.Dimensions.X * 0.5f, ScreenManager.Instance.Dimensions.Y * 0.5f, 0));
             _transform.M41 = (float)(Math.Round(_transform.M41)); // removes horizontal white stripes betwwen tiles
             _transform.M42 = (float)(Math.Round(_transform.M42)); // removes vertical white stripes between tiles
