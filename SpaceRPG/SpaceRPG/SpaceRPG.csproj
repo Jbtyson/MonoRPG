@@ -42,7 +42,7 @@
     <Compile Include="Source\Gameplay\Combat\Behaviours\AggressiveMove.cs" />
     <Compile Include="Source\Gameplay\Combat\Behaviours\Behavior.cs" />
     <Compile Include="Source\Gameplay\Combat\CombatTile.cs" />
-    <Compile Include="Source\Gameplay\Combat\Grid.cs" />
+    <Compile Include="Source\Gameplay\Combat\CombatMap.cs" />
     <Compile Include="Source\Gameplay\Combat\Party.cs" />
     <Compile Include="Source\Gameplay\Items\Reward.cs" />
     <Compile Include="Source\Gameplay\Items\Item.cs" />
@@ -100,6 +100,7 @@
     <Content Include="Load\Gameplay\Combat\CombatManager.xml" />
     <Content Include="Load\Gameplay\Combat\Party.xml" />
     <Content Include="Load\Gameplay\Levels\Tutorial\Encounter1.xml" />
+    <Content Include="Load\Gameplay\Levels\Tutorial\Encounter1Map.xml" />
     <Content Include="Load\Gameplay\Maps\TestMap.xml" />
     <Content Include="Load\Gameplay\Maps\Map1.xml" />
     <Content Include="Load\Gameplay\Characters\Player.xml" />

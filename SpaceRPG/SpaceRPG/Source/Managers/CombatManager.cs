@@ -16,20 +16,17 @@ namespace SpaceRPG
     {
         private Party _party;
         private Encounter _encounter;
-        private Grid _grid;
+        private CombatMap _combatMap;
 
         public CombatManager()
         {
             _party = new Party();
             _encounter = new Encounter();
-            _grid = new Grid();
+            _combatMap = new CombatMap();
         }
 
         public void LoadContent(Map _map)
         {
-            // Create grid (game board)
-            _grid.LoadContent(_map);
-
             // Load the party
             XmlManager<Party> partyLoader = new XmlManager<Party>();
             _party = partyLoader.Load("Load/Gameplay/Combat/Party.xml");
@@ -37,8 +34,11 @@ namespace SpaceRPG
 
             // Load the encounter
             XmlManager<Encounter> encounterLoader = new XmlManager<Encounter>();
-            _encounter = encounterLoader.Load(CombatScreen.EncounterId);
+            _encounter = encounterLoader.Load(CombatScreen.EncounterId +".xml");
             _encounter.LoadContent();
+
+            // Load the combat map from the map combat layer
+            _combatMap.LoadContent(_map.CombatLayer);
         }
 
         public void UnloadContent()

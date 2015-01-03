@@ -1,4 +1,7 @@
-﻿using System;
+﻿// CombatTile.cs
+// Ben Stegeman
+// James Tyson
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +13,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace SpaceRPG
 {
-    class CombatTile
+    /// <summary>
+    /// CombatTile holds map data relevant to one specific tile on a map, such as whether it's impassable, height of the tile, etc.
+    /// </summary>
+    public class CombatTile
     {
 
         //Just examples of potential tile properties. We'll need some more obvs.
@@ -26,24 +32,26 @@ namespace SpaceRPG
             TurnsToBurn = 0;
         }
 
-        public void LoadContent(string tilevalues)
+        public void LoadContent(Tile tile)
         {
-            string[] tilevaluepair = tilevalues.Split(':');
 
-            int type = Convert.ToInt32(tilevaluepair[0]);
-            Height = Convert.ToInt32(tilevaluepair[1]);
+            int type = tile.Value1;
+            Height = tile.Value2;
 
             //We can come up with many types, not just 3. (Double digit ints and negative ints can be read as well.)
             switch (type)
             {
                 case 1:
-                    Walkable = true;
+                    Walkable = false;
                     Damaging = false;
-                    TurnsToBurn = 1;
                     break;
                 case 2:
                     Walkable = true;
-                    Damaging = true;
+                    Damaging = false;
+                    break;
+                case 3:
+                    Walkable = false;
+                    Damaging = false;
                     break;
                 default:
                     Walkable = false;

@@ -17,6 +17,7 @@ namespace SpaceRPG
     {
         private Vector2 _position;
         private Rectangle _sourceRect;
+        public int Value1, Value2;
 
         public Rectangle SourceRect
         {

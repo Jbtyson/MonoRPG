@@ -30,8 +30,8 @@ namespace SpaceRPG
             _player.LoadContent();
 
             // Load the Map
-            XmlManager<Map> mapLaoder = new XmlManager<Map>();
-            _map = mapLaoder.Load("Load/Gameplay/Maps/Map1.xml");
+            XmlManager<Map> MapLoader = new XmlManager<Map>();
+            _map = MapLoader.Load("Load/Gameplay/Maps/Map1.xml");
             _map.LoadContent();
         }
 
@@ -52,7 +52,7 @@ namespace SpaceRPG
             // Initiate Combat
             if (InputManager.Instance.KeyPressed(Keys.Enter) && !ScreenManager.Instance.IsTransitioning)
             {
-                CombatScreen.EncounterId = "Load/Gameplay/Levels/Tutorial/Encounter1.xml";
+                CombatScreen.EncounterId = "Load/Gameplay/Levels/Tutorial/Encounter1";
                 ScreenManager.Instance.ChangeScreens("CombatScreen");
             }                
         }

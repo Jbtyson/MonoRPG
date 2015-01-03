@@ -8,3 +8,8 @@ U:\github\space-rpg\SpaceRPG\SpaceRPG-ModelLib\bin\Debug\SpaceRPG-ModelLib.pdb
 U:\github\space-rpg\SpaceRPG\SpaceRPG-ModelLib\obj\Debug\SpaceRPG-ModelLib.csprojResolveAssemblyReference.cache
 U:\github\space-rpg\SpaceRPG\SpaceRPG-ModelLib\obj\Debug\SpaceRPG-ModelLib.dll
 U:\github\space-rpg\SpaceRPG\SpaceRPG-ModelLib\obj\Debug\SpaceRPG-ModelLib.pdb
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG-ModelLib\bin\Debug\SpaceRPG-ModelLib.dll
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG-ModelLib\bin\Debug\SpaceRPG-ModelLib.pdb
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG-ModelLib\obj\Debug\SpaceRPG-ModelLib.csprojResolveAssemblyReference.cache
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG-ModelLib\obj\Debug\SpaceRPG-ModelLib.dll
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG-ModelLib\obj\Debug\SpaceRPG-ModelLib.pdb

@@ -15,7 +15,7 @@ namespace SpaceRPG
     {
         private CombatManager _combatManager;
         private Map _map;
-        
+
         public static string EncounterId;
 
         public CombatScreen()
@@ -30,7 +30,7 @@ namespace SpaceRPG
 
             // Load the Map
             XmlManager<Map> mapLoader = new XmlManager<Map>();
-            _map = mapLoader.Load("Load/Gameplay/Maps/TestMap.xml");
+            _map = mapLoader.Load(EncounterId +"Map.xml");
             _map.LoadContent();
 
             // Load the combat manager
