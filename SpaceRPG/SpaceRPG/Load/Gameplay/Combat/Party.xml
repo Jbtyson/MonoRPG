@@ -7,8 +7,8 @@
         <Effects>SpriteSheetEffect</Effects>
       </Image>
       
-      <Behavior>AggressiveMove</Behavior>
       <Behavior>DefensiveMove</Behavior>
+      <MyTurn>true</MyTurn>
       
       <MoveSpeed>100</MoveSpeed>
       <Stats>

@@ -6,6 +6,8 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 
+using SpaceRPG.Source.Gameplay.Combat;
+
 namespace SpaceRPG
 {
     public class DefensiveMove : Behavior
@@ -15,9 +17,13 @@ namespace SpaceRPG
 
         }
 
-        public override void Update(GameTime gameTime, GameObject obj)
+        public override void Update(GameTime gameTime, Agent agent)
         {
-            obj.Velocity.X = obj.MoveSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (agent.MyTurn && !agent.Busy)
+            {
+                agent.MoveTo(new Vector2(agent.Location.X + 5, agent.Location.Y + 3));
+            }
+                
         }
     }
 }

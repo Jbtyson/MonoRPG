@@ -11,9 +11,11 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+using SpaceRPG.Source.Gameplay.Combat;
+
 namespace SpaceRPG
 {
-    public class Ally : GameObject
+    public class Ally : Agent
     {
         public Stats Stats;
         public bool IsActive;
@@ -36,6 +38,7 @@ namespace SpaceRPG
             base.LoadContent();
             Image.LoadContent();
             Image.Position = this.Position;
+            Location = Image.Position / 32;
 
             // Load behaviors
             foreach (string s in BehaviorLoadList)
@@ -103,7 +106,7 @@ namespace SpaceRPG
             Image.Update(gameTime);
 
             // Update our position in the world
-            Image.Position += Velocity;
+            //Image.Position += Velocity;
         }
 
         public override void Draw(SpriteBatch spriteBatch)

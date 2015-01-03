@@ -38,6 +38,7 @@
     <StartupObject>SpaceRPG.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Source\Gameplay\Combat\Agent.cs" />
     <Compile Include="Source\Gameplay\Combat\Behaviours\DefensiveMove.cs" />
     <Compile Include="Source\Gameplay\Combat\Behaviours\AggressiveMove.cs" />
     <Compile Include="Source\Gameplay\Combat\Behaviours\Behavior.cs" />

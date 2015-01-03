@@ -6,6 +6,8 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 
+using SpaceRPG.Source.Gameplay.Combat;
+
 namespace SpaceRPG
 {
     public class Behavior
@@ -15,7 +17,7 @@ namespace SpaceRPG
 
         }
 
-        public virtual void Update(GameTime gameTime, GameObject obj)
+        public virtual void Update(GameTime gameTime, Agent agent)
         {
             
         }
