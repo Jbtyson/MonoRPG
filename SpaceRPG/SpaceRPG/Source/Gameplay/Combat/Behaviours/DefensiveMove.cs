@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 
 using SpaceRPG.Source.Gameplay.Combat;
+using SpaceRPG.Source.Managers;
 
 namespace SpaceRPG.Source.Gameplay.Combat.Behaviors
 {
@@ -14,13 +15,13 @@ namespace SpaceRPG.Source.Gameplay.Combat.Behaviors
     {
         public DefensiveMove()
         {
-
+           
         }
 
         public override void Update(GameTime gameTime, Agent agent)
         {
-            if(!agent.Busy)
-                agent.MoveTo(new Vector2(agent.Location.X, agent.Location.Y + 1));
+            if (agent.MyTurn && !agent.Busy && InputManager.Instance.LeftMouseClick())
+                agent.MoveTo(new Vector2(InputManager.Instance.MousePosition.X/32, InputManager.Instance.MousePosition.Y/32));
         }
     }
 }

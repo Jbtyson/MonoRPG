@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework;
 
 namespace SpaceRPG.Source.Managers
 {
@@ -15,7 +16,10 @@ namespace SpaceRPG.Source.Managers
     public class InputManager
     {
         private KeyboardState _currentKeyState, _prevKeyState;
+        private MouseState _currentMouseState, _prevMouseState;
         private static InputManager _instance;
+
+        public Point MousePosition { get { return _currentMouseState.Position; } }
 
         /// <summary>
         /// Singleton instance of InputManager
@@ -35,12 +39,17 @@ namespace SpaceRPG.Source.Managers
         /// </summary>
         public void Update()
         {
-            // Save the keyboard state
+            // Save the keyboard and mouse states
             _prevKeyState = _currentKeyState;
+            _prevMouseState = _currentMouseState;
 
             // Lock input during screen transitions
             if (!ScreenManager.Instance.IsTransitioning)
+            {
                 _currentKeyState = Keyboard.GetState();
+                _currentMouseState = Mouse.GetState();
+            }
+                
         }
 
         /// <summary>
@@ -86,6 +95,21 @@ namespace SpaceRPG.Source.Managers
                     return true;
             }
             return false;
+        }
+
+        public bool LeftMouseClick()
+        {
+            return _currentMouseState.LeftButton == ButtonState.Pressed && _prevMouseState.LeftButton == ButtonState.Released;
+        }
+
+        public bool LeftMouseDown()
+        {
+            return _currentMouseState.LeftButton == ButtonState.Pressed;
+        }
+
+        public bool LeftMouseRelease()
+        {
+            return _prevMouseState.LeftButton == ButtonState.Pressed && _currentMouseState.LeftButton == ButtonState.Released;
         }
     }
 }

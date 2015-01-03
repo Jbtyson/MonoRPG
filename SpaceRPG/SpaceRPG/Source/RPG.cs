@@ -28,6 +28,7 @@ namespace SpaceRPG.Source
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            IsMouseVisible = true;
         }
 
         /// <summary>
