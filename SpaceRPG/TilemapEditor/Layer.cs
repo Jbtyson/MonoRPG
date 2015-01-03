@@ -34,6 +34,8 @@ namespace TilemapEditor
 
         public void Initialize(ContentManager content, Vector2 tileDimensions) 
         {
+            this.tileDimensions = tileDimensions;
+
             foreach(string row in TileLayout.Row) 
             {
                 string[] split = row.Split(']');
@@ -49,12 +51,13 @@ namespace TilemapEditor
                     }
                     else
                         tempTileMap.Add(new Vector2(val1, val2));
+
+                    tempTileMap.Add(new Vector2(val1, val2));
                 }
                 tileMap.Add(tempTileMap);
             }
 
             Image.Initialize(content);
-            this.tileDimensions = tileDimensions;
         }
 
         public void Draw(SpriteBatch spriteBatch) 

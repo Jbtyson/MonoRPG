@@ -16,17 +16,26 @@ namespace TilemapEditor
         [XmlElement("Layer")]
         public List<Layer> Layer;
         public Vector2 TileDimensions;
+        public bool Loaded = false;
+
+        public Map()
+        {
+            Layer = new List<Layer>();
+            TileDimensions = Vector2.Zero;
+        }
 
         public void Initialize(ContentManager content)
         {
             foreach(Layer l in Layer)
                 l.Initialize(content, TileDimensions);
+            Loaded = true;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach (Layer l in Layer)
-                l.Draw(spriteBatch);
+            if(Loaded)
+                foreach (Layer l in Layer)
+                    l.Draw(spriteBatch);
         }
     }
 }

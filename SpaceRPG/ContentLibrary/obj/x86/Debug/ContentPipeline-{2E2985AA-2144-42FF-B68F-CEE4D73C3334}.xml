@@ -7,8 +7,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\James\Documents\GitHub\spacerpg\SpaceRPG\ContentLibrary\bin\Xbox 360\Debug\Content\Gameplay\Characters\player.xnb</Output>
-      <Time>2015-01-02T16:11:45.0145672-06:00</Time>
+      <Output>C:\Users\James\Documents\GitHub\spacerpg\SpaceRPG\ContentLibrary\bin\x86\Debug\Content\Gameplay\Characters\player.xnb</Output>
+      <Time>2015-01-02T23:45:49.5998683-06:00</Time>
     </Item>
     <Item>
       <Source>Gameplay\TileSheets\ground.png</Source>
@@ -16,20 +16,20 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\James\Documents\GitHub\spacerpg\SpaceRPG\ContentLibrary\bin\Xbox 360\Debug\Content\Gameplay\TileSheets\ground.xnb</Output>
-      <Time>2015-01-02T16:11:45.0165673-06:00</Time>
+      <Output>C:\Users\James\Documents\GitHub\spacerpg\SpaceRPG\ContentLibrary\bin\x86\Debug\Content\Gameplay\TileSheets\ground.xnb</Output>
+      <Time>2015-01-02T23:45:49.6018685-06:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{2E2985AA-2144-42FF-B68F-CEE4D73C3334}</ContentProjectGUID>
-      <TargetPlatform>Xbox360</TargetPlatform>
+      <TargetPlatform>Windows</TargetPlatform>
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
-      <CompressContent>true</CompressContent>
+      <CompressContent>false</CompressContent>
       <RootDirectory>C:\Users\James\Documents\GitHub\spacerpg\SpaceRPG\Content\</RootDirectory>
       <LoggerRootDirectory>C:\Users\James\Documents\GitHub\spacerpg\SpaceRPG\ContentLibrary\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\James\Documents\GitHub\spacerpg\SpaceRPG\ContentLibrary\obj\Xbox 360\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\James\Documents\GitHub\spacerpg\SpaceRPG\ContentLibrary\bin\Xbox 360\Debug\Content\</OutputDirectory>
+      <IntermediateDirectory>C:\Users\James\Documents\GitHub\spacerpg\SpaceRPG\ContentLibrary\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\James\Documents\GitHub\spacerpg\SpaceRPG\ContentLibrary\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>

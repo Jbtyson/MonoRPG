@@ -92,14 +92,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Gameplay\TileSheets\ground.png" />
+    <Content Include="Load\Map.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\ContentLibrary\ContentLibrary.csproj">
-      <Project>{71471723-f0d8-4c6b-a87b-5fda4a8faf03}</Project>
+      <Project>{58009443-cca2-4431-bab7-1fd6a8e67b6e}</Project>
       <Name>ContentLibrary</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="Load\Map.xml" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

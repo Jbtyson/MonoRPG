@@ -1,8 +1,0 @@
-C:\Users\James\Documents\GitHub\spacerpg\SpaceRPG\ContentLibrary\bin\Xbox 360\Debug\ContentLibrary.dll
-C:\Users\James\Documents\GitHub\spacerpg\SpaceRPG\ContentLibrary\bin\Xbox 360\Debug\ContentLibrary.pdb
-C:\Users\James\Documents\GitHub\spacerpg\SpaceRPG\ContentLibrary\obj\Xbox 360\Debug\ContentLibrary.csprojResolveAssemblyReference.cache
-C:\Users\James\Documents\GitHub\spacerpg\SpaceRPG\ContentLibrary\obj\Xbox 360\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-C:\Users\James\Documents\GitHub\spacerpg\SpaceRPG\ContentLibrary\obj\Xbox 360\Debug\ContentLibrary.dll
-C:\Users\James\Documents\GitHub\spacerpg\SpaceRPG\ContentLibrary\obj\Xbox 360\Debug\ContentLibrary.pdb
-C:\Users\James\Documents\GitHub\spacerpg\SpaceRPG\ContentLibrary\bin\Xbox 360\Debug\Content\Gameplay\Characters\player.xnb
-C:\Users\James\Documents\GitHub\spacerpg\SpaceRPG\ContentLibrary\bin\Xbox 360\Debug\Content\Gameplay\TileSheets\ground.xnb

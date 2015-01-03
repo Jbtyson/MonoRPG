@@ -30,9 +30,15 @@ namespace TilemapEditor
 
         public void Initialize(ContentManager content)
         {
-            this.content = new ContentManager(content.ServiceProvider, "Content");
+            this.content = content;
             if (!string.IsNullOrEmpty(Path))
-                texture = content.Load<Texture2D>(Path);
+            {
+                try
+                {
+                    texture = content.Load<Texture2D>(Path);
+                }
+                catch (Exception e) { Console.WriteLine(e.Message); }
+            }
 
             if (SourceRect == Rectangle.Empty)
                 SourceRect = texture.Bounds;
