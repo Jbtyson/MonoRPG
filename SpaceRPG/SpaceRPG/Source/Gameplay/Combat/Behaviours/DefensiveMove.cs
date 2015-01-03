@@ -10,9 +10,9 @@ using SpaceRPG.Source.Gameplay.Combat;
 
 namespace SpaceRPG.Source.Gameplay.Combat.Behaviors
 {
-    public class AggressiveMove : Behavior
+    public class DefensiveMove : Behavior
     {
-        public AggressiveMove()
+        public DefensiveMove()
         {
 
         }
