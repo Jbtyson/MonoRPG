@@ -10,7 +10,11 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace SpaceRPG
+using SpaceRPG.Source.Gameplay;
+using SpaceRPG.Source.Managers;
+using SpaceRPG.Source.Visuals.Maps;
+
+namespace SpaceRPG.Source.Screens
 {
     /// <summary>
     /// Gameplay Screen represents the screen that the player "playes the game" in

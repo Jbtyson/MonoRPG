@@ -11,9 +11,10 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-using SpaceRPG.Source.Gameplay.Combat;
+using SpaceRPG.Source.Managers;
+using SpaceRPG.Source.Gameplay.Combat.Behaviors;
 
-namespace SpaceRPG
+namespace SpaceRPG.Source.Gameplay.Combat
 {
     public class Ally : Agent
     {
@@ -43,7 +44,7 @@ namespace SpaceRPG
             // Load behaviors
             foreach (string s in BehaviorLoadList)
             {
-                Type t = Type.GetType("SpaceRPG." + s);
+                Type t = Type.GetType("SpaceRPG.Source.Gameplay.Combat.Behaviors." + s);
                 Behaviors.Add((Behavior)Activator.CreateInstance(t));
             }
         }

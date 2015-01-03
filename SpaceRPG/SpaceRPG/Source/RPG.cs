@@ -11,7 +11,9 @@ using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.GamerServices;
 #endregion
 
-namespace SpaceRPG
+using SpaceRPG.Source.Managers;
+
+namespace SpaceRPG.Source
 {
     /// <summary>
     /// This is the main type for your game

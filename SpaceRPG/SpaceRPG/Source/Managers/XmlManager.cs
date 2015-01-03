@@ -7,7 +7,7 @@ using System.Text;
 using System.Xml.Serialization;
 using System.IO;
 
-namespace SpaceRPG
+namespace SpaceRPG.Source.Managers
 {
     /// <summary>
     /// XmlManager provides xml serialization and deserialization functionality

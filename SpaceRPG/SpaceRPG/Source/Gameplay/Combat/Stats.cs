@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SpaceRPG
+namespace SpaceRPG.Source.Gameplay.Combat
 {
     public class Stats
     {

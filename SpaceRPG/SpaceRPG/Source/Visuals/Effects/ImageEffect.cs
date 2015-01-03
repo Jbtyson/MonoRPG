@@ -7,7 +7,7 @@ using System.Text;
 
 using Microsoft.Xna.Framework;
 
-namespace SpaceRPG
+namespace SpaceRPG.Source.Visuals.Effects
 {
     /// <summary>
     /// ImageEffect is a base class for all image effects

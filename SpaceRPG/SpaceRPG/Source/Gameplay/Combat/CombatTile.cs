@@ -11,7 +11,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SpaceRPG
+using SpaceRPG.Source.Visuals.Maps;
+
+namespace SpaceRPG.Source.Gameplay.Combat
 {
     /// <summary>
     /// CombatTile holds map data relevant to one specific tile on a map, such as whether it's impassable, height of the tile, etc.

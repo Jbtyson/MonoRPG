@@ -10,7 +10,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SpaceRPG
+using SpaceRPG.Source.Visuals.Effects;
+using SpaceRPG.Source.Managers;
+
+namespace SpaceRPG.Source.Visuals
 {
     /// <summary>
     /// Image allows us to manipulate and add effects to images
@@ -66,7 +69,7 @@ namespace SpaceRPG
             }
 
             // Add it to the list of effects
-            _effectList.Add(effect.GetType().ToString().Replace("SpaceRPG.", ""), (effect as ImageEffect));
+            _effectList.Add(effect.GetType().ToString().Replace("SpaceRPG.Source.Visuals.Effects.", ""), (effect as ImageEffect));
         }
 
         /// <summary>

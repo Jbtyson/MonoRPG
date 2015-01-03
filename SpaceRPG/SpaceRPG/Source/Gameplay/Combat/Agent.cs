@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -22,6 +23,9 @@ namespace SpaceRPG.Source.Gameplay.Combat
         public Vector2 Location, Destination;
         public bool Moving, Busy, MyTurn;
         public List<Point> MovementNodes;
+        public delegate void TurnChange();
+        [XmlIgnore]
+        public TurnChange TurnIsOver;
 
         public Agent()
         {
@@ -69,6 +73,7 @@ namespace SpaceRPG.Source.Gameplay.Combat
                         Moving = false;
                         Busy = false;
                         Console.WriteLine(">>> Movement complete <<<");
+                        TurnIsOver();
                     }
                     else
                     {

@@ -30,6 +30,9 @@
         <Path>Gameplay/Characters/player</Path>
         <Effects>SpriteSheetEffect</Effects>
       </Image>
+
+      <Behavior>DefensiveMove</Behavior>
+      
       <MoveSpeed>100</MoveSpeed>
       <Stats>
         <Health>150</Health>
@@ -49,6 +52,9 @@
       <Path>Gameplay/Characters/player</Path>
       <Effects>SpriteSheetEffect</Effects>
     </Image>
+
+    <Behavior>DefensiveMove</Behavior>
+
     <MoveSpeed>100</MoveSpeed>
     <Stats>
       <Health>999</Health>

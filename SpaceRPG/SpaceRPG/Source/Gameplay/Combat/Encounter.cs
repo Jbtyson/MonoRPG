@@ -10,7 +10,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SpaceRPG
+using SpaceRPG.Source.Gameplay.Items;
+
+namespace SpaceRPG.Source.Gameplay.Combat
 {
     public class Encounter
     {

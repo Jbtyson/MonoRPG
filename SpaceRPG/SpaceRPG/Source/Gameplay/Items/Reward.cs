@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace SpaceRPG
+namespace SpaceRPG.Source.Gameplay.Items
 {
     public class Reward
     {

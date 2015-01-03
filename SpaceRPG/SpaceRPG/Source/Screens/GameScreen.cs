@@ -10,7 +10,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SpaceRPG
+using SpaceRPG.Source.Managers;
+
+namespace SpaceRPG.Source.Screens
 {
     /// <summary>
     /// GameScreen represents a base class for all screens

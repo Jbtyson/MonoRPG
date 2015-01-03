@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Content;
 
 using SpaceRPG.Source.Gameplay.Combat;
 
-namespace SpaceRPG
+namespace SpaceRPG.Source.Gameplay.Combat.Behaviors
 {
     public class AggressiveMove : Behavior
     {

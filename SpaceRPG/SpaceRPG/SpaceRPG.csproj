@@ -54,7 +54,7 @@
     <Compile Include="Source\Gameplay\Combat\Ally.cs" />
     <Compile Include="Source\Gameplay\Combat\Stats.cs" />
     <Compile Include="Source\Visuals\Effects\FadeEffect.cs" />
-    <Compile Include="RPG.cs" />
+    <Compile Include="Source\RPG.cs" />
     <Compile Include="Source\Gameplay\GameObject.cs" />
     <Compile Include="Source\Screens\GameplayScreen.cs" />
     <Compile Include="Source\Screens\GameScreen.cs" />

@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SpaceRPG
+using SpaceRPG.Source.Visuals;
+
+namespace SpaceRPG.Source.Overlays
 {
     /// <summary>
     /// MenuItem represents a single item in a menu

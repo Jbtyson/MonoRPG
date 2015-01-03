@@ -9,7 +9,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SpaceRPG
+using SpaceRPG.Source.Managers;
+using SpaceRPG.Source.Visuals.Maps;
+
+namespace SpaceRPG.Source.Screens
 {
     public class CombatScreen : GameScreen
     {

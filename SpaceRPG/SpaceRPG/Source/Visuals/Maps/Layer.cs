@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SpaceRPG
+namespace SpaceRPG.Source.Visuals.Maps
 {
     /// <summary>
     /// Layer represents one layer of a map

@@ -7,7 +7,7 @@ using System.Text;
 
 using Microsoft.Xna.Framework.Input;
 
-namespace SpaceRPG
+namespace SpaceRPG.Source.Managers
 {
     /// <summary>
     /// Input manager is a singleton class to help us manage inputs

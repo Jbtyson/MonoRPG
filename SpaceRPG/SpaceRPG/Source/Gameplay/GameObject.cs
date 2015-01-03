@@ -9,7 +9,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SpaceRPG
+using SpaceRPG.Source.Visuals;
+
+namespace SpaceRPG.Source.Gameplay
 {
     /// <summary>
     /// GameObject is the base object for all game objects in the world
