@@ -78,18 +78,18 @@ namespace SpaceRPG.Source.Gameplay.Combat
                     else
                     {
                         // Calculate the velocity
-                        Vector2 diff = new Vector2((int)Location.X - MovementNodes[0].X, (int)Location.Y - MovementNodes[0].Y);
+                        Vector2 diff = new Vector2(MovementNodes[0].X - (int)Location.X, MovementNodes[0].Y - (int)Location.Y);
                         if (diff.X > 0)
                             Velocity.X = MoveSpeed;
                         else if (diff.X < 0)
-                            Velocity.X = MoveSpeed;
+                            Velocity.X = -MoveSpeed;
                         else
                             Velocity.X = 0;
 
                         if (diff.Y > 0)
                             Velocity.Y = MoveSpeed;
                         else if (diff.Y < 0)
-                            Velocity.Y = MoveSpeed;
+                            Velocity.Y = -MoveSpeed;
                         else
                             Velocity.Y = 0;
                     }
