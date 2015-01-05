@@ -57,88 +57,7 @@ namespace SpaceRPG.Source.Gameplay.Combat
             base.Update(gameTime);
             if (Moving)
             {
-                // Get our new position
-                Image.Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                Location = new Vector2((int)Image.Position.X/32, (int)Image.Position.Y/32);
-
-                // Check if we reaced a node
-                if (ReachedNode || (int)Location.X == MovementNodes[0].X && (int)Location.Y == MovementNodes[0].Y)
-                {
-                    ReachedNode = true;
-                    // Now we need to make sure that our image is moving to align with the top left corner of the square
-                    if (Velocity.X > 0) // moving to the right, so we may need to hop back left
-                    {
-                        if (Image.Position.X >= MovementNodes[0].X * 32)
-                        {
-                            Image.Position.X = MovementNodes[0].X * 32;
-                            Aligned = true;
-                        }
-                    }
-
-                    else if (Velocity.X < 0) // moving to the left, so we may need to hop back right
-                    { 
-                        if (Image.Position.X <= MovementNodes[0].X * 32)
-                        {
-                            Image.Position.X = MovementNodes[0].X * 32;
-                            Aligned = true;
-                        }
-                    }
-
-                    else if (Velocity.Y > 0) // moving up, so we may need to hop back down
-                    {
-                        if (Image.Position.Y >= MovementNodes[0].Y * 32)
-                        {
-                            Image.Position.Y = MovementNodes[0].Y * 32;
-                            Aligned = true;
-                        }
-                    }
-                    
-                    else if (Velocity.Y < 0) // moving up, so we may need to hop back down
-                    {
-                        if (Image.Position.Y <= MovementNodes[0].Y * 32)
-                        {
-                            Image.Position.Y = MovementNodes[0].Y * 32;
-                            Aligned = true;
-                        }
-                    }
-
-                    if (Aligned)
-                    {
-                        MovementNodes.RemoveAt(0);
-                        Console.WriteLine(">> Reached Node <<");
-
-                        // Check if we reached the last node
-                        if (MovementNodes.Count == 0)
-                        {
-                            Velocity = Vector2.Zero;
-                            Moving = false;
-                            Busy = false;
-                            Console.WriteLine(">>> Movement complete <<<");
-                            TurnIsOver();
-                        }
-                        else
-                        {
-                            // Calculate the velocity
-                            Location = new Vector2((int)Image.Position.X / 32, (int)Image.Position.Y / 32);
-                            Vector2 diff = new Vector2(MovementNodes[0].X - (int)Location.X, MovementNodes[0].Y - (int)Location.Y);
-                            if (diff.X > 0)
-                                Velocity.X = MoveSpeed;
-                            else if (diff.X < 0)
-                                Velocity.X = -MoveSpeed;
-                            else
-                                Velocity.X = 0;
-
-                            if (diff.Y > 0)
-                                Velocity.Y = MoveSpeed;
-                            else if (diff.Y < 0)
-                                Velocity.Y = -MoveSpeed;
-                            else
-                                Velocity.Y = 0;     
-                        }
-                        Aligned = false;
-                        ReachedNode = false;
-                    }
-                }
+                Move(gameTime);
             }
         }
 
@@ -155,7 +74,7 @@ namespace SpaceRPG.Source.Gameplay.Combat
         /// Moves an agent to a new destination
         /// </summary>
         /// <param name="newLoc"></param>
-        public virtual void MoveTo(Vector2 newLoc)
+        public virtual void GetPathTo(Vector2 newLoc, bool beginMove)
         {
             Destination = newLoc;
             Moving = true;
@@ -179,23 +98,115 @@ namespace SpaceRPG.Source.Gameplay.Combat
                 MovementNodes.Add(endNode);
             }
 
+
+            if (beginMove)
+            {
+                ExecuteMove();
+            }
+        }
+
+        public void Move(GameTime gameTime)
+        {
+            // Get our new position
+            Image.Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            Location = new Vector2((int)Image.Position.X / 32, (int)Image.Position.Y / 32);
+
+            // Check if we reaced a node
+            if (ReachedNode || (int)Location.X == MovementNodes[0].X && (int)Location.Y == MovementNodes[0].Y)
+            {
+                ReachedNode = true;
+                // Now we need to make sure that our image is moving to align with the top left corner of the square
+                if (Velocity.X > 0) // moving to the right, so we may need to hop back left
+                {
+                    if (Image.Position.X >= MovementNodes[0].X * 32)
+                    {
+                        Image.Position.X = MovementNodes[0].X * 32;
+                        Aligned = true;
+                    }
+                }
+
+                else if (Velocity.X < 0) // moving to the left, so we may need to hop back right
+                {
+                    if (Image.Position.X <= MovementNodes[0].X * 32)
+                    {
+                        Image.Position.X = MovementNodes[0].X * 32;
+                        Aligned = true;
+                    }
+                }
+
+                else if (Velocity.Y > 0) // moving down, so we may need to hop back up
+                {
+                    if (Image.Position.Y >= MovementNodes[0].Y * 32)
+                    {
+                        Image.Position.Y = MovementNodes[0].Y * 32;
+                        Aligned = true;
+                    }
+                }
+
+                else if (Velocity.Y < 0) // moving up, so we may need to hop back down
+                {
+                    if (Image.Position.Y <= MovementNodes[0].Y * 32)
+                    {
+                        Image.Position.Y = MovementNodes[0].Y * 32;
+                        Aligned = true;
+                    }
+                }
+
+                if (Aligned)
+                {
+                    MovementNodes.RemoveAt(0);
+                    Console.WriteLine(">> Reached Node <<");
+
+                    // Check if we reached the last node
+                    if (MovementNodes.Count == 0)
+                    {
+                        Velocity = Vector2.Zero;
+                        Moving = false;
+                        Busy = false;
+                        Console.WriteLine(">>> Movement complete <<<");
+                        TurnIsOver();
+                    }
+                    else
+                    {
+                        // Calculate the velocity
+                        Location = new Vector2((int)Image.Position.X / 32, (int)Image.Position.Y / 32);
+                        ExecuteMove();
+                    }
+                    Aligned = false;
+                    ReachedNode = false;
+                }
+            }
+        }
+
+        public void ExecuteMove()
+        {
             // Calculate the velocity
             Vector2 diff = new Vector2(MovementNodes[0].X - (int)Location.X, MovementNodes[0].Y - (int)Location.Y);
             if (diff.X > 0)
+            {
                 Velocity.X = MoveSpeed;
+                Image.SpriteSheetEffect.CurrentFrame.Y = 2;
+            }
             else if (diff.X < 0)
+            {
                 Velocity.X = -MoveSpeed;
+                Image.SpriteSheetEffect.CurrentFrame.Y = 1;
+            }
             else
                 Velocity.X = 0;
 
             if (diff.Y > 0)
+            {
                 Velocity.Y = MoveSpeed;
+                Image.SpriteSheetEffect.CurrentFrame.Y = 0;
+            }
             else if (diff.Y < 0)
+            {
                 Velocity.Y = -MoveSpeed;
+                Image.SpriteSheetEffect.CurrentFrame.Y = 3;
+            }
             else
                 Velocity.Y = 0;
-
-            //Console.WriteLine("Moving to point {0} through nodes {1}, {2}, {3}.", vertNode.ToString(), node1.ToString(), horNode.ToString(), vertNode.ToString());
         }
     }
 }

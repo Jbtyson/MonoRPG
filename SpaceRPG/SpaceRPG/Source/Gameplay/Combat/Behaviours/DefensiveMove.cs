@@ -21,7 +21,7 @@ namespace SpaceRPG.Source.Gameplay.Combat.Behaviors
         public override void Update(GameTime gameTime, Agent agent)
         {
             if (agent.MyTurn && !agent.Busy && InputManager.Instance.LeftMouseClick())
-                agent.MoveTo(new Vector2(InputManager.Instance.MousePosition.X/32, InputManager.Instance.MousePosition.Y/32));
+                agent.GetPathTo(new Vector2(InputManager.Instance.MousePosition.X/32, InputManager.Instance.MousePosition.Y/32), true);
         }
     }
 }

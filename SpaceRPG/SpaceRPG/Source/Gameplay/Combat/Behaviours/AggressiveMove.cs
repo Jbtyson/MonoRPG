@@ -21,7 +21,7 @@ namespace SpaceRPG.Source.Gameplay.Combat.Behaviors
         {
             if (agent.MyTurn && !agent.Busy)
             {
-                agent.MoveTo(new Vector2(agent.Location.X + 5, agent.Location.Y + 3));
+                agent.GetPathTo(new Vector2(agent.Location.X + 5, agent.Location.Y + 3), true);
             }
                 
         }
