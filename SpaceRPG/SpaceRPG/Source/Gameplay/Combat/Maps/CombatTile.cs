@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
+using SpaceRPG.Source.Visuals;
 using SpaceRPG.Source.Visuals.Maps;
 
 namespace SpaceRPG.Source.Gameplay.Combat.Maps
@@ -20,10 +21,9 @@ namespace SpaceRPG.Source.Gameplay.Combat.Maps
     /// </summary>
     public class CombatTile
     {
-
         //Just examples of potential tile properties. We'll need some more obvs.
         public bool Walkable;
-        public int Height;
+        public int Type, Height;
         public bool Damaging;
         public int TurnsToBurn;
 
@@ -37,11 +37,11 @@ namespace SpaceRPG.Source.Gameplay.Combat.Maps
         public void LoadContent(Tile tile)
         {
 
-            int type = tile.Value1;
+            Type = tile.Value1;
             Height = tile.Value2;
 
             //We can come up with many types, not just 3. (Double digit ints and negative ints can be read as well.)
-            switch (type)
+            switch (Type)
             {
                 case 1:
                     Walkable = false;

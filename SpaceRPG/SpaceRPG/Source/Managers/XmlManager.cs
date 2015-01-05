@@ -29,7 +29,7 @@ namespace SpaceRPG.Source.Managers
         /// Loads an object from a given xml path
         /// </summary>
         /// <param name="path">Path to load from</param>
-        /// <returns>Object of type T created</returns>
+        /// <returns>Object of Type T created</returns>
         public T Load(string path)
         {
             T instance;

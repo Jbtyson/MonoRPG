@@ -11,6 +11,7 @@
       <MyTurn>true</MyTurn>
       
       <MoveSpeed>100</MoveSpeed>
+      <MoveRange>3</MoveRange>
       <Stats>
         <Health>100</Health>
         <Attack>25</Attack>
@@ -34,6 +35,7 @@
       <Behavior>DefensiveMove</Behavior>
       
       <MoveSpeed>100</MoveSpeed>
+      <MoveRange>4</MoveRange>
       <Stats>
         <Health>150</Health>
         <Attack>15</Attack>
@@ -48,6 +50,7 @@
 
   <Ally>
     <Name>Ronald McDonald</Name>
+    <MoveRange>8</MoveRange>
     <Image>
       <Path>Gameplay/Characters/player</Path>
       <Effects>SpriteSheetEffect</Effects>

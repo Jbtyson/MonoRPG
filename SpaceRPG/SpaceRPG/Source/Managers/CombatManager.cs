@@ -24,12 +24,14 @@ namespace SpaceRPG.Source.Managers
         private Encounter _encounter;
         private CombatMap _combatMap;
         private int _currentTurn;
+        private Agent _currentAgent;
 
         public CombatManager()
         {
             _party = new Party();
             _encounter = new Encounter();
             _combatMap = new CombatMap();
+            _currentAgent = new Agent();
         }
 
         public void LoadContent(Map _map)
@@ -40,7 +42,9 @@ namespace SpaceRPG.Source.Managers
             _party.LoadContent();
             // This is a poor way to do this, fix later
             foreach (Agent a in _party.Members)
+            {
                 a.TurnIsOver = ChangeTurns;
+            }
                 
 
             // Load the encounter
@@ -50,6 +54,10 @@ namespace SpaceRPG.Source.Managers
 
             // Load the combat map from the map combat layer
             _combatMap.LoadContent(_map.CombatLayer);
+            
+            // Start combat
+            _currentTurn = _party.Members.Count-1;
+            ChangeTurns();
         }
 
         public void UnloadContent()
@@ -66,17 +74,22 @@ namespace SpaceRPG.Source.Managers
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            if(_currentAgent.DisplayMoveRange)
+                _combatMap.DrawMoveRange(spriteBatch);
             _encounter.Draw(spriteBatch);
-            _party.Draw(spriteBatch);            
+            _party.Draw(spriteBatch);
         }
 
         public void ChangeTurns()
         {
-            _party.Members[_currentTurn].MyTurn = false;
+            _currentAgent.MyTurn = false;
             _currentTurn++;
             if(_currentTurn >= _party.Members.Count)
                 _currentTurn = 0;
-            _party.Members[_currentTurn].MyTurn = true;
+            _currentAgent = _party.Members[_currentTurn];
+            _currentAgent.MyTurn = true;
+            _combatMap.MoveOverlays.Clear();
+            _combatMap.DisplayMoveRange(_currentAgent.MoveRange, _currentAgent.Location);
         }
     }
 }

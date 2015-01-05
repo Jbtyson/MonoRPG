@@ -16,7 +16,7 @@ using SpaceRPG.Source.Managers;
 namespace SpaceRPG.Source
 {
     /// <summary>
-    /// This is the main type for your game
+    /// This is the main Type for your game
     /// </summary>
     public class RPG : Game
     {

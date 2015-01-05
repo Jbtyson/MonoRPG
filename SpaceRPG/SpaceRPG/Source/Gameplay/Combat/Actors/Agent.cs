@@ -9,6 +9,9 @@ using System.Xml.Serialization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+
+using SpaceRPG.Source.Managers;
 
 namespace SpaceRPG.Source.Gameplay.Combat.Actors
 {
@@ -21,12 +24,14 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
         /// This is the location on a combat grid, not position on a screen
         /// </summary>
         public Vector2 Location, Destination;
-        public bool Moving, Busy, MyTurn, Aligned, ReachedNode;
+        public bool Moving, Busy, MyTurn, Aligned, ReachedNode, DisplayMoveRange;
         public List<Point> MovementNodes;
+        public int MoveRange;
+
         public delegate void TurnChange();
         [XmlIgnore]
         public TurnChange TurnIsOver;
-        public int MoveRange;
+        
 
         /// <summary>
         /// Defauly constructor
@@ -59,10 +64,13 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
         public virtual void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            if (MyTurn && !Busy)
+                if (InputManager.Instance.KeyPressed(Keys.M))
+                    DisplayMoveRange = !DisplayMoveRange;
+
             if (Moving)
-            {
                 Move(gameTime);
-            }
         }
 
         /// <summary>
@@ -155,6 +163,7 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
 
                 if (Aligned)
                 {
+                    Location = new Vector2((int)Image.Position.X / 32, (int)Image.Position.Y / 32);
                     MovementNodes.RemoveAt(0);
                     Console.WriteLine(">> Reached Node <<");
 
@@ -169,8 +178,6 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
                     }
                     else
                     {
-                        // Calculate the velocity
-                        Location = new Vector2((int)Image.Position.X / 32, (int)Image.Position.Y / 32);
                         ExecuteMove();
                     }
                     Aligned = false;
