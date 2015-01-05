@@ -8,6 +8,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
+using SpaceRPG.Source.Gameplay.Combat.Actors;
+
 namespace SpaceRPG.Source.Gameplay.Combat
 {
     public class Party

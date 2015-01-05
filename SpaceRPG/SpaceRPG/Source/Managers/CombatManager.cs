@@ -11,8 +11,10 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 using SpaceRPG.Source.Screens;
-using SpaceRPG.Source.Gameplay.Combat;
 using SpaceRPG.Source.Visuals.Maps;
+using SpaceRPG.Source.Gameplay.Combat;
+using SpaceRPG.Source.Gameplay.Combat.Actors;
+using SpaceRPG.Source.Gameplay.Combat.Maps;
 
 namespace SpaceRPG.Source.Managers
 {

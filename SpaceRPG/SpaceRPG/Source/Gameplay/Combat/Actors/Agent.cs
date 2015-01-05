@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SpaceRPG.Source.Gameplay.Combat
+namespace SpaceRPG.Source.Gameplay.Combat.Actors
 {
     /// <summary>
     /// Agent is a base class for all players/enemies in a combat scenario
@@ -26,7 +26,11 @@ namespace SpaceRPG.Source.Gameplay.Combat
         public delegate void TurnChange();
         [XmlIgnore]
         public TurnChange TurnIsOver;
+        public int MoveRange;
 
+        /// <summary>
+        /// Defauly constructor
+        /// </summary>
         public Agent()
         {
             Location = Destination = Vector2.Zero;
@@ -71,20 +75,14 @@ namespace SpaceRPG.Source.Gameplay.Combat
         }
 
         /// <summary>
-        /// Moves an agent to a new destination
+        /// Calculates a path to and potentially moves an agent to a new destination
         /// </summary>
-        /// <param name="newLoc"></param>
+        /// <param name="newLoc">New location to move the agent to</param>
+        /// <param name="beginMove">If true, immediately begins executing the move</param>
         public virtual void GetPathTo(Vector2 newLoc, bool beginMove)
         {
-            Destination = newLoc;
-            Moving = true;
-            Busy = true;
-            Aligned = false;
-
             // Snap ouselves to the grid...bandaid fix this later
             Location = new Vector2((int)Image.Position.X / 32, (int)Image.Position.Y / 32);
-
-            // Add our starting location as the first node
 
             // Find the horizontal node to match x positions and then move to the end location
             if (newLoc.X != Location.X)
@@ -98,13 +96,16 @@ namespace SpaceRPG.Source.Gameplay.Combat
                 MovementNodes.Add(endNode);
             }
 
-
             if (beginMove)
             {
                 ExecuteMove();
             }
         }
 
+        /// <summary>
+        /// Handles player position during a move
+        /// </summary>
+        /// <param name="gameTime"></param>
         public void Move(GameTime gameTime)
         {
             // Get our new position
@@ -178,8 +179,15 @@ namespace SpaceRPG.Source.Gameplay.Combat
             }
         }
 
+        /// <summary>
+        /// Executes a move to the next node in the node list
+        /// </summary>
         public void ExecuteMove()
         {
+            Moving = true;
+            Busy = true;
+            Aligned = false;
+
             // Calculate the velocity
             Vector2 diff = new Vector2(MovementNodes[0].X - (int)Location.X, MovementNodes[0].Y - (int)Location.Y);
             if (diff.X > 0)

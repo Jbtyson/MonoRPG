@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 using SpaceRPG.Source.Visuals.Maps;
 
-namespace SpaceRPG.Source.Gameplay.Combat
+namespace SpaceRPG.Source.Gameplay.Combat.Maps
 {
     /// <summary>
     /// CombatMap stores map data relevant to combat, such as tiles that are impassable, height of tiles, and so on (stored as CombatTiles).

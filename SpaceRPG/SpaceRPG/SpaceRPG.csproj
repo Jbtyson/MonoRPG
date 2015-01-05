@@ -38,20 +38,20 @@
     <StartupObject>SpaceRPG.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Source\Gameplay\Combat\Agent.cs" />
+    <Compile Include="Source\Gameplay\Combat\Actors\Agent.cs" />
     <Compile Include="Source\Gameplay\Combat\Behaviours\DefensiveMove.cs" />
     <Compile Include="Source\Gameplay\Combat\Behaviours\AggressiveMove.cs" />
     <Compile Include="Source\Gameplay\Combat\Behaviours\Behavior.cs" />
-    <Compile Include="Source\Gameplay\Combat\CombatTile.cs" />
-    <Compile Include="Source\Gameplay\Combat\CombatMap.cs" />
+    <Compile Include="Source\Gameplay\Combat\Maps\CombatTile.cs" />
+    <Compile Include="Source\Gameplay\Combat\Maps\CombatMap.cs" />
     <Compile Include="Source\Gameplay\Combat\Party.cs" />
     <Compile Include="Source\Gameplay\Items\Reward.cs" />
     <Compile Include="Source\Gameplay\Items\Item.cs" />
     <Compile Include="Source\Managers\CombatManager.cs" />
     <Compile Include="Source\Screens\CombatScreen.cs" />
     <Compile Include="Source\Gameplay\Combat\Encounter.cs" />
-    <Compile Include="Source\Gameplay\Combat\Enemy.cs" />
-    <Compile Include="Source\Gameplay\Combat\Ally.cs" />
+    <Compile Include="Source\Gameplay\Combat\Actors\Enemy.cs" />
+    <Compile Include="Source\Gameplay\Combat\Actors\Ally.cs" />
     <Compile Include="Source\Gameplay\Combat\Stats.cs" />
     <Compile Include="Source\Visuals\Effects\FadeEffect.cs" />
     <Compile Include="Source\RPG.cs" />

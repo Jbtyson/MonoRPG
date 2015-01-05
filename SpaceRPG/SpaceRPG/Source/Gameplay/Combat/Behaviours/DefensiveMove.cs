@@ -6,7 +6,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 
-using SpaceRPG.Source.Gameplay.Combat;
+using SpaceRPG.Source.Gameplay.Combat.Actors;
 using SpaceRPG.Source.Managers;
 
 namespace SpaceRPG.Source.Gameplay.Combat.Behaviors
