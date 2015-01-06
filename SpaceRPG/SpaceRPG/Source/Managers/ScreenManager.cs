@@ -29,6 +29,9 @@ namespace SpaceRPG.Source.Managers
         public Image Image;
 
         [XmlIgnore]
+        public Camera Camera;
+
+        [XmlIgnore]
         public Vector2 Dimensions { private set; get; }
         [XmlIgnore]
         public ContentManager Content { private set; get; }
@@ -62,7 +65,8 @@ namespace SpaceRPG.Source.Managers
         public ScreenManager()
         {
             Dimensions = new Vector2(1024, 576);
-            //_currentScreen = new SplashScreen();
+            Camera = new Camera();
+            //currentScreen = new SplashScreen();
             _currentScreen = new GameplayScreen();
             _xmlGameScreenManager = new XmlManager<GameScreen>();
             _xmlGameScreenManager.Type = _currentScreen.Type;

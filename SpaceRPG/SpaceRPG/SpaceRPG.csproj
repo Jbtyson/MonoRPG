@@ -53,6 +53,7 @@
     <Compile Include="Source\Gameplay\Items\Reward.cs" />
     <Compile Include="Source\Managers\CombatManager.cs" />
     <Compile Include="Source\RPG.cs" />
+    <Compile Include="Source\Screens\Camera.cs" />
     <Compile Include="Source\Screens\CombatScreen.cs" />
     <Compile Include="Source\Visuals\Effects\FadeEffect.cs" />
     <Compile Include="Source\Gameplay\GameObject.cs" />
@@ -100,7 +101,9 @@
     <Content Include="Load\Gameplay\Combat\Party.xml" />
     <Content Include="Load\Gameplay\Levels\Tutorial\Encounter1.xml" />
     <Content Include="Load\Gameplay\Levels\Tutorial\Encounter1Map.xml" />
-    <Content Include="Load\Gameplay\Maps\Map1.xml" />
+    <Content Include="Load\Gameplay\Maps\Map1.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Load\Gameplay\Characters\Player.xml" />
     <Content Include="Load\Gameplay\Maps\TestMap.xml" />
     <Content Include="Load\Menus\TitleMenu.xml" />

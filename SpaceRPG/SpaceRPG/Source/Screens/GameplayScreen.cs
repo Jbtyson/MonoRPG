@@ -58,7 +58,10 @@ namespace SpaceRPG.Source.Screens
             {
                 CombatScreen.EncounterId = "Load/Gameplay/Levels/Tutorial/Encounter1";
                 ScreenManager.Instance.ChangeScreens("CombatScreen");
-            }                
+            }               
+ 
+            // Update the camera position to our new position
+            ScreenManager.Instance.Camera.Position = _player.Image.Position;
         }
 
         public override void Draw(SpriteBatch spriteBatch)

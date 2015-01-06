@@ -59,9 +59,9 @@ namespace SpaceRPG.Source.Screens
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            _map.Draw(spriteBatch, "underlay");
+            _map.Draw(spriteBatch, "Underlay");
             _combatManager.Draw(spriteBatch);
-            _map.Draw(spriteBatch, "overlay");
+            _map.Draw(spriteBatch, "Overlay");
         }
     }
 }

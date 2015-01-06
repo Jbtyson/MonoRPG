@@ -88,10 +88,12 @@ namespace SpaceRPG.Source.Visuals.Maps
                             string str = s.Replace("[", String.Empty);
                             t.Value1 = int.Parse(str.Substring(0, str.IndexOf(':')));
                             t.Value2 = int.Parse(str.Substring(str.IndexOf(':') + 1));
+                            if (SolidTiles.Contains("[" + t.Value1.ToString() + ":" + t.Value2.ToString() + "]"))
+                                _state = "Solid";
                             t.LoadContent(_state, position, new Rectangle(t.Value1 * (int)tileDimensions.X, t.Value2 * (int)tileDimensions.Y,
                                 (int)tileDimensions.X, (int)tileDimensions.Y));
 
-                            if (OverlayTiles.Contains("[" + t.Value1.ToString() + ":" + t.Value1.ToString() + "]"))
+                            if (OverlayTiles.Contains("[" + t.Value1.ToString() + ":" + t.Value2.ToString() + "]"))
                                 _overlayTiles.Add(t);
                             else
                                 _underlayTiles.Add(t);

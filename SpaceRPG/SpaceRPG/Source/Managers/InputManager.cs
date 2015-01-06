@@ -19,7 +19,7 @@ namespace SpaceRPG.Source.Managers
         private MouseState _currentMouseState, _prevMouseState;
         private static InputManager _instance;
 
-        public Point MousePosition { get { return _currentMouseState.Position; } }
+        public Point MousePosition { get { return _currentMouseState.Position - ScreenManager.Instance.Camera.WorldPosition; } }
 
         /// <summary>
         /// Singleton instance of InputManager

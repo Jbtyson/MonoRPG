@@ -91,8 +91,15 @@ namespace SpaceRPG.Source
         {
             GraphicsDevice.Clear(Color.Black);
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred,
+                        BlendState.AlphaBlend,
+                        null,
+                        null,
+                        null,
+                        null,
+                        ScreenManager.Instance.Camera.GetTransformation(ScreenManager.Instance.GraphicsDevice));
             ScreenManager.Instance.Draw(spriteBatch);
+            
             spriteBatch.End();
 
             base.Draw(gameTime);
