@@ -134,6 +134,10 @@ namespace SpaceRPG.Source.Visuals.Maps
             }
         }
 
+        /// <summary>
+        /// Converts the tilemap into a two dimensional Tile array
+        /// </summary>
+        /// <returns>2D Tile array</returns>
         public Tile[,] GetTileArray2D()
         {
             Tile[,] data = new Tile[(int)LayerDimensions.X, (int)LayerDimensions.Y];
