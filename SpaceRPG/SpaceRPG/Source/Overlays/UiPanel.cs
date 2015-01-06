@@ -21,12 +21,17 @@ namespace SpaceRPG.Source.Overlays
         public int SelectedItem;
         [XmlElement("Button")]
         public List<Button> Buttons;
+        public Vector2 Dimensions, ButtonDimensions, ButtonOffset, ButtonOrigin;
 
         public UiPanel()
         {
             Hitbox = Rectangle.Empty;
             Image = new Image();
             Buttons = new List<Button>();
+            Dimensions = Vector2.Zero;
+            ButtonDimensions = Vector2.Zero;
+            ButtonOffset = Vector2.Zero;
+            ButtonOrigin = Vector2.Zero;
         }
 
         public virtual void LoadContent()
