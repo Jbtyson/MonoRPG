@@ -8,7 +8,9 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SpaceRPG
+using SpaceRPG.Source.Gameplay;
+
+namespace SpaceRPG.Source.Visuals.Maps
 {
     /// <summary>
     /// Tile represents a single square on the grid
@@ -18,6 +20,7 @@ namespace SpaceRPG
         private Vector2 _position;
         private Rectangle _sourceRect;
         private string _state;
+        public int Value1, Value2;
 
         public Rectangle SourceRect
         {

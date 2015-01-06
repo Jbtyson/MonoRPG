@@ -8,7 +8,9 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SpaceRPG
+using SpaceRPG.Source.Managers;
+
+namespace SpaceRPG.Source.Screens
 {
     /// <summary>
     /// TitleScreen displays the title menu

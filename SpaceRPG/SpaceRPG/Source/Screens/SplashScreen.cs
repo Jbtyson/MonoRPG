@@ -11,7 +11,10 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace SpaceRPG
+using SpaceRPG.Source.Managers;
+using SpaceRPG.Source.Visuals;
+
+namespace SpaceRPG.Source.Screens
 {
     /// <summary>
     /// SplashScreen is a screen that simply displays an image at the start of the game while it loads

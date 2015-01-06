@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 #endregion
 
+using SpaceRPG.Source;
+
 namespace SpaceRPG
 {
 #if WINDOWS || LINUX

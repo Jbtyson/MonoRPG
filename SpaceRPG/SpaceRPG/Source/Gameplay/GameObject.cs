@@ -9,13 +9,21 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SpaceRPG
+using SpaceRPG.Source.Visuals;
+
+namespace SpaceRPG.Source.Gameplay
 {
     /// <summary>
     /// GameObject is the base object for all game objects in the world
     /// </summary>
     public class GameObject
     {
+        public string Name;
+        public float MoveSpeed;
+        public Image Image;
+        public Vector2 Position;
+        public Vector2 Velocity;
+
         /// <summary>
         /// Loads content
         /// </summary>

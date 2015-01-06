@@ -7,7 +7,7 @@ using System.Text;
 using System.Xml.Serialization;
 using System.IO;
 
-namespace SpaceRPG
+namespace SpaceRPG.Source.Managers
 {
     /// <summary>
     /// XmlManager provides xml serialization and deserialization functionality
@@ -29,7 +29,7 @@ namespace SpaceRPG
         /// Loads an object from a given xml path
         /// </summary>
         /// <param name="path">Path to load from</param>
-        /// <returns>Object of type T created</returns>
+        /// <returns>Object of Type T created</returns>
         public T Load(string path)
         {
             T instance;

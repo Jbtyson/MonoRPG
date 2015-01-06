@@ -11,10 +11,12 @@ using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.GamerServices;
 #endregion
 
-namespace SpaceRPG
+using SpaceRPG.Source.Managers;
+
+namespace SpaceRPG.Source
 {
     /// <summary>
-    /// This is the main type for your game
+    /// This is the main Type for your game
     /// </summary>
     public class RPG : Game
     {
@@ -26,6 +28,7 @@ namespace SpaceRPG
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            IsMouseVisible = true;
         }
 
         /// <summary>

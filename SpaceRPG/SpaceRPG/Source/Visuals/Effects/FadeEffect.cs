@@ -7,7 +7,7 @@ using System.Text;
 
 using Microsoft.Xna.Framework;
 
-namespace SpaceRPG
+namespace SpaceRPG.Source.Visuals.Effects
 {
     /// <summary>
     /// FadeEffect produces a fading effect on an image

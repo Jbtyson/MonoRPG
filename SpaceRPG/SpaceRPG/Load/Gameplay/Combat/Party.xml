@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Party>
+    <Ally>
+      <Name>James</Name>
+      <Image>
+        <Path>Gameplay/Characters/player</Path>
+        <Effects>SpriteSheetEffect</Effects>
+      </Image>
+      
+      <Behavior>DefensiveMove</Behavior>
+      <MyTurn>true</MyTurn>
+      
+      <MoveSpeed>100</MoveSpeed>
+      <MoveRange>3</MoveRange>
+      <Stats>
+        <Health>100</Health>
+        <Attack>25</Attack>
+        <Defense>15</Defense>
+        <Level>3</Level>
+      </Stats>
+      <Position>
+        <X>100</X>
+        <Y>150</Y>
+      </Position>
+    </Ally>
+
+    <Ally>
+      <Name>Ben</Name>
+      
+      <Image>
+        <Path>Gameplay/Characters/player</Path>
+        <Effects>SpriteSheetEffect</Effects>
+      </Image>
+
+      <Behavior>DefensiveMove</Behavior>
+      
+      <MoveSpeed>100</MoveSpeed>
+      <MoveRange>4</MoveRange>
+      <Stats>
+        <Health>150</Health>
+        <Attack>15</Attack>
+        <Defense>25</Defense>
+        <Level>3</Level>
+      </Stats>
+      <Position>
+        <X>150</X>
+        <Y>250</Y>
+      </Position>
+    </Ally>
+
+  <Ally>
+    <Name>Ronald McDonald</Name>
+    <MoveRange>8</MoveRange>
+    <Image>
+      <Path>Gameplay/Characters/player</Path>
+      <Effects>SpriteSheetEffect</Effects>
+    </Image>
+
+    <Behavior>DefensiveMove</Behavior>
+
+    <MoveSpeed>100</MoveSpeed>
+    <Stats>
+      <Health>999</Health>
+      <Attack>999</Attack>
+      <Defense>999</Defense>
+      <Level>100</Level>
+    </Stats>
+    <Position>
+      <X>100</X>
+      <Y>350</Y>
+    </Position>
+  </Ally>
+</Party>

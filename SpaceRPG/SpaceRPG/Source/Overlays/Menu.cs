@@ -10,7 +10,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace SpaceRPG
+using SpaceRPG.Source.Managers;
+
+namespace SpaceRPG.Source.Overlays
 {
     /// <summary>
     /// Menu provides basic menu functionality

@@ -8,8 +8,13 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
-namespace SpaceRPG
+using SpaceRPG.Source.Gameplay;
+using SpaceRPG.Source.Managers;
+using SpaceRPG.Source.Visuals.Maps;
+
+namespace SpaceRPG.Source.Screens
 {
     /// <summary>
     /// Gameplay Screen represents the screen that the player "playes the game" in
@@ -29,8 +34,8 @@ namespace SpaceRPG
             _player.LoadContent();
 
             // Load the Map
-            XmlManager<Map> mapLaoder = new XmlManager<Map>();
-            _map = mapLaoder.Load("Load/Gameplay/Maps/Map1.xml");
+            XmlManager<Map> MapLoader = new XmlManager<Map>();
+            _map = MapLoader.Load("Load/Gameplay/Maps/Map1.xml");
             _map.LoadContent();
         }
 
@@ -38,7 +43,6 @@ namespace SpaceRPG
         {
             base.UnloadContent();
             _player.UnloadContent();
-            _map.UnloadContent();
         }
 
         public override void Update(GameTime gameTime)
@@ -48,6 +52,13 @@ namespace SpaceRPG
             // Update player and then map so that the players actions matter this frame
             _player.Update(gameTime);
             _map.Update(gameTime, ref _player);
+
+            // Initiate Combat
+            if (InputManager.Instance.KeyPressed(Keys.Enter) && !ScreenManager.Instance.IsTransitioning)
+            {
+                CombatScreen.EncounterId = "Load/Gameplay/Levels/Tutorial/Encounter1";
+                ScreenManager.Instance.ChangeScreens("CombatScreen");
+            }                
         }
 
         public override void Draw(SpriteBatch spriteBatch)

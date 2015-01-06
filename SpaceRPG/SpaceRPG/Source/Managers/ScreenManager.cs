@@ -11,7 +11,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SpaceRPG
+using SpaceRPG.Source.Screens;
+using SpaceRPG.Source.Visuals;
+
+namespace SpaceRPG.Source.Managers
 {
     /// <summary>
     /// ScreenManager is a class to help facilitate screen transistions as well
@@ -59,11 +62,11 @@ namespace SpaceRPG
         public ScreenManager()
         {
             Dimensions = new Vector2(1024, 576);
-            //currentScreen = new SplashScreen();
+            //_currentScreen = new SplashScreen();
             _currentScreen = new GameplayScreen();
             _xmlGameScreenManager = new XmlManager<GameScreen>();
             _xmlGameScreenManager.Type = _currentScreen.Type;
-            //currentScreen = xmlGameScreenManager.Load("Load/Screens/SplashScreen.xml");
+            //_currentScreen = _xmlGameScreenManager.Load("Load/Screens/SplashScreen.xml");
             IsTransitioning = false;
         }
 
@@ -73,7 +76,7 @@ namespace SpaceRPG
         /// <param name="screenName">name of the class to load</param>
         public void ChangeScreens(string screenName)
         {
-            _newScreen = (GameScreen)Activator.CreateInstance(Type.GetType("SpaceRPG." + screenName));
+            _newScreen = (GameScreen)Activator.CreateInstance(Type.GetType("SpaceRPG.Source.Screens." + screenName));
             Image.IsActive = true;
             Image.FadeEffect.Increase = true;
             Image.Alpha = 0.0f;

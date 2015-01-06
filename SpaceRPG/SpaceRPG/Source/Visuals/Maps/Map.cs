@@ -10,7 +10,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SpaceRPG
+using SpaceRPG.Source.Gameplay;
+
+namespace SpaceRPG.Source.Visuals.Maps
 {
     /// <summary>
     /// Map represents a ...map
@@ -19,6 +21,8 @@ namespace SpaceRPG
     {
         [XmlElement("Layer")]
         public List<Layer> Layers;
+        [XmlElement("CombatLayer")]
+        public Layer CombatLayer;
         public Vector2 TileDimensions;
 
         /// <summary>
@@ -32,6 +36,9 @@ namespace SpaceRPG
 
         public void LoadContent()
         {
+            if(CombatLayer != null)
+                CombatLayer.LoadContent(TileDimensions);
+
             foreach (Layer l in Layers)
             {
                 l.LoadContent(TileDimensions);
@@ -44,6 +51,11 @@ namespace SpaceRPG
             {
                 l.UnloadContent();
             }
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            // Do nothing for now
         }
 
         public void Update(GameTime gameTime, ref Player player)

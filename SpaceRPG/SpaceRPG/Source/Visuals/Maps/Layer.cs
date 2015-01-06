@@ -10,7 +10,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SpaceRPG
+using SpaceRPG.Source.Gameplay;
+
+namespace SpaceRPG.Source.Visuals.Maps
 {
     /// <summary>
     /// Layer represents one layer of a map
@@ -41,7 +43,8 @@ namespace SpaceRPG
         public TileMap TMap;
         public string SolidTiles, OverlayTiles;
         public Image Image;
-        
+
+        public Vector2 TileDimensions, LayerDimensions;
 
         public Layer()
         {
@@ -50,12 +53,19 @@ namespace SpaceRPG
             _underlayTiles = new List<Tile>();
             SolidTiles = String.Empty;
             OverlayTiles = String.Empty;
+            TileDimensions = Vector2.Zero;
+            LayerDimensions = Vector2.Zero;
         }
 
         public void LoadContent(Vector2 tileDimensions) 
         {
-            Image.LoadContent();
+            if(Image.Path != String.Empty)
+                Image.LoadContent();
             Vector2 position = -tileDimensions;
+
+            // Save the dimensions of the layer
+            LayerDimensions.Y = TMap.Row.Count;
+            LayerDimensions.X = TMap.Row[0].Split('[').Length-1;
 
             foreach (string row in TMap.Row)
             {
@@ -73,22 +83,18 @@ namespace SpaceRPG
                         position.X += tileDimensions.X;
                         if (!s.Contains("x"))
                         {
-                            Tile tile = new Tile();
-
+                            // Create a new tile and add it to the list
+                            Tile t = new Tile();
                             string str = s.Replace("[", String.Empty);
-                            int val1 = int.Parse(str.Substring(0, str.IndexOf(':')));
-                            int val2 = int.Parse(str.Substring(str.IndexOf(':') + 1));
-
-                            if (SolidTiles.Contains("[" + val1.ToString() + ":" + val2.ToString() + "]"))
-                                _state = "Solid";
-
-                            tile.LoadContent(_state, position, new Rectangle(val1 * (int)tileDimensions.X, val2 * (int)tileDimensions.Y,
+                            t.Value1 = int.Parse(str.Substring(0, str.IndexOf(':')));
+                            t.Value2 = int.Parse(str.Substring(str.IndexOf(':') + 1));
+                            t.LoadContent(_state, position, new Rectangle(t.Value1 * (int)tileDimensions.X, t.Value2 * (int)tileDimensions.Y,
                                 (int)tileDimensions.X, (int)tileDimensions.Y));
 
-                            if (OverlayTiles.Contains("[" + val1.ToString() + ":" + val2.ToString() + "]"))
-                                _overlayTiles.Add(tile);
+                            if (OverlayTiles.Contains("[" + t.Value1.ToString() + ":" + t.Value1.ToString() + "]"))
+                                _overlayTiles.Add(t);
                             else
-                                _underlayTiles.Add(tile);
+                                _underlayTiles.Add(t);
                         }
                     }
                 }
@@ -124,6 +130,23 @@ namespace SpaceRPG
                 Image.SourceRect = tile.SourceRect;
                 Image.Draw(spriteBatch);
             }
+        }
+
+        public Tile[,] GetTileArray2D()
+        {
+            Tile[,] data = new Tile[(int)LayerDimensions.X, (int)LayerDimensions.Y];
+            int x = 0; int y = 0;
+            foreach (Tile t in _underlayTiles)
+            {
+                data[x,y] = t;
+                x++;
+                if (x > LayerDimensions.X - 1)
+                {
+                    x = 0;
+                    y++;
+                }
+            }
+            return data;
         }
     }
 }

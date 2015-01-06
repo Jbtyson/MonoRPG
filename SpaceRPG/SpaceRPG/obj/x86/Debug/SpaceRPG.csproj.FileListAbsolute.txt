@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\James Tyson\Documents\GitHub\spaceRPG\SpaceRPG\SpaceRPG\obj\x86\Debug\SpaceRPG.csprojResolveAssemblyReference.cache
 C:\Users\James Tyson\Documents\GitHub\spaceRPG\SpaceRPG\SpaceRPG\obj\x86\Debug\SpaceRPG.exe
 C:\Users\James Tyson\Documents\GitHub\spaceRPG\SpaceRPG\SpaceRPG\obj\x86\Debug\SpaceRPG.pdb
@@ -53,3 +54,150 @@ C:\Users\James\Documents\GitHub\spacerpg\SpaceRPG\SpaceRPG\SharpDX.Direct3D9.xml
 C:\Users\James\Documents\GitHub\spacerpg\SpaceRPG\SpaceRPG\SpaceRPG.exe
 C:\Users\James\Documents\GitHub\spacerpg\SpaceRPG\SpaceRPG\SpaceRPG.pdb
 C:\Users\James\Documents\GitHub\spacerpg\SpaceRPG\SpaceRPG\obj\x86\Debug\SpaceRPG.csprojResolveAssemblyReference.cache
+=======
+C:\Users\James Tyson\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\obj\x86\Debug\SpaceRPG.exe
+C:\Users\James Tyson\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\obj\x86\Debug\SpaceRPG.pdb
+C:\Users\James Tyson\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\obj\x86\Debug\SpaceRPG.csprojResolveAssemblyReference.cache
+C:\Users\James Tyson\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\Content\Gameplay\Characters\Enemies\enemy.png
+C:\Users\James Tyson\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\Content\Gameplay\Characters\player.png
+C:\Users\James Tyson\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\Content\Gameplay\TileSheets\ground.png
+C:\Users\James Tyson\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\Content\ScreenManager\FadeImage.png
+C:\Users\James Tyson\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SpaceRPG.exe
+C:\Users\James Tyson\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SpaceRPG.pdb
+C:\Users\James Tyson\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\MonoGame.Framework.dll
+C:\Users\James Tyson\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.MediaFoundation.dll
+C:\Users\James Tyson\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.dll
+C:\Users\James Tyson\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.XAudio2.dll
+C:\Users\James Tyson\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.Direct3D11.dll
+C:\Users\James Tyson\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.DXGI.dll
+C:\Users\James Tyson\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.Direct2D1.dll
+C:\Users\James Tyson\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\Lidgren.Network.dll
+C:\Users\James Tyson\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.XInput.dll
+C:\Users\James Tyson\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.RawInput.dll
+C:\Users\James Tyson\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.Direct3D9.dll
+C:\Users\James Tyson\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.MediaFoundation.xml
+C:\Users\James Tyson\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.xml
+C:\Users\James Tyson\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.XAudio2.xml
+C:\Users\James Tyson\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.Direct3D11.xml
+C:\Users\James Tyson\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.DXGI.xml
+C:\Users\James Tyson\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.Direct2D1.xml
+C:\Users\James Tyson\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.XInput.xml
+C:\Users\James Tyson\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.RawInput.xml
+C:\Users\James Tyson\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.Direct3D9.xml
+U:\github\space-rpg\SpaceRPG\SpaceRPG\obj\x86\Debug\SpaceRPG.exe
+U:\github\space-rpg\SpaceRPG\SpaceRPG\obj\x86\Debug\SpaceRPG.pdb
+U:\github\space-rpg\SpaceRPG\SpaceRPG\obj\x86\Debug\SpaceRPG.csprojResolveAssemblyReference.cache
+U:\github\space-rpg\SpaceRPG\SpaceRPG\Content\Gameplay\Characters\Enemies\enemy.png
+U:\github\space-rpg\SpaceRPG\SpaceRPG\Content\Gameplay\Characters\player.png
+U:\github\space-rpg\SpaceRPG\SpaceRPG\Content\Gameplay\TileSheets\ground.png
+U:\github\space-rpg\SpaceRPG\SpaceRPG\Content\ScreenManager\FadeImage.png
+U:\github\space-rpg\SpaceRPG\SpaceRPG\SpaceRPG.exe
+U:\github\space-rpg\SpaceRPG\SpaceRPG\SpaceRPG.pdb
+U:\github\space-rpg\SpaceRPG\SpaceRPG\MonoGame.Framework.dll
+U:\github\space-rpg\SpaceRPG\SpaceRPG\SharpDX.MediaFoundation.dll
+U:\github\space-rpg\SpaceRPG\SpaceRPG\SharpDX.dll
+U:\github\space-rpg\SpaceRPG\SpaceRPG\SharpDX.XAudio2.dll
+U:\github\space-rpg\SpaceRPG\SpaceRPG\SharpDX.Direct3D11.dll
+U:\github\space-rpg\SpaceRPG\SpaceRPG\SharpDX.DXGI.dll
+U:\github\space-rpg\SpaceRPG\SpaceRPG\SharpDX.Direct2D1.dll
+U:\github\space-rpg\SpaceRPG\SpaceRPG\Lidgren.Network.dll
+U:\github\space-rpg\SpaceRPG\SpaceRPG\SharpDX.XInput.dll
+U:\github\space-rpg\SpaceRPG\SpaceRPG\SharpDX.RawInput.dll
+U:\github\space-rpg\SpaceRPG\SpaceRPG\SharpDX.Direct3D9.dll
+U:\github\space-rpg\SpaceRPG\SpaceRPG\SharpDX.MediaFoundation.xml
+U:\github\space-rpg\SpaceRPG\SpaceRPG\SharpDX.xml
+U:\github\space-rpg\SpaceRPG\SpaceRPG\SharpDX.XAudio2.xml
+U:\github\space-rpg\SpaceRPG\SpaceRPG\SharpDX.Direct3D11.xml
+U:\github\space-rpg\SpaceRPG\SpaceRPG\SharpDX.DXGI.xml
+U:\github\space-rpg\SpaceRPG\SpaceRPG\SharpDX.Direct2D1.xml
+U:\github\space-rpg\SpaceRPG\SpaceRPG\SharpDX.XInput.xml
+U:\github\space-rpg\SpaceRPG\SpaceRPG\SharpDX.RawInput.xml
+U:\github\space-rpg\SpaceRPG\SpaceRPG\SharpDX.Direct3D9.xml
+C:\Users\James Tyson\New folder\space-rpg\SpaceRPG\SpaceRPG\obj\x86\Debug\SpaceRPG.exe
+C:\Users\James Tyson\New folder\space-rpg\SpaceRPG\SpaceRPG\obj\x86\Debug\SpaceRPG.pdb
+C:\Users\James Tyson\New folder\space-rpg\SpaceRPG\SpaceRPG\obj\x86\Debug\SpaceRPG.csprojResolveAssemblyReference.cache
+C:\Users\James Tyson\New folder\space-rpg\SpaceRPG\SpaceRPG\Content\Gameplay\Characters\Enemies\enemy.png
+C:\Users\James Tyson\New folder\space-rpg\SpaceRPG\SpaceRPG\Content\Gameplay\Characters\player.png
+C:\Users\James Tyson\New folder\space-rpg\SpaceRPG\SpaceRPG\Content\Gameplay\TileSheets\ground.png
+C:\Users\James Tyson\New folder\space-rpg\SpaceRPG\SpaceRPG\Content\ScreenManager\FadeImage.png
+C:\Users\James Tyson\New folder\space-rpg\SpaceRPG\SpaceRPG\SpaceRPG.exe
+C:\Users\James Tyson\New folder\space-rpg\SpaceRPG\SpaceRPG\SpaceRPG.pdb
+C:\Users\James Tyson\New folder\space-rpg\SpaceRPG\SpaceRPG\MonoGame.Framework.dll
+C:\Users\James Tyson\New folder\space-rpg\SpaceRPG\SpaceRPG\SharpDX.MediaFoundation.dll
+C:\Users\James Tyson\New folder\space-rpg\SpaceRPG\SpaceRPG\SharpDX.dll
+C:\Users\James Tyson\New folder\space-rpg\SpaceRPG\SpaceRPG\SharpDX.XAudio2.dll
+C:\Users\James Tyson\New folder\space-rpg\SpaceRPG\SpaceRPG\SharpDX.Direct3D11.dll
+C:\Users\James Tyson\New folder\space-rpg\SpaceRPG\SpaceRPG\SharpDX.DXGI.dll
+C:\Users\James Tyson\New folder\space-rpg\SpaceRPG\SpaceRPG\SharpDX.Direct2D1.dll
+C:\Users\James Tyson\New folder\space-rpg\SpaceRPG\SpaceRPG\Lidgren.Network.dll
+C:\Users\James Tyson\New folder\space-rpg\SpaceRPG\SpaceRPG\SharpDX.XInput.dll
+C:\Users\James Tyson\New folder\space-rpg\SpaceRPG\SpaceRPG\SharpDX.RawInput.dll
+C:\Users\James Tyson\New folder\space-rpg\SpaceRPG\SpaceRPG\SharpDX.Direct3D9.dll
+C:\Users\James Tyson\New folder\space-rpg\SpaceRPG\SpaceRPG\SharpDX.MediaFoundation.xml
+C:\Users\James Tyson\New folder\space-rpg\SpaceRPG\SpaceRPG\SharpDX.xml
+C:\Users\James Tyson\New folder\space-rpg\SpaceRPG\SpaceRPG\SharpDX.XAudio2.xml
+C:\Users\James Tyson\New folder\space-rpg\SpaceRPG\SpaceRPG\SharpDX.Direct3D11.xml
+C:\Users\James Tyson\New folder\space-rpg\SpaceRPG\SpaceRPG\SharpDX.DXGI.xml
+C:\Users\James Tyson\New folder\space-rpg\SpaceRPG\SpaceRPG\SharpDX.Direct2D1.xml
+C:\Users\James Tyson\New folder\space-rpg\SpaceRPG\SpaceRPG\SharpDX.XInput.xml
+C:\Users\James Tyson\New folder\space-rpg\SpaceRPG\SpaceRPG\SharpDX.RawInput.xml
+C:\Users\James Tyson\New folder\space-rpg\SpaceRPG\SpaceRPG\SharpDX.Direct3D9.xml
+C:\Users\Ben\Desktop\Coding\Space\space-rpg\SpaceRPG\SpaceRPG\obj\x86\Debug\SpaceRPG.exe
+C:\Users\Ben\Desktop\Coding\Space\space-rpg\SpaceRPG\SpaceRPG\obj\x86\Debug\SpaceRPG.pdb
+C:\Users\Ben\Desktop\Coding\Space\space-rpg\SpaceRPG\SpaceRPG\obj\x86\Debug\SpaceRPG.csprojResolveAssemblyReference.cache
+C:\Users\Ben\Desktop\Coding\Space\space-rpg\SpaceRPG\SpaceRPG\Content\Gameplay\Characters\Enemies\enemy.png
+C:\Users\Ben\Desktop\Coding\Space\space-rpg\SpaceRPG\SpaceRPG\Content\Gameplay\Characters\player.png
+C:\Users\Ben\Desktop\Coding\Space\space-rpg\SpaceRPG\SpaceRPG\Content\Gameplay\TileSheets\ground.png
+C:\Users\Ben\Desktop\Coding\Space\space-rpg\SpaceRPG\SpaceRPG\Content\ScreenManager\FadeImage.png
+C:\Users\Ben\Desktop\Coding\Space\space-rpg\SpaceRPG\SpaceRPG\SpaceRPG.exe
+C:\Users\Ben\Desktop\Coding\Space\space-rpg\SpaceRPG\SpaceRPG\SpaceRPG.pdb
+C:\Users\Ben\Desktop\Coding\Space\space-rpg\SpaceRPG\SpaceRPG\MonoGame.Framework.dll
+C:\Users\Ben\Desktop\Coding\Space\space-rpg\SpaceRPG\SpaceRPG\SharpDX.MediaFoundation.dll
+C:\Users\Ben\Desktop\Coding\Space\space-rpg\SpaceRPG\SpaceRPG\SharpDX.dll
+C:\Users\Ben\Desktop\Coding\Space\space-rpg\SpaceRPG\SpaceRPG\SharpDX.XAudio2.dll
+C:\Users\Ben\Desktop\Coding\Space\space-rpg\SpaceRPG\SpaceRPG\SharpDX.Direct3D11.dll
+C:\Users\Ben\Desktop\Coding\Space\space-rpg\SpaceRPG\SpaceRPG\SharpDX.DXGI.dll
+C:\Users\Ben\Desktop\Coding\Space\space-rpg\SpaceRPG\SpaceRPG\SharpDX.Direct2D1.dll
+C:\Users\Ben\Desktop\Coding\Space\space-rpg\SpaceRPG\SpaceRPG\Lidgren.Network.dll
+C:\Users\Ben\Desktop\Coding\Space\space-rpg\SpaceRPG\SpaceRPG\SharpDX.XInput.dll
+C:\Users\Ben\Desktop\Coding\Space\space-rpg\SpaceRPG\SpaceRPG\SharpDX.RawInput.dll
+C:\Users\Ben\Desktop\Coding\Space\space-rpg\SpaceRPG\SpaceRPG\SharpDX.Direct3D9.dll
+C:\Users\Ben\Desktop\Coding\Space\space-rpg\SpaceRPG\SpaceRPG\SharpDX.MediaFoundation.xml
+C:\Users\Ben\Desktop\Coding\Space\space-rpg\SpaceRPG\SpaceRPG\SharpDX.xml
+C:\Users\Ben\Desktop\Coding\Space\space-rpg\SpaceRPG\SpaceRPG\SharpDX.XAudio2.xml
+C:\Users\Ben\Desktop\Coding\Space\space-rpg\SpaceRPG\SpaceRPG\SharpDX.Direct3D11.xml
+C:\Users\Ben\Desktop\Coding\Space\space-rpg\SpaceRPG\SpaceRPG\SharpDX.DXGI.xml
+C:\Users\Ben\Desktop\Coding\Space\space-rpg\SpaceRPG\SpaceRPG\SharpDX.Direct2D1.xml
+C:\Users\Ben\Desktop\Coding\Space\space-rpg\SpaceRPG\SpaceRPG\SharpDX.XInput.xml
+C:\Users\Ben\Desktop\Coding\Space\space-rpg\SpaceRPG\SpaceRPG\SharpDX.RawInput.xml
+C:\Users\Ben\Desktop\Coding\Space\space-rpg\SpaceRPG\SpaceRPG\SharpDX.Direct3D9.xml
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\obj\x86\Debug\SpaceRPG.exe
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\obj\x86\Debug\SpaceRPG.pdb
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\obj\x86\Debug\SpaceRPG.csprojResolveAssemblyReference.cache
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\Content\Gameplay\Characters\Enemies\enemy.png
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\Content\Gameplay\Characters\player.png
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\Content\Gameplay\TileSheets\ground.png
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\Content\ScreenManager\FadeImage.png
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SpaceRPG.exe
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SpaceRPG.pdb
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\MonoGame.Framework.dll
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.MediaFoundation.dll
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.dll
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.XAudio2.dll
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.Direct3D11.dll
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.DXGI.dll
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.Direct2D1.dll
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\Lidgren.Network.dll
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.XInput.dll
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.RawInput.dll
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.Direct3D9.dll
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.MediaFoundation.xml
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.xml
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.XAudio2.xml
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.Direct3D11.xml
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.DXGI.xml
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.Direct2D1.xml
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.XInput.xml
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.RawInput.xml
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.Direct3D9.xml
+>>>>>>> 743ec2f498c88148f1c6c13f84723eb865e4c1aa
