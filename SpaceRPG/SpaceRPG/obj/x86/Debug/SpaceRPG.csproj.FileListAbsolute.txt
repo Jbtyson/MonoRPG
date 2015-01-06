@@ -142,3 +142,7 @@ C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.Direct2D1.xm
 C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.XInput.xml
 C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.RawInput.xml
 C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\SharpDX.Direct3D9.xml
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\Content\Gameplay\Ui\Combat\CombatActionButtonBackgroundHover.png
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\Content\Gameplay\Ui\Combat\CombatActionButtonBackgroundNeutral.png
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\Content\Gameplay\Ui\Combat\CombatActionButtonBackgroundPressed.png
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\Content\Gameplay\Ui\Combat\CombatActionpanel.png

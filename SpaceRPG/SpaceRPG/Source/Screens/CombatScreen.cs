@@ -8,6 +8,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 using SpaceRPG.Source.Managers;
 using SpaceRPG.Source.Visuals.Maps;
@@ -18,6 +19,7 @@ namespace SpaceRPG.Source.Screens
     {
         private CombatManager _combatManager;
         private Map _map;
+        private UiManager _uiManager;
 
         public static string EncounterId;
 
@@ -25,6 +27,7 @@ namespace SpaceRPG.Source.Screens
         {
             _combatManager = new CombatManager();
             _map = new Map();
+            _uiManager = new UiManager();
         }
 
         public override void LoadContent()
@@ -40,6 +43,13 @@ namespace SpaceRPG.Source.Screens
             XmlManager<CombatManager> combatManagerLoader = new XmlManager<CombatManager>();
             _combatManager = combatManagerLoader.Load("Load/Gameplay/Combat/CombatManager.xml");
             _combatManager.LoadContent(_map);
+
+            // Load the UiManager
+            XmlManager<UiManager> uiManagerLoader = new XmlManager<UiManager>();
+            _uiManager = uiManagerLoader.Load("Load/Gameplay/Combat/UiManager.xml");
+            _uiManager.LoadContent();
+
+            ScreenManager.Instance.Camera.SetWorldPosition(Vector2.Zero);
         }
 
         public override void UnloadContent()
@@ -47,6 +57,7 @@ namespace SpaceRPG.Source.Screens
             base.UnloadContent();
             _map.UnloadContent();
             _combatManager.UnloadContent();
+            _uiManager.UnloadContent();
         }
 
         public override void Update(GameTime gameTime)
@@ -54,6 +65,21 @@ namespace SpaceRPG.Source.Screens
             base.Update(gameTime);
             _map.Update(gameTime);
             _combatManager.Update(gameTime);
+            _uiManager.Update(gameTime);
+            MoveCamera(gameTime);
+        }
+
+        public void MoveCamera(GameTime gameTime)
+        {
+            if (InputManager.Instance.KeyDown(Keys.Up))
+                ScreenManager.Instance.Camera.Position.Y -= (float)(300 * gameTime.ElapsedGameTime.TotalSeconds);
+            if (InputManager.Instance.KeyDown(Keys.Down))
+                ScreenManager.Instance.Camera.Position.Y += (float)(300 * gameTime.ElapsedGameTime.TotalSeconds);
+            if (InputManager.Instance.KeyDown(Keys.Left))
+                ScreenManager.Instance.Camera.Position.X -= (float)(300 * gameTime.ElapsedGameTime.TotalSeconds);
+            if (InputManager.Instance.KeyDown(Keys.Right))
+                ScreenManager.Instance.Camera.Position.X += (float)(300 * gameTime.ElapsedGameTime.TotalSeconds);
+           
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -62,6 +88,7 @@ namespace SpaceRPG.Source.Screens
             _map.Draw(spriteBatch, "Underlay");
             _combatManager.Draw(spriteBatch);
             _map.Draw(spriteBatch, "Overlay");
+            _uiManager.Draw(spriteBatch);
         }
     }
 }

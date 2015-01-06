@@ -52,6 +52,16 @@ namespace SpaceRPG.Source.Screens
         }
 
         /// <summary>
+        /// Sets the top left corner of the screen to the world position
+        /// </summary>
+        /// <param name="position"></param>
+        public void SetWorldPosition(Vector2 position) 
+        {
+            Position.X = ScreenManager.Instance.Dimensions.X / 2 + position.Y;
+            Position.Y = ScreenManager.Instance.Dimensions.Y / 2 + position.X;
+        }
+
+        /// <summary>
         /// Gets the camera transformation
         /// </summary>
         /// <param name="graphicsDevice">Graphics Device</param>

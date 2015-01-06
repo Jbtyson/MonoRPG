@@ -52,6 +52,9 @@
     <Compile Include="Source\Gameplay\Items\Item.cs" />
     <Compile Include="Source\Gameplay\Items\Reward.cs" />
     <Compile Include="Source\Managers\CombatManager.cs" />
+    <Compile Include="Source\Managers\UiManager.cs" />
+    <Compile Include="Source\Overlays\Button.cs" />
+    <Compile Include="Source\Overlays\UiPanel.cs" />
     <Compile Include="Source\RPG.cs" />
     <Compile Include="Source\Screens\Camera.cs" />
     <Compile Include="Source\Screens\CombatScreen.cs" />
@@ -92,6 +95,18 @@
     <Content Include="Content\Gameplay\TileSheets\ground.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Gameplay\Ui\Combat\CombatActionButtonBackgroundHover.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Gameplay\Ui\Combat\CombatActionButtonBackgroundNeutral.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Gameplay\Ui\Combat\CombatActionButtonBackgroundPressed.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Gameplay\Ui\Combat\CombatActionpanel.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\ScreenManager\FadeImage.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -99,6 +114,7 @@
     <Content Include="Icon.ico" />
     <Content Include="Load\Gameplay\Combat\CombatManager.xml" />
     <Content Include="Load\Gameplay\Combat\Party.xml" />
+    <Content Include="Load\Gameplay\Combat\UiManager.xml" />
     <Content Include="Load\Gameplay\Levels\Tutorial\Encounter1.xml" />
     <Content Include="Load\Gameplay\Levels\Tutorial\Encounter1Map.xml" />
     <Content Include="Load\Gameplay\Maps\Map1.xml">

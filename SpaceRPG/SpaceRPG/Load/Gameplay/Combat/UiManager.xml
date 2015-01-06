@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<UiManager>
+  <UiPanel>
+    <Image>
+      <Path>Gameplay/Ui/Combat/CombatActionPanel</Path>
+      <Position>
+        <X>838</X>
+        <Y>292</Y>
+      </Position>
+    </Image>
+
+    <Button>
+      <Image>
+        <Path>Gameplay/Ui/Combat/CombatActionButtonBackgroundNeutral</Path>
+        <Text>Test</Text>
+      </Image>
+      <Image>
+        <Path>Gameplay/Ui/Combat/CombatActionButtonBackgroundHover</Path>
+        <Text>Test</Text>
+      </Image>
+      <Image>
+        <Path>Gameplay/Ui/Combat/CombatActionButtonBackgroundPressed</Path>
+        <Text>Test</Text>
+      </Image>
+    </Button>
+  </UiPanel>
+</UiManager>
