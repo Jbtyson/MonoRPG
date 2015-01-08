@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Cursor>
+  <Image>
+    <Path>Gameplay/Ui/Combat/Cursor</Path>
+    <Effects>SpriteSheetEffect</Effects>
+    <IsActive>true</IsActive>
+  </Image>
+</Cursor>
