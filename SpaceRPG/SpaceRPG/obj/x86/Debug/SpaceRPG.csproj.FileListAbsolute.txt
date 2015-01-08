@@ -146,3 +146,4 @@ C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\Content\Gameplay\Ui\
 C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\Content\Gameplay\Ui\Combat\CombatActionButtonBackgroundNeutral.png
 C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\Content\Gameplay\Ui\Combat\CombatActionButtonBackgroundPressed.png
 C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\Content\Gameplay\Ui\Combat\CombatActionpanel.png
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\Content\Gameplay\Ui\Combat\Cursor.png

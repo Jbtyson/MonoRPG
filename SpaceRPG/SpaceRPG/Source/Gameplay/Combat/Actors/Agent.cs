@@ -27,6 +27,8 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
         public bool Moving, Busy, MyTurn, Aligned, ReachedNode, DisplayMoveRange;
         public List<Point> MovementNodes;
         public int MoveRange;
+        [XmlIgnore]
+        public Action CurrentAction;
 
         public delegate void TurnChange();
         [XmlIgnore]
@@ -65,12 +67,20 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
         {
             base.Update(gameTime);
 
-            if (MyTurn && !Busy)
-                if (InputManager.Instance.KeyPressed(Keys.M))
-                    DisplayMoveRange = !DisplayMoveRange;
-
-            if (Moving)
-                Move(gameTime);
+            if (MyTurn)
+            {
+                if (Moving)
+                {
+                    Move(gameTime);
+                    DisplayMoveRange = false;
+                }
+                
+                if (!Busy)
+                {
+                    if (InputManager.Instance.KeyPressed(Keys.M))
+                        DisplayMoveRange = !DisplayMoveRange;
+                }
+            }
         }
 
         /// <summary>

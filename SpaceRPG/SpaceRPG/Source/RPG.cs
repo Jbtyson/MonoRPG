@@ -79,7 +79,8 @@ namespace SpaceRPG.Source
                 Exit();
 
             ScreenManager.Instance.Update(gameTime);
-            
+            ScreenManager.Instance.Camera.GetTransformation(ScreenManager.Instance.GraphicsDevice);
+
             base.Update(gameTime);
         }
 
@@ -97,7 +98,7 @@ namespace SpaceRPG.Source
                         null,
                         null,
                         null,
-                        ScreenManager.Instance.Camera.GetTransformation(ScreenManager.Instance.GraphicsDevice));
+                        ScreenManager.Instance.Camera.Transform);
             ScreenManager.Instance.Draw(spriteBatch);
             
             spriteBatch.End();

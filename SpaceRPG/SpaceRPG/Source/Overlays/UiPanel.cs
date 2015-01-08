@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 using SpaceRPG.Source.Visuals;
+using SpaceRPG.Source.Managers;
 
 namespace SpaceRPG.Source.Overlays
 {
@@ -36,9 +37,12 @@ namespace SpaceRPG.Source.Overlays
 
         public virtual void LoadContent()
         {
+            ButtonOrigin += Image.Position;
+
             Image.LoadContent();
+            int count = 0;
             foreach (Button b in Buttons)
-                b.LoadContent(Image.Position);
+                b.LoadContent(ButtonOrigin + (count++ * ButtonOffset), HandleButtonClick);
 
         }
 
@@ -54,6 +58,9 @@ namespace SpaceRPG.Source.Overlays
             Image.Update(gameTime);
             foreach (Button b in Buttons)
                 b.Update(gameTime);
+
+            // Update position based on camera
+            Image.Position -= ScreenManager.Instance.Camera.WorldChange;
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
@@ -61,6 +68,12 @@ namespace SpaceRPG.Source.Overlays
             Image.Draw(spriteBatch);
             foreach (Button b in Buttons)
                 b.Draw(spriteBatch);
+        }
+
+        public void HandleButtonClick(object sender)
+        {
+            Button b = (Button)sender;
+            Console.WriteLine(b.Value);
         }
     }
 }

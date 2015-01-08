@@ -41,7 +41,7 @@ namespace SpaceRPG.Source.Overlays
         /// A Click event. When the button is clicked (called on release),
         ///  it calls this event.
         /// </summary>
-        public delegate void ButtonEvent(Button sender);
+        public delegate void ButtonEvent(object sender);
         [XmlIgnore]
         public ButtonEvent ButtonClicked;
 
@@ -75,7 +75,7 @@ namespace SpaceRPG.Source.Overlays
             set { _value = value; }
         }
 
-        public void LoadContent(Vector2 position)
+        public void LoadContent(Vector2 position, ButtonEvent handle)
         {
             foreach (Image i in Images)
             {
@@ -84,6 +84,8 @@ namespace SpaceRPG.Source.Overlays
             }
             _currentImage = Images[0];
             _hitbox = new Rectangle((int)position.X, (int)position.Y, _currentImage.SourceRect.Width, _currentImage.SourceRect.Height);
+            ButtonClicked = handle;
+            Value = _currentImage.Text;
         }
 
         public void UnloadContent()

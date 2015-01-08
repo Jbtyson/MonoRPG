@@ -28,7 +28,6 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
         {
             base.LoadContent();
             Image.LoadContent();
-            Image.Position = this.Position;
         }
 
         public override void UnloadContent()

@@ -8,20 +8,82 @@
         <Y>292</Y>
       </Position>
     </Image>
+    <Dimensions>
+      <X>150</X>
+      <Y>250</Y>
+    </Dimensions>
+    <ButtonDimensions>
+      <X>100</X>
+      <Y>30</Y>
+    </ButtonDimensions>
+    <ButtonOffset>
+      <X>0</X>
+      <Y>50</Y>
+    </ButtonOffset>
+    <ButtonOrigin>
+      <X>25</X>
+      <Y>20</Y>
+    </ButtonOrigin>
 
     <Button>
       <Image>
         <Path>Gameplay/Ui/Combat/CombatActionButtonBackgroundNeutral</Path>
-        <Text>Test</Text>
+        <Text>Move</Text>
       </Image>
       <Image>
         <Path>Gameplay/Ui/Combat/CombatActionButtonBackgroundHover</Path>
-        <Text>Test</Text>
+        <Text>Move</Text>
       </Image>
       <Image>
         <Path>Gameplay/Ui/Combat/CombatActionButtonBackgroundPressed</Path>
-        <Text>Test</Text>
+        <Text>Move</Text>
       </Image>
     </Button>
+
+    <Button>
+      <Image>
+        <Path>Gameplay/Ui/Combat/CombatActionButtonBackgroundNeutral</Path>
+        <Text>Action</Text>
+      </Image>
+      <Image>
+        <Path>Gameplay/Ui/Combat/CombatActionButtonBackgroundHover</Path>
+        <Text>Action</Text>
+      </Image>
+      <Image>
+        <Path>Gameplay/Ui/Combat/CombatActionButtonBackgroundPressed</Path>
+        <Text>Action</Text>
+      </Image>
+    </Button>
+
+    <Button>
+      <Image>
+        <Path>Gameplay/Ui/Combat/CombatActionButtonBackgroundNeutral</Path>
+        <Text>Wait</Text>
+      </Image>
+      <Image>
+        <Path>Gameplay/Ui/Combat/CombatActionButtonBackgroundHover</Path>
+        <Text>Wait</Text>
+      </Image>
+      <Image>
+        <Path>Gameplay/Ui/Combat/CombatActionButtonBackgroundPressed</Path>
+        <Text>Wait</Text>
+      </Image>
+    </Button>
+
+    <Button>
+      <Image>
+        <Path>Gameplay/Ui/Combat/CombatActionButtonBackgroundNeutral</Path>
+        <Text>Status</Text>
+      </Image>
+      <Image>
+        <Path>Gameplay/Ui/Combat/CombatActionButtonBackgroundHover</Path>
+        <Text>Status</Text>
+      </Image>
+      <Image>
+        <Path>Gameplay/Ui/Combat/CombatActionButtonBackgroundPressed</Path>
+        <Text>Status</Text>
+      </Image>
+    </Button>
+    
   </UiPanel>
 </UiManager>

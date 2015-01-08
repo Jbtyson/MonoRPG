@@ -24,12 +24,14 @@ namespace SpaceRPG.Source.Screens
         public float Rotation;
         private float _zoom;
         public Point WorldPosition;
+        public Vector2 WorldChange;
 
         public float Zoom
         {
             get { return _zoom; }
             set { _zoom = value; if (_zoom < 0.1f) _zoom = 0.1f; } // Negative zoom will flip image
         }
+        public Matrix Transform { get { return _transform; } }
 
         /// <summary>
         /// Default Constrcutor
@@ -59,6 +61,7 @@ namespace SpaceRPG.Source.Screens
         {
             Position.X = ScreenManager.Instance.Dimensions.X / 2 + position.Y;
             Position.Y = ScreenManager.Instance.Dimensions.Y / 2 + position.X;
+            WorldPosition = new Point((int)Position.X, (int)Position.Y);
         }
 
         /// <summary>
@@ -72,6 +75,9 @@ namespace SpaceRPG.Source.Screens
                                          Matrix.CreateTranslation(new Vector3(ScreenManager.Instance.Dimensions.X * 0.5f, ScreenManager.Instance.Dimensions.Y * 0.5f, 0));
             _transform.M41 = (float)(Math.Round(_transform.M41)); // removes horizontal white stripes betwwen tiles
             _transform.M42 = (float)(Math.Round(_transform.M42)); // removes vertical white stripes between tiles
+            
+            // Update the world position
+            WorldChange = new Vector2((int)_transform.M41 - WorldPosition.X, (int)_transform.M42 - WorldPosition.Y);
             WorldPosition.X = (int)_transform.M41;
             WorldPosition.Y = (int)_transform.M42;
             

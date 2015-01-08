@@ -21,6 +21,8 @@ namespace SpaceRPG.Source.Screens
         private Map _map;
         private UiManager _uiManager;
 
+        public bool ClickOnUi { get { return _uiManager.IsMouseOnUi(); } }
+
         public static string EncounterId;
 
         public CombatScreen()
@@ -39,17 +41,20 @@ namespace SpaceRPG.Source.Screens
             _map = mapLoader.Load(EncounterId +"Map.xml");
             _map.LoadContent();
 
-            // Load the combat manager
-            XmlManager<CombatManager> combatManagerLoader = new XmlManager<CombatManager>();
-            _combatManager = combatManagerLoader.Load("Load/Gameplay/Combat/CombatManager.xml");
-            _combatManager.LoadContent(_map);
 
             // Load the UiManager
             XmlManager<UiManager> uiManagerLoader = new XmlManager<UiManager>();
             _uiManager = uiManagerLoader.Load("Load/Gameplay/Combat/UiManager.xml");
             _uiManager.LoadContent();
 
+            // Load the combat manager
+            XmlManager<CombatManager> combatManagerLoader = new XmlManager<CombatManager>();
+            _combatManager = combatManagerLoader.Load("Load/Gameplay/Combat/CombatManager.xml");
+            _combatManager.LoadContent(_map);
+
+            // Set the top left corner of the camera to (0,0)
             ScreenManager.Instance.Camera.SetWorldPosition(Vector2.Zero);
+            ScreenManager.Instance.Camera.WorldChange = Vector2.Zero;
         }
 
         public override void UnloadContent()

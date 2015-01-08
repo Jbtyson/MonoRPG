@@ -27,7 +27,10 @@ namespace SpaceRPG.Source.Managers
         public void LoadContent()
         {
             foreach (UiPanel p in Panels)
+            {
                 p.LoadContent();
+                HitBoxes.Add(p.Hitbox);
+            }
         }
 
         public void UnloadContent()

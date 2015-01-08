@@ -75,7 +75,7 @@ namespace SpaceRPG.Source.Visuals
         /// <summary>
         /// Activate a given effect
         /// </summary>
-        /// <param name="effect">Name of the effect to activate</param>
+        /// <param name="effect">Id of the effect to activate</param>
         public void ActivateEffect(string effect)
         {
             // Check for the effect to exist
@@ -90,7 +90,7 @@ namespace SpaceRPG.Source.Visuals
         /// <summary>
         /// Deactivate a given effect
         /// </summary>
-        /// <param name="effect">Name of the effect to deactivate</param>
+        /// <param name="effect">Id of the effect to deactivate</param>
         public void DeactivateEffect(string effect)
         {
             if (_effectList.ContainsKey(effect))

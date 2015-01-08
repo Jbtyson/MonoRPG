@@ -20,11 +20,14 @@ namespace SpaceRPG.Source.Managers
 {
     public class CombatManager
     {
+        private const string CombatXmlPath = "Load/Gameplay/Combat/";
+
         private Party _party;
         private Encounter _encounter;
         private CombatMap _combatMap;
         private int _currentTurn;
         private Agent _currentAgent;
+        private Cursor _cursor;
 
         public CombatManager()
         {
@@ -32,20 +35,21 @@ namespace SpaceRPG.Source.Managers
             _encounter = new Encounter();
             _combatMap = new CombatMap();
             _currentAgent = new Agent();
+            _cursor = new Cursor();
         }
 
         public void LoadContent(Map _map)
         {
             // Load the party
             XmlManager<Party> partyLoader = new XmlManager<Party>();
-            _party = partyLoader.Load("Load/Gameplay/Combat/Party.xml");
+            _party = partyLoader.Load(CombatXmlPath + "Party.xml");
             _party.LoadContent();
+
             // This is a poor way to do this, fix later
             foreach (Agent a in _party.Members)
             {
                 a.TurnIsOver = ChangeTurns;
-            }
-                
+            }       
 
             // Load the encounter
             XmlManager<Encounter> encounterLoader = new XmlManager<Encounter>();
@@ -54,20 +58,30 @@ namespace SpaceRPG.Source.Managers
 
             // Load the combat map from the map combat layer
             _combatMap.LoadContent(_map.CombatLayer);
+
+            // Load the cursor
+            XmlManager<Cursor> cursorLoader = new XmlManager<Cursor>();
+            _cursor = cursorLoader.Load(CombatXmlPath + "Cursor.xml");
+            _cursor.LoadContent();
             
             // Start combat
             _currentTurn = _party.Members.Count-1;
             ChangeTurns();
+
+            ScreenManager.Instance.Camera.SetWorldPosition(Vector2.Zero);
+            ScreenManager.Instance.Camera.WorldChange = Vector2.Zero;
         }
 
         public void UnloadContent()
         {
+            _cursor.UnloadContent();
             _party.UnloadContent();
             _encounter.UnloadContent();
         }
 
         public void Update(GameTime gameTime)
         {
+            _cursor.Update(gameTime);
             _party.Update(gameTime);
             _encounter.Update(gameTime);
         }
@@ -78,6 +92,7 @@ namespace SpaceRPG.Source.Managers
                 _combatMap.DrawMoveRange(spriteBatch);
             _encounter.Draw(spriteBatch);
             _party.Draw(spriteBatch);
+            _cursor.Draw(spriteBatch);
         }
 
         public void ChangeTurns()

@@ -18,10 +18,9 @@ namespace SpaceRPG.Source.Gameplay
     /// </summary>
     public class GameObject
     {
-        public string Name;
+        public string Id;
         public float MoveSpeed;
         public Image Image;
-        public Vector2 Position;
         public Vector2 Velocity;
 
         /// <summary>

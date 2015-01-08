@@ -38,7 +38,6 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
         {
             base.LoadContent();
             Image.LoadContent();
-            Image.Position = this.Position;
             Location = Image.Position / 32;
 
             // Load behaviors
