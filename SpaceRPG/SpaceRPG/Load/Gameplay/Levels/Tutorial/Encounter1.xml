@@ -5,6 +5,10 @@
     <Image>
       <Path>Gameplay/Characters/Enemies/enemy</Path>
       <Effects>SpriteSheetEffect</Effects>
+      <Position>
+        <X>512</X>
+        <Y>160</Y>
+      </Position>
     </Image>
     <MoveSpeed>100</MoveSpeed>
     <Stats>
@@ -13,10 +17,6 @@
       <Defense>15</Defense>
       <Level>3</Level>
     </Stats>
-    <Position>
-      <X>500</X>
-      <Y>150</Y>
-    </Position>
   </Enemy>
 
   <Enemy>
@@ -24,6 +24,10 @@
     <Image>
       <Path>Gameplay/Characters/Enemies/enemy</Path>
       <Effects>SpriteSheetEffect</Effects>
+      <Position>
+        <X>512</X>
+        <Y>224</Y>
+      </Position>
     </Image>
     <MoveSpeed>100</MoveSpeed>
     <Stats>
@@ -32,9 +36,5 @@
       <Defense>15</Defense>
       <Level>3</Level>
     </Stats>
-    <Position>
-      <X>500</X>
-      <Y>200</Y>
-    </Position>
   </Enemy>
 </Encounter>

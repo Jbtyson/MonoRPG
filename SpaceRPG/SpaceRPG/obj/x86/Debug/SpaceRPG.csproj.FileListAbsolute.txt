@@ -116,7 +116,6 @@ C:\Users\Ben\Desktop\Coding\Space\space-rpg\SpaceRPG\SpaceRPG\SharpDX.RawInput.x
 C:\Users\Ben\Desktop\Coding\Space\space-rpg\SpaceRPG\SpaceRPG\SharpDX.Direct3D9.xml
 C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\obj\x86\Debug\SpaceRPG.exe
 C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\obj\x86\Debug\SpaceRPG.pdb
-C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\obj\x86\Debug\SpaceRPG.csprojResolveAssemblyReference.cache
 C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\Content\Gameplay\Characters\player.png
 C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\Content\Gameplay\TileSheets\ground.png
 C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\Content\ScreenManager\FadeImage.png
@@ -147,3 +146,4 @@ C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\Content\Gameplay\Ui\
 C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\Content\Gameplay\Ui\Combat\CombatActionButtonBackgroundPressed.png
 C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\Content\Gameplay\Ui\Combat\CombatActionpanel.png
 C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\Content\Gameplay\Ui\Combat\Cursor.png
+C:\Users\James\Documents\GitHub\space-rpg\SpaceRPG\SpaceRPG\obj\x86\Debug\SpaceRPG.csprojResolveAssemblyReference.cache

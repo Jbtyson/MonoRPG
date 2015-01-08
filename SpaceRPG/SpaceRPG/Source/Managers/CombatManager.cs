@@ -67,9 +67,6 @@ namespace SpaceRPG.Source.Managers
             // Start combat
             _currentTurn = _party.Members.Count-1;
             ChangeTurns();
-
-            ScreenManager.Instance.Camera.SetWorldPosition(Vector2.Zero);
-            ScreenManager.Instance.Camera.WorldChange = Vector2.Zero;
         }
 
         public void UnloadContent()

@@ -61,7 +61,7 @@ namespace SpaceRPG.Source.Screens
         {
             Position.X = ScreenManager.Instance.Dimensions.X / 2 + position.Y;
             Position.Y = ScreenManager.Instance.Dimensions.Y / 2 + position.X;
-            WorldPosition = new Point((int)Position.X, (int)Position.Y);
+            WorldPosition = new Point((int)position.X, (int)position.Y);    // changing this to position from Position fixed the ui panel bug...may cause problems later we'll see
         }
 
         /// <summary>

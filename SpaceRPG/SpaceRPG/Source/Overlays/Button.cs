@@ -1,5 +1,5 @@
 ﻿// Button.cs
-// James Tyso
+// James Tyson
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +27,7 @@ namespace SpaceRPG.Source.Overlays
 
         private ButtonState _state;
         private bool _maintainPressedState; //Used if the mouse presses down on button but then leaves the
+        private bool _visible;
         // button, so if it re-enters it will re-press it
         [XmlElement("Image")]
         public List<Image> Images; //Will hold one for each button state
@@ -45,18 +46,6 @@ namespace SpaceRPG.Source.Overlays
         [XmlIgnore]
         public ButtonEvent ButtonClicked;
 
-
-
-        public Button()
-        {
-            Images = new List<Image>();
-            _location = Point.Zero;
-            _hitbox = Rectangle.Empty;
-            _state = ButtonState.Neutral;
-            _maintainPressedState = false;
-            _currentImage = new Image();
-        }
-
         public Point Location
         {
             get { return _location; }
@@ -73,6 +62,23 @@ namespace SpaceRPG.Source.Overlays
         {
             get { return _value; }
             set { _value = value; }
+        }
+        
+        public bool Visible
+        {
+            get { return _visible; }
+            set { _visible = value; }
+        }
+
+        public Button()
+        {
+            Images = new List<Image>();
+            _location = Point.Zero;
+            _hitbox = Rectangle.Empty;
+            _state = ButtonState.Neutral;
+            _maintainPressedState = false;
+            _currentImage = new Image();
+            _visible = true;
         }
 
         public void LoadContent(Vector2 position, ButtonEvent handle)
@@ -97,7 +103,7 @@ namespace SpaceRPG.Source.Overlays
         public void Update(GameTime gameTime)
         {
             bool isMouseDown = InputManager.Instance.LeftMouseDown();
-            Point location = InputManager.Instance.MousePosition;
+            Point location = InputManager.Instance.MousePosition + ScreenManager.Instance.Camera.WorldPosition;
             bool isMouseOver = _hitbox.Contains(location);
 
             //Clear the pressed state variable if click is released outside of button
@@ -152,11 +158,18 @@ namespace SpaceRPG.Source.Overlays
                     }
                     break;
             }
+
+            // Account for camera motion
+            if (ScreenManager.Instance.Camera.WorldChange != Vector2.Zero)
+            {
+                _currentImage.Position -= ScreenManager.Instance.Camera.WorldChange;
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            _currentImage.Draw(spriteBatch);
+            if(_visible)
+                _currentImage.Draw(spriteBatch);
         }
 
         /// <summary>
@@ -164,6 +177,7 @@ namespace SpaceRPG.Source.Overlays
         /// </summary>
         private void SetCurrentImage()
         {
+            Vector2 pos = _currentImage.Position;
             switch (_state)
             {
                 case ButtonState.Neutral:
@@ -176,6 +190,7 @@ namespace SpaceRPG.Source.Overlays
                     _currentImage = Images[2];
                     break;
             }
+            _currentImage.Position = pos;
         }
     }
 }

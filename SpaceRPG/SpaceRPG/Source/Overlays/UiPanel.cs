@@ -23,6 +23,7 @@ namespace SpaceRPG.Source.Overlays
         [XmlElement("Button")]
         public List<Button> Buttons;
         public Vector2 Dimensions, ButtonDimensions, ButtonOffset, ButtonOrigin;
+        public bool Visible;
 
         public UiPanel()
         {
@@ -65,9 +66,12 @@ namespace SpaceRPG.Source.Overlays
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            Image.Draw(spriteBatch);
-            foreach (Button b in Buttons)
-                b.Draw(spriteBatch);
+            if (Visible)
+            {
+                Image.Draw(spriteBatch);
+                foreach (Button b in Buttons)
+                    b.Draw(spriteBatch);
+            }
         }
 
         public void HandleButtonClick(object sender)

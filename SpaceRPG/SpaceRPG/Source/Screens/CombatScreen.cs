@@ -54,7 +54,6 @@ namespace SpaceRPG.Source.Screens
 
             // Set the top left corner of the camera to (0,0)
             ScreenManager.Instance.Camera.SetWorldPosition(Vector2.Zero);
-            ScreenManager.Instance.Camera.WorldChange = Vector2.Zero;
         }
 
         public override void UnloadContent()
@@ -71,9 +70,15 @@ namespace SpaceRPG.Source.Screens
             _map.Update(gameTime);
             _combatManager.Update(gameTime);
             _uiManager.Update(gameTime);
+
+            // Allow for for camera movement
             MoveCamera(gameTime);
         }
 
+        /// <summary>
+        /// Checks for inputs related to camera movement
+        /// </summary>
+        /// <param name="gameTime"></param>
         public void MoveCamera(GameTime gameTime)
         {
             if (InputManager.Instance.KeyDown(Keys.Up))

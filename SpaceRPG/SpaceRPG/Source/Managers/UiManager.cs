@@ -29,6 +29,7 @@ namespace SpaceRPG.Source.Managers
             foreach (UiPanel p in Panels)
             {
                 p.LoadContent();
+                p.Visible = false;
                 HitBoxes.Add(p.Hitbox);
             }
         }
@@ -43,6 +44,8 @@ namespace SpaceRPG.Source.Managers
         {
             foreach (UiPanel p in Panels)
                 p.Update(gameTime);
+            if (gameTime.TotalGameTime.Seconds > 5)
+                Panels[0].Visible = true;
         }
 
         public void Draw(SpriteBatch spriteBatch)
