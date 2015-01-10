@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-using SpaceRPG.Source.Gameplay;
+using SpaceRPG.Source.Gameplay.Overworld;
 
 namespace SpaceRPG.Source.Visuals.Maps
 {
@@ -23,7 +23,8 @@ namespace SpaceRPG.Source.Visuals.Maps
         public List<Layer> Layers;
         [XmlElement("CombatLayer")]
         public Layer CombatLayer;
-        public Vector2 TileDimensions;
+        public Vector2 TileDimensions, TileOffset;
+        public Boolean IsIsometric;
 
         /// <summary>
         /// Default Constructor
@@ -32,16 +33,17 @@ namespace SpaceRPG.Source.Visuals.Maps
         {
             Layers = new List<Layer>();
             TileDimensions = Vector2.Zero;
+            TileOffset = Vector2.Zero;
         }
 
         public void LoadContent()
         {
             if(CombatLayer != null)
-                CombatLayer.LoadContent(TileDimensions);
+                CombatLayer.LoadContent(TileDimensions, TileOffset, IsIsometric);
 
             foreach (Layer l in Layers)
             {
-                l.LoadContent(TileDimensions);
+                l.LoadContent(TileDimensions, TileOffset, IsIsometric);
             }
         }
 

@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-using SpaceRPG.Source.Gameplay;
+using SpaceRPG.Source.Gameplay.Overworld;
 
 namespace SpaceRPG.Source.Visuals.Maps
 {
@@ -43,8 +43,9 @@ namespace SpaceRPG.Source.Visuals.Maps
         public TileMap TMap;
         public string SolidTiles, OverlayTiles;
         public Image Image;
+        public bool IsIsometric;
 
-        public Vector2 TileDimensions, LayerDimensions;
+        public Vector2 TileDimensions, LayerDimensions, TileOffset;
 
         public Layer()
         {
@@ -55,32 +56,48 @@ namespace SpaceRPG.Source.Visuals.Maps
             OverlayTiles = String.Empty;
             TileDimensions = Vector2.Zero;
             LayerDimensions = Vector2.Zero;
+            TileOffset = Vector2.Zero;
         }
 
-        public void LoadContent(Vector2 tileDimensions) 
+        public void LoadContent(Vector2 tileDimensions, Vector2 tileOffset, bool isometric) 
         {
             if(Image.Path != String.Empty)
                 Image.LoadContent();
             Vector2 position = -tileDimensions;
+            TileOffset = tileOffset;
 
             // Save the dimensions of the layer
             LayerDimensions.Y = TMap.Row.Count;
             LayerDimensions.X = TMap.Row[0].Split('[').Length-1;
 
+            int numTile = 0; int numRows = 0;
             foreach (string row in TMap.Row)
             {
                 // Get the tiles
                 string[] split = row.Split(']');
-                position.X = -tileDimensions.X;
-                position.Y += tileDimensions.Y;
+                if (!isometric)
+                {
+                    position.X = -tileDimensions.X;
+                    position.Y += tileDimensions.Y;
+                }
+                else
+                {
+                    position.X = -tileDimensions.X - tileOffset.X * numRows++;
+                    position.Y += tileDimensions.Y - tileOffset.Y * numTile - tileOffset.Y;
+                }
 
                 // Loop through all of the tiles and load their content from the tile sheet based on val1 and val2
+                numTile = 0;
                 foreach (string s in split)
                 {
                     if (s != String.Empty)
                     {
                         _state = "Passive";
-                        position.X += tileDimensions.X;
+                        if (!isometric)
+                            position.X += tileDimensions.X;
+                        else
+                            position += tileOffset;
+                        numTile++;
                         if (!s.Contains("x"))
                         {
                             // Create a new tile and add it to the list

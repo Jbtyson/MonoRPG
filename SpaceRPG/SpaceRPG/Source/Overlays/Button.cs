@@ -17,7 +17,9 @@ namespace SpaceRPG.Source.Overlays
 {
     public class Button
     {
-        //Used if you want the button to display different pictures for the 
+        /// <summary>
+        /// Differenct states the button can be in
+        /// </summary>
         public enum ButtonState
         {
             Neutral,
@@ -26,17 +28,15 @@ namespace SpaceRPG.Source.Overlays
         }
 
         private ButtonState _state;
-        private bool _maintainPressedState; //Used if the mouse presses down on button but then leaves the
+        private bool _maintainPressedState; //Used if the mouse presses down on button but then leaves the button, so if it re-enters it will re-press it
         private bool _visible;
-        // button, so if it re-enters it will re-press it
+        private Image _currentImage;
+        private Rectangle _hitbox;
+        private object _value; //  Additional value that can be stored in the Button
+
         [XmlElement("Image")]
         public List<Image> Images; //Will hold one for each button state
-        private Image _currentImage;
-
-        private Point _location; //Location/size for the button
-        private Rectangle _hitbox; //Area where clicking button will work
-
-        private object _value;
+        
 
         /// <summary>
         /// A Click event. When the button is clicked (called on release),
@@ -45,12 +45,6 @@ namespace SpaceRPG.Source.Overlays
         public delegate void ButtonEvent(object sender);
         [XmlIgnore]
         public ButtonEvent ButtonClicked;
-
-        public Point Location
-        {
-            get { return _location; }
-            set { _location = value; }
-        }
 
         public Rectangle HitBox
         {
@@ -73,7 +67,6 @@ namespace SpaceRPG.Source.Overlays
         public Button()
         {
             Images = new List<Image>();
-            _location = Point.Zero;
             _hitbox = Rectangle.Empty;
             _state = ButtonState.Neutral;
             _maintainPressedState = false;

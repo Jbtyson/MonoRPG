@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Input;
 
 using SpaceRPG.Source.Managers;
 
-namespace SpaceRPG.Source.Gameplay
+namespace SpaceRPG.Source.Gameplay.Overworld
 {
     /// <summary>
     /// Player represents the player object in the world

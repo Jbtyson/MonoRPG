@@ -8,7 +8,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using SpaceRPG.Source.Gameplay;
+using SpaceRPG.Source.Gameplay.Overworld;
 
 namespace SpaceRPG.Source.Visuals.Maps
 {

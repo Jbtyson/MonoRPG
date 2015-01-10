@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using SpaceRPG.Source.Gameplay;
+using SpaceRPG.Source.Gameplay.Overworld;
 using SpaceRPG.Source.Managers;
 using SpaceRPG.Source.Visuals.Maps;
 

@@ -5,6 +5,12 @@
     <Y>32</Y>
   </TileDimensions>
 
+  <IsIsometric>true</IsIsometric>
+  <TileOffset>
+    <X>-16</X>
+    <Y>16</Y>
+  </TileOffset>
+  
   <CombatLayer>
     <TileMap>
       <Row>[0:0][0:0][0:0][0:0][0:0]</Row>
@@ -17,13 +23,13 @@
   
   <Layer>
     <Image>
-      <Path>Gameplay/TileSheets/ground</Path>
+      <Path>Gameplay/TileSheets/sampleTile</Path>
     </Image>
     <TileMap>
       <Row>[0:0][0:0][0:0][0:0][0:0]</Row>
-      <Row>[0:0][0:0][1:0][0:0][0:0]</Row>
-      <Row>[0:0][1:0][1:0][1:0][0:0]</Row>
-      <Row>[0:0][0:0][1:0][0:0][0:0]</Row>
+      <Row>[0:0][0:0][0:0][0:0][0:0]</Row>
+      <Row>[0:0][0:0][0:0][0:0][0:0]</Row>
+      <Row>[0:0][0:0][0:0][0:0][0:0]</Row>
       <Row>[0:0][0:0][0:0][0:0][0:0]</Row>
     </TileMap>
   </Layer>
