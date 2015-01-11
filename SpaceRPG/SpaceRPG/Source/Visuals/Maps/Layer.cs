@@ -84,7 +84,7 @@ namespace SpaceRPG.Source.Visuals.Maps
                 else
                 {
                     position.X = -tileDimensions.X - tileOffset.X * numRows++ + mapDimensions.X; ;
-                    position.Y += tileDimensions.Y - tileOffset.Y * numTile - tileOffset.Y;
+                    position.Y += tileDimensions.X/2 - tileOffset.Y * numTile - tileOffset.Y; // tile dimensions.x/2 is a hack to get the sample to work
                 }
 
                 // Loop through all of the tiles and load their content from the tile sheet based on val1 and val2

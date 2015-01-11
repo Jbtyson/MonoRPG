@@ -201,6 +201,9 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
         /// </summary>
         public void ExecuteMove()
         {
+            if (MovementNodes.Count == 0)
+                return;
+
             Moving = true;
             Busy = true;
             Aligned = false;
