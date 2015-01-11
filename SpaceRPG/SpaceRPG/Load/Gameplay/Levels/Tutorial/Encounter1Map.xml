@@ -7,9 +7,13 @@
 
   <IsIsometric>true</IsIsometric>
   <TileOffset>
-    <X>-16</X>
+    <X>16</X>
     <Y>16</Y>
   </TileOffset>
+  <MapDimensions>
+    <X>80</X>
+    <Y>80</Y>
+  </MapDimensions>
   
   <CombatLayer>
     <TileMap>

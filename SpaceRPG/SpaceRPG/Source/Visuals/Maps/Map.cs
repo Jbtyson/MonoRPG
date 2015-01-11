@@ -23,7 +23,7 @@ namespace SpaceRPG.Source.Visuals.Maps
         public List<Layer> Layers;
         [XmlElement("CombatLayer")]
         public Layer CombatLayer;
-        public Vector2 TileDimensions, TileOffset;
+        public Vector2 TileDimensions, TileOffset, MapDimensions;
         public Boolean IsIsometric;
 
         /// <summary>
@@ -39,11 +39,11 @@ namespace SpaceRPG.Source.Visuals.Maps
         public void LoadContent()
         {
             if(CombatLayer != null)
-                CombatLayer.LoadContent(TileDimensions, TileOffset, IsIsometric);
+                CombatLayer.LoadContent(TileDimensions, TileOffset, MapDimensions, IsIsometric);
 
             foreach (Layer l in Layers)
             {
-                l.LoadContent(TileDimensions, TileOffset, IsIsometric);
+                l.LoadContent(TileDimensions, TileOffset, MapDimensions, IsIsometric);
             }
         }
 

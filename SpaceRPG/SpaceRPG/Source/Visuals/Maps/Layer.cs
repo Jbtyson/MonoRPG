@@ -59,11 +59,12 @@ namespace SpaceRPG.Source.Visuals.Maps
             TileOffset = Vector2.Zero;
         }
 
-        public void LoadContent(Vector2 tileDimensions, Vector2 tileOffset, bool isometric) 
+        public void LoadContent(Vector2 tileDimensions, Vector2 tileOffset, Vector2 mapDimensions, bool isometric) 
         {
             if(Image.Path != String.Empty)
                 Image.LoadContent();
             Vector2 position = -tileDimensions;
+            position.X += mapDimensions.X;
             TileOffset = tileOffset;
 
             // Save the dimensions of the layer
@@ -77,12 +78,12 @@ namespace SpaceRPG.Source.Visuals.Maps
                 string[] split = row.Split(']');
                 if (!isometric)
                 {
-                    position.X = -tileDimensions.X;
+                    position.X = -tileDimensions.X + mapDimensions.X; ;
                     position.Y += tileDimensions.Y;
                 }
                 else
                 {
-                    position.X = -tileDimensions.X - tileOffset.X * numRows++;
+                    position.X = -tileDimensions.X - tileOffset.X * numRows++ + mapDimensions.X; ;
                     position.Y += tileDimensions.Y - tileOffset.Y * numTile - tileOffset.Y;
                 }
 
