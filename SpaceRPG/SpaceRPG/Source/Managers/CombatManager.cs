@@ -58,7 +58,7 @@ namespace SpaceRPG.Source.Managers
             _encounter.LoadContent();
 
             // Load the combat map from the map combat layer
-            //_combatMap.LoadContent(_map.CombatLayer);
+            _combatMap.LoadContent(_map.SurfaceInfo);
 
             // Load the cursor
             XmlManager<Cursor> cursorLoader = new XmlManager<Cursor>();

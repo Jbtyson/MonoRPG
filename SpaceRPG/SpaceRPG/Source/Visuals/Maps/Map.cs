@@ -18,7 +18,7 @@ namespace SpaceRPG.Source.Visuals.Maps
     /// </summary>
     public class Map
     {
-        public Vector2 TileDimensions, MapDimensions;
+        public Vector2 TileDimensions, MapDimensions, LayerDimensions;
 
         /// <summary>
         /// Default Constructor

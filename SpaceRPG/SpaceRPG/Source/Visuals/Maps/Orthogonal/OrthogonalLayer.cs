@@ -1,4 +1,4 @@
-﻿// Layer.cs
+﻿// OrthogonalLayer.cs
 // James Tyson
 using System;
 using System.Collections.Generic;
@@ -15,7 +15,7 @@ using SpaceRPG.Source.Gameplay.Overworld;
 namespace SpaceRPG.Source.Visuals.Maps.Orthogonal
 {
     /// <summary>
-    /// Layer represents one layer of a map
+    /// OrthogonalLayer represents one layer of a map
     /// </summary>
     public class OrthogonalLayer : Layer
     {
@@ -38,7 +38,6 @@ namespace SpaceRPG.Source.Visuals.Maps.Orthogonal
             LayerDimensions.Y = TMap.Row.Count;
             LayerDimensions.X = TMap.Row[0].Split('[').Length-1;
 
-            int numTile = 0; int numRows = 0;
             foreach (string row in TMap.Row)
             {
                 // Get the tiles
@@ -47,14 +46,12 @@ namespace SpaceRPG.Source.Visuals.Maps.Orthogonal
                 position.Y += tileDimensions.Y;
 
                 // Loop through all of the tiles and load their content from the tile sheet based on val1 and val2
-                numTile = 0;
                 foreach (string s in split)
                 {
                     if (s != String.Empty)
                     {
                         _state = "Passive";
                         position.X += tileDimensions.X;
-                        numTile++;
                         if (!s.Contains("x"))
                         {
                             // Create a new tile and add it to the list

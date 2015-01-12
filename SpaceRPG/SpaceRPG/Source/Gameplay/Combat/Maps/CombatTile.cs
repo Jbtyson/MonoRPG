@@ -39,7 +39,7 @@ namespace SpaceRPG.Source.Gameplay.Combat.Maps.Isometric
         {
 
             Type = tile.Value1;
-            Height = tile.Value2;
+            Height = tile.Height;
 
             //We can come up with many types, not just 3. (Double digit ints and negative ints can be read as well.)
             switch (Type)

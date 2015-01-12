@@ -15,7 +15,7 @@ using SpaceRPG.Source.Gameplay.Overworld;
 namespace SpaceRPG.Source.Visuals.Maps.Orthogonal
 {
     /// <summary>
-    /// OrthogonalMap represents a ...map
+    /// OrthogonalMap represents an orthogonal (top down view) map
     /// </summary>
     public class OrthogonalMap : Map
     {

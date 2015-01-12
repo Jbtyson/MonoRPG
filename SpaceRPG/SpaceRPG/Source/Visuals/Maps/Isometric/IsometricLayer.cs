@@ -1,4 +1,6 @@
-﻿using System;
+﻿// IsometricLayer.cs
+// James Tyson
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +22,7 @@ namespace SpaceRPG.Source.Visuals.Maps.Isometric
             TileOffset = Vector2.Zero;
         }
 
-        public virtual void LoadContent(Vector2 tileDimensions, Vector2 tileOffset, Vector2 mapDimensions)
+        public void LoadContent(Vector2 tileDimensions, Vector2 tileOffset, Vector2 mapDimensions)
         {
             if (Image.Path != String.Empty)
                 Image.LoadContent();
@@ -38,7 +40,7 @@ namespace SpaceRPG.Source.Visuals.Maps.Isometric
             {
                 // Get the tiles
                 string[] split = row.Split(']');
-                position.X = -tileDimensions.X - tileOffset.X * numRows++ + mapDimensions.X; ;
+                position.X = -tileDimensions.X - tileOffset.X * numRows + mapDimensions.X; ;
                 position.Y += tileDimensions.X / 2 - tileOffset.Y * numTile - tileOffset.Y; // tile dimensions.x/2 is a hack to get the sample to work
 
                 // Loop through all of the tiles and load their content from the tile sheet based on val1 and val2
@@ -47,9 +49,7 @@ namespace SpaceRPG.Source.Visuals.Maps.Isometric
                 {
                     if (s != String.Empty)
                     {
-                        _state = "Passive";
                         position += tileOffset;
-                        numTile++;
                         if (!s.Contains("x"))
                         {
                             // Create a new tile and add it to the list
@@ -57,6 +57,8 @@ namespace SpaceRPG.Source.Visuals.Maps.Isometric
                             string str = s.Replace("[", String.Empty);
                             t.Value1 = int.Parse(str.Substring(0, str.IndexOf(':')));
                             t.Value2 = int.Parse(str.Substring(str.IndexOf(':') + 1));
+                            t.GridLocation = new Point(numTile, numRows);
+                            t.Height = Height;
                             t.LoadContent(position, new Rectangle(t.Value1 * (int)tileDimensions.X, t.Value2 * (int)tileDimensions.Y,
                                 (int)tileDimensions.X, (int)tileDimensions.Y));
 
@@ -65,8 +67,10 @@ namespace SpaceRPG.Source.Visuals.Maps.Isometric
                             else
                                 _underlayTiles.Add(t);
                         }
+                        numTile++;
                     }
                 }
+                numRows++;
             }
         }
 
@@ -108,17 +112,10 @@ namespace SpaceRPG.Source.Visuals.Maps.Isometric
         public IsometricTile[,] GetTileArray2D()
         {
             IsometricTile[,] data = new IsometricTile[(int)LayerDimensions.X, (int)LayerDimensions.Y];
-            int x = 0; int y = 0;
+
             foreach (IsometricTile t in _underlayTiles)
-            {
-                data[x, y] = t;
-                x++;
-                if (x > LayerDimensions.X - 1)
-                {
-                    x = 0;
-                    y++;
-                }
-            }
+                data[t.GridLocation.X, t.GridLocation.Y] = t;
+
             return data;
         }
     }

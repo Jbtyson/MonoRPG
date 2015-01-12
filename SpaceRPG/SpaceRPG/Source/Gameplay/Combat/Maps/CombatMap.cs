@@ -36,12 +36,11 @@ namespace SpaceRPG.Source.Gameplay.Combat.Maps
             MoveOverlays = new HashSet<Point>();
         }
 
-        public void LoadContent(IsometricLayer combatLayer)
+        public void LoadContent(IsometricMapInfo mapInfo)
         {
-            this.TileDimensions = combatLayer.TileDimensions;
-            this.GridDimensions = combatLayer.LayerDimensions;
+            this.TileDimensions = mapInfo.TileDimensions;
+            this.GridDimensions = mapInfo.LayerDimensions;
             Grid = new CombatTile[(int)GridDimensions.X, (int)GridDimensions.Y];
-            IsometricTile[,] tiles = combatLayer.GetTileArray2D();
 
             // Load the content for each combat tile and store it in the grid
             for (int y = 0; y < GridDimensions.Y; y++)
@@ -49,7 +48,7 @@ namespace SpaceRPG.Source.Gameplay.Combat.Maps
                 for (int x = 0; x < GridDimensions.X; x++)
                 {
                     Grid[x, y] = new CombatTile();
-                    Grid[x, y].LoadContent(tiles[x, y]);
+                    Grid[x, y].LoadContent(mapInfo.Tiles[x, y]);
                 }
             }
 

@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Layer.cs
+// James Tyson
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +12,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace SpaceRPG.Source.Visuals.Maps
 {
+    /// <summary>
+    /// Base class for both orthogonal and isometric layers
+    /// </summary>
     public class Layer
     {
         protected List<Tile> _underlayTiles, _overlayTiles;

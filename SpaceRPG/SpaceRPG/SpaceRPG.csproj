@@ -69,6 +69,7 @@
     <Compile Include="Source\Managers\InputManager.cs" />
     <Compile Include="Source\Visuals\Maps\Isometric\IsometricLayer.cs" />
     <Compile Include="Source\Visuals\Maps\Isometric\IsometricMap.cs" />
+    <Compile Include="Source\Visuals\Maps\Isometric\IsometricMapInfo.cs" />
     <Compile Include="Source\Visuals\Maps\Isometric\IsometricTile.cs" />
     <Compile Include="Source\Visuals\Maps\Layer.cs" />
     <Compile Include="Source\Visuals\Maps\Map.cs" />

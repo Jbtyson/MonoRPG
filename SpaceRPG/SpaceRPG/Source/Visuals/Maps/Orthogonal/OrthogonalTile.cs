@@ -1,4 +1,4 @@
-﻿// Tile.cs
+﻿// OrthogonalTile.cs
 // James Tyson
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ using SpaceRPG.Source.Gameplay.Overworld;
 namespace SpaceRPG.Source.Visuals.Maps.Orthogonal
 {
     /// <summary>
-    /// Tile represents a single square on an orthogonal grid
+    /// OrthogonalTile represents a single square on an orthogonal grid
     /// </summary>
     public class OrthogonalTile : Tile
     {

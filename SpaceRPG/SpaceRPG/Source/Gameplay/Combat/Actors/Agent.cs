@@ -46,7 +46,7 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
         /// <summary>
         /// Loads content
         /// </summary>
-        public virtual void LoadContent()
+        public override void LoadContent()
         {
             base.LoadContent();
         }
@@ -54,7 +54,7 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
         /// <summary>
         /// Unloads content
         /// </summary>
-        public virtual void UnloadContent()
+        public override void UnloadContent()
         {
             base.UnloadContent();
         }
@@ -63,7 +63,7 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
         /// Updates based on gametime
         /// </summary>
         /// <param name="gameTime"></param>
-        public virtual void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
 
@@ -87,7 +87,7 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
         /// Draws the current spritebatch to the screen
         /// </summary>
         /// <param name="spriteBatch"></param>
-        public virtual void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
         }

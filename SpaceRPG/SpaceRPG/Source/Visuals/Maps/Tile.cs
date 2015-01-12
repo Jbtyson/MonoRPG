@@ -16,6 +16,7 @@ namespace SpaceRPG.Source.Visuals.Maps
     public class Tile
     {
         protected Vector2 _position;
+        protected Point _gridLocation;
         protected Rectangle _sourceRect;
         protected int _value1, _value2;
 
@@ -39,6 +40,12 @@ namespace SpaceRPG.Source.Visuals.Maps
         public Vector2 Position
         {
             get { return _position; }
+        }
+
+        public Point GridLocation
+        {
+            get { return _gridLocation; }
+            set { _gridLocation = value; }
         }
 
         public virtual void LoadContent(Vector2 position, Rectangle sourceRect)

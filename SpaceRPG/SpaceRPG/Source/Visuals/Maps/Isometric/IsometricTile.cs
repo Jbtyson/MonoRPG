@@ -1,4 +1,6 @@
-﻿using System;
+﻿// IsometricTile.cs
+// James Tyson
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +10,25 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace SpaceRPG.Source.Visuals.Maps.Isometric
 {
+    /// <summary>
+    /// IsometricTile holds the data associated with an individual tile in an isometric layer
+    /// </summary>
     public class IsometricTile : Tile
     {
+        private int _height;
+        private bool _isSurface;
+
+        public int Height
+        {
+            get { return _height; }
+            set { _height = value; }
+        }
+        public bool IsSurface
+        {
+            get { return _isSurface; }
+            set { _isSurface = value; }
+        }
+
         public IsometricTile() 
             : base()
         {
