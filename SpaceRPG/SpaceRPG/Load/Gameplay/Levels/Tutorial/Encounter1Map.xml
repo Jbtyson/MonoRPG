@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Map>
+<IsometricMap>
   <TileDimensions>
     <X>64</X>
     <Y>40</Y>
@@ -35,7 +35,7 @@
     </TileMap>
   </CombatLayer>
   
-  <Layer>
+  <IsometricLayer>
     <Image>
       <Path>Gameplay/TileSheets/sampleTile</Path>
     </Image>
@@ -56,5 +56,5 @@
       <Row>[0:0][0:0][0:0][0:0][0:0][0:0][0:0][0:0][0:0][0:0][0:0][0:0][0:0][0:0][0:0]</Row>
       <Row>[0:0][0:0][0:0][0:0][0:0][0:0][0:0][0:0][0:0][0:0][0:0][0:0][0:0][0:0][0:0]</Row>
     </TileMap>
-  </Layer>
-</Map>
+  </IsometricLayer>
+</IsometricMap>

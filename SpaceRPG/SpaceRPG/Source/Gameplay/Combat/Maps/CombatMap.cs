@@ -10,8 +10,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-using SpaceRPG.Source.Visuals.Maps;
+using SpaceRPG.Source.Visuals.Maps.Isometric;
 using SpaceRPG.Source.Visuals;
+using SpaceRPG.Source.Gameplay.Combat.Maps.Isometric;
 
 namespace SpaceRPG.Source.Gameplay.Combat.Maps
 {
@@ -35,12 +36,12 @@ namespace SpaceRPG.Source.Gameplay.Combat.Maps
             MoveOverlays = new HashSet<Point>();
         }
 
-        public void LoadContent(Layer combatLayer)
+        public void LoadContent(IsometricLayer combatLayer)
         {
             this.TileDimensions = combatLayer.TileDimensions;
             this.GridDimensions = combatLayer.LayerDimensions;
             Grid = new CombatTile[(int)GridDimensions.X, (int)GridDimensions.Y];
-            Tile[,] tiles = combatLayer.GetTileArray2D();
+            IsometricTile[,] tiles = combatLayer.GetTileArray2D();
 
             // Load the content for each combat tile and store it in the grid
             for (int y = 0; y < GridDimensions.Y; y++)

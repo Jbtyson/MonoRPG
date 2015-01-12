@@ -1,6 +1,4 @@
-﻿// Layer.cs
-// James Tyson
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,18 +8,13 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-using SpaceRPG.Source.Gameplay.Overworld;
-
 namespace SpaceRPG.Source.Visuals.Maps
 {
-    /// <summary>
-    /// Layer represents one layer of a map
-    /// </summary>
     public class Layer
     {
-        private List<Tile> _underlayTiles, _overlayTiles;
-        private string _state;
-        
+        protected List<Tile> _underlayTiles, _overlayTiles;
+        protected string _state;
+
         /// <summary>
         /// TileMap is a grid of tiles to represent the world
         /// </summary>
@@ -41,136 +34,39 @@ namespace SpaceRPG.Source.Visuals.Maps
 
         [XmlElement("TileMap")]
         public TileMap TMap;
-        public string SolidTiles, OverlayTiles;
+        public string OverlayTiles;
         public Image Image;
-        public bool IsIsometric;
 
-        public Vector2 TileDimensions, LayerDimensions, TileOffset;
+        public Vector2 TileDimensions, LayerDimensions;
 
         public Layer()
         {
             Image = new Image();
             _overlayTiles = new List<Tile>();
             _underlayTiles = new List<Tile>();
-            SolidTiles = String.Empty;
             OverlayTiles = String.Empty;
             TileDimensions = Vector2.Zero;
             LayerDimensions = Vector2.Zero;
-            TileOffset = Vector2.Zero;
         }
 
-        public void LoadContent(Vector2 tileDimensions, Vector2 tileOffset, Vector2 mapDimensions, bool isometric) 
-        {
-            if(Image.Path != String.Empty)
-                Image.LoadContent();
-            Vector2 position = -tileDimensions;
-            position.X += mapDimensions.X;
-            TileOffset = tileOffset;
-
-            // Save the dimensions of the layer
-            LayerDimensions.Y = TMap.Row.Count;
-            LayerDimensions.X = TMap.Row[0].Split('[').Length-1;
-
-            int numTile = 0; int numRows = 0;
-            foreach (string row in TMap.Row)
-            {
-                // Get the tiles
-                string[] split = row.Split(']');
-                if (!isometric)
-                {
-                    position.X = -tileDimensions.X + mapDimensions.X; ;
-                    position.Y += tileDimensions.Y;
-                }
-                else
-                {
-                    position.X = -tileDimensions.X - tileOffset.X * numRows++ + mapDimensions.X; ;
-                    position.Y += tileDimensions.X/2 - tileOffset.Y * numTile - tileOffset.Y; // tile dimensions.x/2 is a hack to get the sample to work
-                }
-
-                // Loop through all of the tiles and load their content from the tile sheet based on val1 and val2
-                numTile = 0;
-                foreach (string s in split)
-                {
-                    if (s != String.Empty)
-                    {
-                        _state = "Passive";
-                        if (!isometric)
-                            position.X += tileDimensions.X;
-                        else
-                            position += tileOffset;
-                        numTile++;
-                        if (!s.Contains("x"))
-                        {
-                            // Create a new tile and add it to the list
-                            Tile t = new Tile();
-                            string str = s.Replace("[", String.Empty);
-                            t.Value1 = int.Parse(str.Substring(0, str.IndexOf(':')));
-                            t.Value2 = int.Parse(str.Substring(str.IndexOf(':') + 1));
-                            if (SolidTiles.Contains("[" + t.Value1.ToString() + ":" + t.Value2.ToString() + "]"))
-                                _state = "Solid";
-                            t.LoadContent(_state, position, new Rectangle(t.Value1 * (int)tileDimensions.X, t.Value2 * (int)tileDimensions.Y,
-                                (int)tileDimensions.X, (int)tileDimensions.Y));
-
-                            if (OverlayTiles.Contains("[" + t.Value1.ToString() + ":" + t.Value2.ToString() + "]"))
-                                _overlayTiles.Add(t);
-                            else
-                                _underlayTiles.Add(t);
-                        }
-                    }
-                }
-            }
-        }
-
-        public void UnloadContent()
+        public virtual void LoadContent()
         {
             Image.UnloadContent();
         }
 
-        public void Update(GameTime gameTime, ref Player player)
+        public virtual void UnloadContent()
         {
-            foreach (Tile tile in _underlayTiles)
-                tile.Update(gameTime, ref player);
 
-            foreach (Tile tile in _overlayTiles)
-                tile.Update(gameTime, ref player);
         }
 
-        public void Draw(SpriteBatch spriteBatch, string drawType)
+        public virtual void Update(GameTime gameTime)
         {
-            List<Tile> tiles;
-            if (drawType == "Underlay")
-                tiles = _underlayTiles;
-            else
-                tiles = _overlayTiles;
-            
-            
-            foreach (Tile tile in tiles)
-            {
-                Image.Position = tile.Position;
-                Image.SourceRect = tile.SourceRect;
-                Image.Draw(spriteBatch);
-            }
+
         }
 
-        /// <summary>
-        /// Converts the tilemap into a two dimensional Tile array
-        /// </summary>
-        /// <returns>2D Tile array</returns>
-        public Tile[,] GetTileArray2D()
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
-            Tile[,] data = new Tile[(int)LayerDimensions.X, (int)LayerDimensions.Y];
-            int x = 0; int y = 0;
-            foreach (Tile t in _underlayTiles)
-            {
-                data[x,y] = t;
-                x++;
-                if (x > LayerDimensions.X - 1)
-                {
-                    x = 0;
-                    y++;
-                }
-            }
-            return data;
+
         }
     }
 }

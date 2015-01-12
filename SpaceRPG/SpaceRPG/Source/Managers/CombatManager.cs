@@ -15,6 +15,7 @@ using SpaceRPG.Source.Visuals.Maps;
 using SpaceRPG.Source.Gameplay.Combat;
 using SpaceRPG.Source.Gameplay.Combat.Actors;
 using SpaceRPG.Source.Gameplay.Combat.Maps;
+using SpaceRPG.Source.Visuals.Maps.Isometric;
 
 namespace SpaceRPG.Source.Managers
 {
@@ -38,7 +39,7 @@ namespace SpaceRPG.Source.Managers
             _cursor = new Cursor();
         }
 
-        public void LoadContent(Map _map)
+        public void LoadContent(IsometricMap _map)
         {
             // Load the party
             XmlManager<Party> partyLoader = new XmlManager<Party>();
@@ -57,7 +58,7 @@ namespace SpaceRPG.Source.Managers
             _encounter.LoadContent();
 
             // Load the combat map from the map combat layer
-            _combatMap.LoadContent(_map.CombatLayer);
+            //_combatMap.LoadContent(_map.CombatLayer);
 
             // Load the cursor
             XmlManager<Cursor> cursorLoader = new XmlManager<Cursor>();

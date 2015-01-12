@@ -13,8 +13,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 using SpaceRPG.Source.Visuals;
 using SpaceRPG.Source.Visuals.Maps;
+using SpaceRPG.Source.Visuals.Maps.Isometric;
 
-namespace SpaceRPG.Source.Gameplay.Combat.Maps
+namespace SpaceRPG.Source.Gameplay.Combat.Maps.Isometric
 {
     /// <summary>
     /// CombatTile holds map data relevant to one specific tile on a map, such as whether it's impassable, height of the tile, etc.
@@ -34,7 +35,7 @@ namespace SpaceRPG.Source.Gameplay.Combat.Maps
             TurnsToBurn = 0;
         }
 
-        public void LoadContent(Tile tile)
+        public void LoadContent(IsometricTile tile)
         {
 
             Type = tile.Value1;

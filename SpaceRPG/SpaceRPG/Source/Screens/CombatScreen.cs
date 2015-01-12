@@ -11,14 +11,14 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using SpaceRPG.Source.Managers;
-using SpaceRPG.Source.Visuals.Maps;
+using SpaceRPG.Source.Visuals.Maps.Isometric;
 
 namespace SpaceRPG.Source.Screens
 {
     public class CombatScreen : GameScreen
     {
         private CombatManager _combatManager;
-        private Map _map;
+        private IsometricMap _map;
         private UiManager _uiManager;
 
         public bool ClickOnUi { get { return _uiManager.IsMouseOnUi(); } }
@@ -28,7 +28,7 @@ namespace SpaceRPG.Source.Screens
         public CombatScreen()
         {
             _combatManager = new CombatManager();
-            _map = new Map();
+            _map = new IsometricMap();
             _uiManager = new UiManager();
         }
 
@@ -36,8 +36,8 @@ namespace SpaceRPG.Source.Screens
         {
             base.LoadContent();
 
-            // Load the Map
-            XmlManager<Map> mapLoader = new XmlManager<Map>();
+            // Load the OrthogonalMap
+            XmlManager<IsometricMap> mapLoader = new XmlManager<IsometricMap>();
             _map = mapLoader.Load(EncounterId +"Map.xml");
             _map.LoadContent();
 

@@ -67,8 +67,14 @@
     <Compile Include="Source\Visuals\Image.cs" />
     <Compile Include="Source\Visuals\Effects\ImageEffect.cs" />
     <Compile Include="Source\Managers\InputManager.cs" />
+    <Compile Include="Source\Visuals\Maps\Isometric\CombatLayer.cs" />
+    <Compile Include="Source\Visuals\Maps\Isometric\IsometricLayer.cs" />
+    <Compile Include="Source\Visuals\Maps\Isometric\IsometricMap.cs" />
+    <Compile Include="Source\Visuals\Maps\Isometric\IsometricTile.cs" />
     <Compile Include="Source\Visuals\Maps\Layer.cs" />
     <Compile Include="Source\Visuals\Maps\Map.cs" />
+    <Compile Include="Source\Visuals\Maps\Orthogonal\OrthogonalLayer.cs" />
+    <Compile Include="Source\Visuals\Maps\Orthogonal\OrthogonalMap.cs" />
     <Compile Include="Source\Overlays\Menu.cs" />
     <Compile Include="Source\Overlays\MenuItem.cs" />
     <Compile Include="Source\Managers\MenuManager.cs" />
@@ -78,9 +84,10 @@
     <Compile Include="Source\Managers\ScreenManager.cs" />
     <Compile Include="Source\Screens\SplashScreen.cs" />
     <Compile Include="Source\Visuals\Effects\SpriteSheetEffect.cs" />
-    <Compile Include="Source\Visuals\Maps\Tile.cs" />
+    <Compile Include="Source\Visuals\Maps\Orthogonal\OrthogonalTile.cs" />
     <Compile Include="Source\Screens\TitleScreen.cs" />
     <Compile Include="Source\Managers\XmlManager.cs" />
+    <Compile Include="Source\Visuals\Maps\Tile.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

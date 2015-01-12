@@ -13,7 +13,7 @@ using Microsoft.Xna.Framework.Input;
 using SpaceRPG.Source.Gameplay;
 using SpaceRPG.Source.Gameplay.Overworld;
 using SpaceRPG.Source.Managers;
-using SpaceRPG.Source.Visuals.Maps;
+using SpaceRPG.Source.Visuals.Maps.Orthogonal;
 
 namespace SpaceRPG.Source.Screens
 {
@@ -23,7 +23,7 @@ namespace SpaceRPG.Source.Screens
     public class GameplayScreen : GameScreen
     {
         private Player _player;
-        private Map _map;
+        private OrthogonalMap _map;
 
         public override void LoadContent()
         {
@@ -34,8 +34,8 @@ namespace SpaceRPG.Source.Screens
             _player = playerLoader.Load("Load/Gameplay/Characters/Player.xml");
             _player.LoadContent();
 
-            // Load the Map
-            XmlManager<Map> MapLoader = new XmlManager<Map>();
+            // Load the OrthogonalMap
+            XmlManager<OrthogonalMap> MapLoader = new XmlManager<OrthogonalMap>();
             _map = MapLoader.Load("Load/Gameplay/Maps/Map1.xml");
             _map.LoadContent();
         }
