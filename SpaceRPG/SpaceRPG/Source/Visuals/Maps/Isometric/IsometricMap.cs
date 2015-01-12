@@ -14,7 +14,7 @@ namespace SpaceRPG.Source.Visuals.Maps.Isometric
         [XmlElement("IsometricLayer")]
         public List<IsometricLayer> Layers;
         public Vector2 TileOffset;
-
+       
         public IsometricMap()
             : base()
         {

@@ -38,7 +38,7 @@ namespace SpaceRPG.Source.Gameplay.Combat
 
         public override void Update(GameTime gameTime)
         {
-            Image.Position = new Vector2(((int)InputManager.Instance.MousePosition.X / 32) * 32, ((int)InputManager.Instance.MousePosition.Y / 32) * 32);
+            Image.Position = new Vector2(((int)InputManager.Instance.MousePosition.X / 32) * 32, ((int)InputManager.Instance.MousePosition.Y / 16) * 16);
             Image.Update(gameTime);
         }
 
