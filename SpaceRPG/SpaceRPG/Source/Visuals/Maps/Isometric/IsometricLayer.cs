@@ -12,6 +12,7 @@ namespace SpaceRPG.Source.Visuals.Maps.Isometric
     public class IsometricLayer : Layer
     {
         public Vector2 TileOffset;
+        public int Height;
 
         public IsometricLayer() 
             : base()
@@ -25,6 +26,7 @@ namespace SpaceRPG.Source.Visuals.Maps.Isometric
                 Image.LoadContent();
             Vector2 position = -tileDimensions;
             position.X += mapDimensions.X;
+            position.Y -= Height * tileDimensions.X / 8;
             TileOffset = tileOffset;
 
             // Save the dimensions of the layer

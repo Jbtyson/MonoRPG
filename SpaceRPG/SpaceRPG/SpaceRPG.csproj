@@ -67,7 +67,6 @@
     <Compile Include="Source\Visuals\Image.cs" />
     <Compile Include="Source\Visuals\Effects\ImageEffect.cs" />
     <Compile Include="Source\Managers\InputManager.cs" />
-    <Compile Include="Source\Visuals\Maps\Isometric\CombatLayer.cs" />
     <Compile Include="Source\Visuals\Maps\Isometric\IsometricLayer.cs" />
     <Compile Include="Source\Visuals\Maps\Isometric\IsometricMap.cs" />
     <Compile Include="Source\Visuals\Maps\Isometric\IsometricTile.cs" />

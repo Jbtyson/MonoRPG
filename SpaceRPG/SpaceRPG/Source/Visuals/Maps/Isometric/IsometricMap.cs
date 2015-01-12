@@ -11,7 +11,6 @@ namespace SpaceRPG.Source.Visuals.Maps.Isometric
 {
     public class IsometricMap : Map
     {
-        public CombatLayer CombatLayer;
         [XmlElement("IsometricLayer")]
         public List<IsometricLayer> Layers;
         public Vector2 TileOffset;
@@ -25,9 +24,6 @@ namespace SpaceRPG.Source.Visuals.Maps.Isometric
         public override void LoadContent()
         {
             base.LoadContent();
-
-            if (CombatLayer != null)
-                CombatLayer.LoadContent(TileDimensions, TileOffset, MapDimensions);
 
             foreach (IsometricLayer l in Layers)
             {
