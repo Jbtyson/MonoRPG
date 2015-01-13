@@ -60,6 +60,7 @@
     <Compile Include="Source\RPG.cs" />
     <Compile Include="Source\Screens\Camera.cs" />
     <Compile Include="Source\Screens\CombatScreen.cs" />
+    <Compile Include="Source\Util\Shapes\RightTriangle.cs" />
     <Compile Include="Source\Visuals\Effects\FadeEffect.cs" />
     <Compile Include="Source\Gameplay\GameObject.cs" />
     <Compile Include="Source\Screens\GameplayScreen.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Source\Visuals\Image.cs" />
     <Compile Include="Source\Visuals\Effects\ImageEffect.cs" />
     <Compile Include="Source\Managers\InputManager.cs" />
+    <Compile Include="Source\Util\Shapes\Diamond.cs" />
     <Compile Include="Source\Visuals\Maps\Isometric\IsometricLayer.cs" />
     <Compile Include="Source\Visuals\Maps\Isometric\IsometricMap.cs" />
     <Compile Include="Source\Visuals\Maps\Isometric\IsometricMapInfo.cs" />
