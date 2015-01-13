@@ -16,6 +16,7 @@ using SpaceRPG.Source.Visuals;
 using SpaceRPG.Source.Visuals.Maps;
 using SpaceRPG.Source.Visuals.Maps.Isometric;
 using SpaceRPG.Source.Util.Shapes;
+using SpaceRPG.Source.Gameplay.Combat.Actors;
 
 namespace SpaceRPG.Source.Gameplay.Combat.Maps.Isometric
 {
@@ -26,8 +27,15 @@ namespace SpaceRPG.Source.Gameplay.Combat.Maps.Isometric
     {
         private IsometricTile _sourceTile;
         private Diamond _hitbox;
-        private bool _hasCursor;
+        private Agent _agent;
+        private bool _hasCursor, _occupiedByAgent;
+        private int _type, _height;
 
+        //Just examples of potential tile properties. We'll need some more obvs.
+        private bool _walkable;
+        private bool _damaging;
+
+        #region Accessors
         public IsometricTile SourceTile
         {
             get { return _sourceTile; }
@@ -38,53 +46,79 @@ namespace SpaceRPG.Source.Gameplay.Combat.Maps.Isometric
             get { return _hasCursor; }
             set { _hasCursor = value; }
         }
+        public bool OccupiedByAgent
+        {
+            get { return _occupiedByAgent; }
+            set { _occupiedByAgent = value; }
+        }
+        public Agent Agent
+        {
+            get { return _agent; }
+            set { _agent = value; }
+        }
+        public int Type
+        {
+            get { return _type; }
+            set { _type = value; }
+        }
+        public int Height
+        {
+            get { return _height; }
+            set { _height = value; }
+        }
+        public bool Walkable
+        {
+            get { return _walkable; }
+            set { _walkable = value; }
+        }
+        public bool Damaging
+        {
+            get { return _damaging; }
+            set { _damaging = value; }
+        }
+        #endregion
 
-        //Just examples of potential tile properties. We'll need some more obvs.
-        public bool Walkable;
-        public int Type, Height;
-        public bool Damaging;
-        public int TurnsToBurn;
-
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public CombatTile() {
-            Walkable = false;
-            Damaging = false;
-            Height = 0;
-            TurnsToBurn = 0;
             _hitbox = new Diamond();
+            _sourceTile = new IsometricTile();
+            _agent = new Agent();
         }
 
         public void LoadContent(IsometricTile tile)
         {
             _sourceTile = tile;
             _hitbox = new Diamond(new Rectangle((int)tile.Position.X, (int)tile.Position.Y, tile.SourceRect.Width, tile.SourceRect.Height));
-            Type = tile.Value1;
-            Height = tile.Height;
+            _type = tile.Value1;
+            _height = tile.Height;
 
             //We can come up with many types, not just 3. (Double digit ints and negative ints can be read as well.)
             switch (Type)
             {
                 case 1:
-                    Walkable = false;
-                    Damaging = false;
+                    _walkable = true;
+                    _damaging = false;
                     break;
                 case 2:
-                    Walkable = true;
-                    Damaging = false;
+                    _walkable = true;
+                    _damaging = false;
                     break;
                 case 3:
-                    Walkable = false;
-                    Damaging = false;
+                    _walkable = true;
+                    _damaging = false;
                     break;
                 default:
-                    Walkable = false;
-                    Damaging = false;
+                    _walkable = false;
+                    _damaging = false;
                     break;
             }
         }
 
         public void UnloadContent()
         {
-
+            
         }
 
         public void Update(GameTime gameTime)
