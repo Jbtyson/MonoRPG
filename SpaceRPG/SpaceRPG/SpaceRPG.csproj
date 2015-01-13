@@ -60,7 +60,7 @@
     <Compile Include="Source\RPG.cs" />
     <Compile Include="Source\Screens\Camera.cs" />
     <Compile Include="Source\Screens\CombatScreen.cs" />
-    <Compile Include="Source\Util\Shapes\RightTriangle.cs" />
+    <Compile Include="Source\Util\Shapes\Triangle.cs" />
     <Compile Include="Source\Visuals\Effects\FadeEffect.cs" />
     <Compile Include="Source\Gameplay\GameObject.cs" />
     <Compile Include="Source\Screens\GameplayScreen.cs" />

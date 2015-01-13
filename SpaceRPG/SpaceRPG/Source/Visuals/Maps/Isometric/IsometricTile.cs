@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using SpaceRPG.Source.Managers;
+using SpaceRPG.Source.Util.Shapes;
 
 namespace SpaceRPG.Source.Visuals.Maps.Isometric
 {
@@ -50,8 +51,6 @@ namespace SpaceRPG.Source.Visuals.Maps.Isometric
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
-            Point pos = InputManager.Instance.MousePosition;
         }
 
         public override void Draw(SpriteBatch spriteBatch)

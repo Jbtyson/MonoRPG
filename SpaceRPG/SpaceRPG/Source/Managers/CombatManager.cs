@@ -30,6 +30,9 @@ namespace SpaceRPG.Source.Managers
         private Agent _currentAgent;
         private Cursor _cursor;
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public CombatManager()
         {
             _party = new Party();
@@ -58,7 +61,7 @@ namespace SpaceRPG.Source.Managers
             _encounter.LoadContent();
 
             // Load the combat map from the map combat layer
-            _combatMap.LoadContent(_map.SurfaceInfo);
+            _combatMap.LoadContent(_map.SurfaceInfo, SetCursorPosition);
 
             // Load the cursor
             XmlManager<Cursor> cursorLoader = new XmlManager<Cursor>();
@@ -79,6 +82,7 @@ namespace SpaceRPG.Source.Managers
 
         public void Update(GameTime gameTime)
         {
+            _combatMap.Update(gameTime);
             _cursor.Update(gameTime);
             _party.Update(gameTime);
             _encounter.Update(gameTime);
@@ -103,6 +107,11 @@ namespace SpaceRPG.Source.Managers
             _currentAgent.MyTurn = true;
             _combatMap.MoveOverlays.Clear();
             _combatMap.DisplayMoveRange(_currentAgent.MoveRange, _currentAgent.Location);
+        }
+
+        public void SetCursorPosition(Vector2 location) 
+        {
+            _cursor.Image.Position = location;
         }
     }
 }

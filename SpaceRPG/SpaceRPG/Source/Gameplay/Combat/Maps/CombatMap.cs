@@ -27,6 +27,10 @@ namespace SpaceRPG.Source.Gameplay.Combat.Maps
         public Rectangle MoveEffectRect;
         public Vector2 TileDimensions, GridDimensions;
 
+        public delegate void SetCursor(Vector2 loc);
+        [XmlIgnore]
+        public SetCursor SetCursorPosition;
+
         public CombatMap()
         {
             Grid = new CombatTile[0, 0];
@@ -36,8 +40,10 @@ namespace SpaceRPG.Source.Gameplay.Combat.Maps
             MoveOverlays = new HashSet<Point>();
         }
 
-        public void LoadContent(IsometricMapInfo mapInfo)
+        public void LoadContent(IsometricMapInfo mapInfo, SetCursor setCursor)
         {
+            SetCursorPosition = setCursor;
+
             this.TileDimensions = mapInfo.TileDimensions;
             this.GridDimensions = mapInfo.LayerDimensions;
             Grid = new CombatTile[(int)GridDimensions.X, (int)GridDimensions.Y];
@@ -65,7 +71,12 @@ namespace SpaceRPG.Source.Gameplay.Combat.Maps
 
         public void Update(GameTime gameTime)
         {
-            
+            foreach (CombatTile tile in Grid)
+            {
+                tile.Update(gameTime);
+                if (tile.HasCursor)
+                    SetCursorPosition(tile.SourceTile.Position);
+            }
         }
 
         public void DrawMoveRange(SpriteBatch spriteBatch)
