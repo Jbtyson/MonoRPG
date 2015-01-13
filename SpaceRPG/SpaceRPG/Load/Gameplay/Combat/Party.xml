@@ -5,15 +5,19 @@
       <Image>
         <Path>Gameplay/Characters/player</Path>
         <Effects>SpriteSheetEffect</Effects>
-        <Position>
-          <X>128</X>
-          <Y>128</Y>
-        </Position>
       </Image>
+      <Dimensions>
+        <X>32</X>
+        <Y>32</Y>
+      </Dimensions>
       
       <Behavior>DefensiveMove</Behavior>
       <MyTurn>true</MyTurn>
-      
+
+      <Location>
+        <X>3</X>
+        <Y>3</Y>
+      </Location>
       <MoveSpeed>100</MoveSpeed>
       <MoveRange>3</MoveRange>
       <Stats>
@@ -26,18 +30,22 @@
 
     <Ally>
       <Name>Ben</Name>
-      
       <Image>
         <Path>Gameplay/Characters/player</Path>
         <Effects>SpriteSheetEffect</Effects>
-        <Position>
-          <X>160</X>
-          <Y>256</Y>
-        </Position>
       </Image>
+      <Dimensions>
+        <X>32</X>
+        <Y>32</Y>
+      </Dimensions>
 
       <Behavior>DefensiveMove</Behavior>
-      
+
+
+      <Location>
+        <X>4</X>
+        <Y>4</Y>
+      </Location>
       <MoveSpeed>100</MoveSpeed>
       <MoveRange>4</MoveRange>
       <Stats>
@@ -55,14 +63,18 @@
     <Image>
       <Path>Gameplay/Characters/player</Path>
       <Effects>SpriteSheetEffect</Effects>
-      <Position>
-        <X>96</X>
-        <Y>352</Y>
-      </Position>
     </Image>
+    <Dimensions>
+      <X>32</X>
+      <Y>32</Y>
+    </Dimensions>
 
     <Behavior>DefensiveMove</Behavior>
 
+    <Location>
+      <X>2</X>
+      <Y>2</Y>
+    </Location>
     <MoveSpeed>100</MoveSpeed>
     <Stats>
       <Health>999</Health>

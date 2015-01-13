@@ -89,7 +89,7 @@ namespace SpaceRPG.Source.Gameplay.Combat.Maps
             }
         }
 
-        public void DisplayMoveRange(int range, Vector2 location)
+        public void DisplayMoveRange(int range, Point location)
         {
             for (int y = 0; y < range; y++)
             {

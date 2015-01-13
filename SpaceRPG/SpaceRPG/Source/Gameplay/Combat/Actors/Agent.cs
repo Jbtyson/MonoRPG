@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using SpaceRPG.Source.Managers;
+using SpaceRPG.Source.Gameplay.Combat.Maps.Isometric;
 
 namespace SpaceRPG.Source.Gameplay.Combat.Actors
 {
@@ -20,10 +21,24 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
     /// </summary>
     public class Agent : GameObject
     {
+        protected CombatTile _tile;
+        protected Vector2 _dimensions;
+        public CombatTile Tile
+        {
+            get { return _tile; }
+            set { _tile = value; }
+        }
+        public Vector2 Dimensions
+        {
+            get { return _dimensions; }
+            set { _dimensions = value; }
+        }
+
         /// <summary>
         /// This is the location on a combat grid, not position on a screen
         /// </summary>
-        public Vector2 Location, Destination;
+        public Vector2 Destination;
+        public Point Location;
         public bool Moving, Busy, MyTurn, Aligned, ReachedNode, DisplayMoveRange;
         public List<Point> MovementNodes;
         public int MoveRange;
@@ -40,7 +55,9 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
         /// </summary>
         public Agent()
         {
-            Location = Destination = Vector2.Zero;
+            Destination = Vector2.Zero;
+            Location = Point.Zero;
+            _dimensions = Vector2.Zero;
         }
 
         /// <summary>
@@ -93,15 +110,12 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
         }
 
         /// <summary>
-        /// Calculates a path to and potentially moves an agent to a new destination
+        /// Calculates a path to and potentially moves an agent to a new destination on a grid
         /// </summary>
         /// <param name="newLoc">New location to move the agent to</param>
         /// <param name="beginMove">If true, immediately begins executing the move</param>
-        public virtual void GetPathTo(Vector2 newLoc, bool beginMove)
+        public virtual void GetPathTo(Point newLoc, bool beginMove)
         {
-            // Snap ouselves to the grid...bandaid fix this later
-            Location = new Vector2((int)Image.Position.X / 32, (int)Image.Position.Y / 32);
-
             // Find the horizontal node to match x positions and then move to the end location
             if (newLoc.X != Location.X)
             {
@@ -128,7 +142,7 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
         {
             // Get our new position
             Image.Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            Location = new Vector2((int)Image.Position.X / 32, (int)Image.Position.Y / 32);
+            Location = new Point((int)Image.Position.X / 32, (int)Image.Position.Y / 32);
 
             // Check if we reaced a node
             if (ReachedNode || (int)Location.X == MovementNodes[0].X && (int)Location.Y == MovementNodes[0].Y)
@@ -173,7 +187,7 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
 
                 if (Aligned)
                 {
-                    Location = new Vector2((int)Image.Position.X / 32, (int)Image.Position.Y / 32);
+                    Location = new Point((int)Image.Position.X / 32, (int)Image.Position.Y / 32);
                     MovementNodes.RemoveAt(0);
                     Console.WriteLine(">> Reached Node <<");
 
@@ -209,7 +223,7 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
             Aligned = false;
 
             // Calculate the velocity
-            Vector2 diff = new Vector2(MovementNodes[0].X - (int)Location.X, MovementNodes[0].Y - (int)Location.Y);
+            Vector2 diff = new Vector2((MovementNodes[0].X - (int)Location.X) * 32, (MovementNodes[0].Y - (int)Location.Y) * 16);
             if (diff.X > 0)
             {
                 Velocity.X = MoveSpeed;

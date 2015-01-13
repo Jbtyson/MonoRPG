@@ -15,11 +15,12 @@ namespace SpaceRPG.Source.Visuals.Maps
     /// </summary>
     public class Tile
     {
-        protected Vector2 _position;
+        protected Vector2 _position, _dimensions;
         protected Point _gridLocation;
         protected Rectangle _sourceRect;
         protected int _value1, _value2;
 
+        #region Accessors
         public int Value1
         {
             get { return _value1; }
@@ -47,11 +48,18 @@ namespace SpaceRPG.Source.Visuals.Maps
             get { return _gridLocation; }
             set { _gridLocation = value; }
         }
+        public Vector2 Dimensions
+        {
+            get { return _dimensions; }
+            set { _dimensions = value; }
+        }
+        #endregion
 
         public virtual void LoadContent(Vector2 position, Rectangle sourceRect)
         {
-            this._position = position;
-            this._sourceRect = sourceRect;
+            _position = position;
+            _sourceRect = sourceRect;
+            _dimensions = new Vector2(sourceRect.Width, sourceRect.Height);
         }
 
         public virtual void UnloadContent()

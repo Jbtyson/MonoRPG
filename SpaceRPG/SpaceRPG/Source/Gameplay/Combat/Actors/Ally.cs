@@ -13,6 +13,7 @@ using Microsoft.Xna.Framework.Input;
 
 using SpaceRPG.Source.Managers;
 using SpaceRPG.Source.Gameplay.Combat.Behaviors;
+using SpaceRPG.Source.Gameplay.Combat.Maps.Isometric;
 
 namespace SpaceRPG.Source.Gameplay.Combat.Actors
 {
@@ -34,11 +35,14 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
             BehaviorLoadList = new List<string>();
         }
 
-        public override void LoadContent()
+        public void LoadContent(CombatTile[,] grid)
         {
             base.LoadContent();
             Image.LoadContent();
-            Location = Image.Position / 32;
+
+            _tile = grid[Location.X, Location.Y];
+            Image.Position.X = _tile.SourceTile.Position.X + (_tile.SourceTile.Dimensions.X - _dimensions.X) / 2;
+            Image.Position.Y = _tile.SourceTile.Position.Y - (_tile.SourceTile.Dimensions.Y - _dimensions.Y);
 
             // Load behaviors
             foreach (string s in BehaviorLoadList)

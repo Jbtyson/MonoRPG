@@ -43,18 +43,7 @@ namespace SpaceRPG.Source.Managers
         }
 
         public void LoadContent(IsometricMap _map)
-        {
-            // Load the party
-            XmlManager<Party> partyLoader = new XmlManager<Party>();
-            _party = partyLoader.Load(CombatXmlPath + "Party.xml");
-            _party.LoadContent();
-
-            // This is a poor way to do this, fix later
-            foreach (Agent a in _party.Members)
-            {
-                a.TurnIsOver = ChangeTurns;
-            }       
-
+        { 
             // Load the encounter
             XmlManager<Encounter> encounterLoader = new XmlManager<Encounter>();
             _encounter = encounterLoader.Load(CombatScreen.EncounterId +".xml");
@@ -67,6 +56,17 @@ namespace SpaceRPG.Source.Managers
             XmlManager<Cursor> cursorLoader = new XmlManager<Cursor>();
             _cursor = cursorLoader.Load(CombatXmlPath + "Cursor.xml");
             _cursor.LoadContent();
+
+            // Load the party
+            XmlManager<Party> partyLoader = new XmlManager<Party>();
+            _party = partyLoader.Load(CombatXmlPath + "Party.xml");
+            _party.LoadContent(_combatMap.Grid);
+
+            // This is a poor way to do this, fix later
+            foreach (Agent a in _party.Members)
+            {
+                a.TurnIsOver = ChangeTurns;
+            }  
             
             // Start combat
             _currentTurn = _party.Members.Count-1;

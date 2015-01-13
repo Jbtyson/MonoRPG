@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 using SpaceRPG.Source.Gameplay.Combat.Actors;
+using SpaceRPG.Source.Gameplay.Combat.Maps.Isometric;
 
 namespace SpaceRPG.Source.Gameplay.Combat
 {
@@ -22,10 +23,10 @@ namespace SpaceRPG.Source.Gameplay.Combat
             Members = new List<Ally>();
         }
 
-        public void LoadContent()
+        public void LoadContent(CombatTile[,] grid)
         {
             foreach (Ally ally in Members)
-                ally.LoadContent();
+                ally.LoadContent(grid);
         }
 
         public void UnloadContent()
