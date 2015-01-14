@@ -12,56 +12,92 @@ using Microsoft.Xna.Framework.Graphics;
 
 using SpaceRPG.Source.Visuals.Maps.Isometric;
 using SpaceRPG.Source.Visuals;
-using SpaceRPG.Source.Gameplay.Combat.Maps.Isometric;
 
 namespace SpaceRPG.Source.Gameplay.Combat.Maps
 {
     /// <summary>
     /// CombatMap stores map data relevant to combat, such as tiles that are impassable, height of tiles, and so on (stored as CombatTiles).
     /// </summary>
-    public class CombatMap
+    public class CombatMap : ICombatGrid
     {
-        public Image Image;
-        public CombatTile[,] Grid;
-        public HashSet<Point> MoveOverlays;
-        public Rectangle MoveEffectRect;
-        public Vector2 TileDimensions, GridDimensions;
+        private Image _image;
+        private CombatTile[,] _grid;
+        private HashSet<Point> _moveOverlays;
+        private Rectangle _moveEffectRect;
+        private Vector2 _tileDimensions, _gridDimensions;
+
+        #region Accessors
+        public Image Image
+        {
+            get { return _image; }
+            set { _image = value; }
+        }
+        public CombatTile[,] Grid
+        {
+            get { return _grid; }
+            set { _grid = value; }
+        }
+        public HashSet<Point> MoveOverlays
+        {
+            get { return _moveOverlays; }
+            set { _moveOverlays = value; }
+        }
+        public Rectangle MoveEffectRect
+        {
+            get { return _moveEffectRect; }
+            set { _moveEffectRect = value; }
+        }
+        public Vector2 TileDimensions
+        {
+            get { return _tileDimensions; }
+            set { _tileDimensions = value; }
+        }
+        public Vector2 GridDimensions
+        {
+            get { return _gridDimensions; }
+            set { _gridDimensions = value; }
+        }
+        #endregion
 
         public delegate void SetCursor(Vector2 loc);
         [XmlIgnore]
         public SetCursor SetCursorPosition;
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public CombatMap()
         {
-            Grid = new CombatTile[0, 0];
-            TileDimensions = Vector2.Zero;
-            Image = new Image();
-            MoveEffectRect = new Rectangle();
-            MoveOverlays = new HashSet<Point>();
+            _grid = new CombatTile[0, 0];
+            _tileDimensions = Vector2.Zero;
+            _image = new Image();
+            _moveEffectRect = new Rectangle();
+            _moveOverlays = new HashSet<Point>();
         }
 
         public void LoadContent(IsometricMapInfo mapInfo, SetCursor setCursor)
         {
             SetCursorPosition = setCursor;
 
-            this.TileDimensions = mapInfo.TileDimensions;
-            this.GridDimensions = mapInfo.LayerDimensions;
-            Grid = new CombatTile[(int)GridDimensions.X, (int)GridDimensions.Y];
+            _tileDimensions = mapInfo.TileDimensions;
+            _gridDimensions = mapInfo.LayerDimensions;
+            _grid = new CombatTile[(int)GridDimensions.X, (int)GridDimensions.Y];
 
             // Load the content for each combat tile and store it in the grid
             for (int y = 0; y < GridDimensions.Y; y++)
             {
                 for (int x = 0; x < GridDimensions.X; x++)
                 {
-                    Grid[x, y] = new CombatTile();
-                    Grid[x, y].LoadContent(mapInfo.Tiles[x, y]);
+                    _grid[x, y] = new CombatTile();
+                    _grid[x, y].LoadContent(mapInfo.Tiles[x, y]);
+                    _grid[x, y].GridPosition = new Point(x, y);
                 }
             }
 
             // Laod the tilesheet
-            Image.Path = "Gameplay/TileSheets/ground";
-            Image.LoadContent();
-            MoveEffectRect = new Rectangle(0, 0, 32, 32); // Hardcoded, remove later
+            _image.Path = "Gameplay/TileSheets/ground";
+            _image.LoadContent();
+            _moveEffectRect = new Rectangle(0, 0, 32, 32); // Hardcoded, remove later
         }
 
         public void UnloadContent()
@@ -71,7 +107,7 @@ namespace SpaceRPG.Source.Gameplay.Combat.Maps
 
         public void Update(GameTime gameTime)
         {
-            foreach (CombatTile tile in Grid)
+            foreach (CombatTile tile in _grid)
             {
                 tile.Update(gameTime);
                 if (tile.HasCursor)
@@ -79,16 +115,25 @@ namespace SpaceRPG.Source.Gameplay.Combat.Maps
             }
         }
 
+        /// <summary>
+        /// Draws the move range of an agent
+        /// </summary>
+        /// <param name="spriteBatch"></param>
         public void DrawMoveRange(SpriteBatch spriteBatch)
         {
             foreach (Point p in MoveOverlays)
             {
-                Image.Position = new Vector2(p.X*32, p.Y*32);
-                Image.SourceRect = MoveEffectRect;
-                Image.Draw(spriteBatch);
+                _image.Position = new Vector2(p.X*32, p.Y*32);
+                _image.SourceRect = MoveEffectRect;
+                _image.Draw(spriteBatch);
             }
         }
 
+        /// <summary>
+        /// Adds the move range of an agent to the list of overlays to draw
+        /// </summary>
+        /// <param name="range">The range of the agent</param>
+        /// <param name="location">Location of the agent</param>
         public void DisplayMoveRange(int range, Point location)
         {
             for (int y = 0; y < range; y++)
@@ -97,13 +142,47 @@ namespace SpaceRPG.Source.Gameplay.Combat.Maps
                 {
                     if (x + y < range)
                     {
-                        MoveOverlays.Add(new Point((int)location.X + x, (int)location.Y + y));
-                        MoveOverlays.Add(new Point((int)location.X - x, (int)location.Y - y));
-                        MoveOverlays.Add(new Point((int)location.X + x, (int)location.Y - y));
-                        MoveOverlays.Add(new Point((int)location.X - x, (int)location.Y + y));
+                        _moveOverlays.Add(new Point((int)location.X + x, (int)location.Y + y));
+                        _moveOverlays.Add(new Point((int)location.X - x, (int)location.Y - y));
+                        _moveOverlays.Add(new Point((int)location.X + x, (int)location.Y - y));
+                        _moveOverlays.Add(new Point((int)location.X - x, (int)location.Y + y));
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Returns a tile at a given location
+        /// </summary>
+        /// <param name="loc">Location to look for a tile</param>
+        /// <returns>The tile containing the point</returns>
+        public CombatTile GetTileAtPosition(Point loc)
+        {
+            foreach (CombatTile tile in _grid)
+            {
+                if (tile.Contains(loc))
+                    return tile;
+            }
+            return new CombatTile();
+        }
+
+        /// <summary>
+        /// Returns a tile at a given location
+        /// </summary>
+        /// <param name="loc">Location to look for a tile</param>
+        /// <returns>The tile containing the point</returns>
+        public CombatTile GetTileAtPosition(Vector2 loc)
+        {
+            return GetTileAtPosition(new Point((int)loc.X, (int)loc.Y));
+        }
+
+        /// <summary>
+        /// Returns the grid
+        /// </summary>
+        /// <returns></returns>
+        public CombatTile[,] GetGrid()
+        {
+            return _grid;
         }
     }
 }

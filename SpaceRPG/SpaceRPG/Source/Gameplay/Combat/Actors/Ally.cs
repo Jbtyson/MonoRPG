@@ -13,101 +13,130 @@ using Microsoft.Xna.Framework.Input;
 
 using SpaceRPG.Source.Managers;
 using SpaceRPG.Source.Gameplay.Combat.Behaviors;
-using SpaceRPG.Source.Gameplay.Combat.Maps.Isometric;
+using SpaceRPG.Source.Gameplay.Combat.Maps;
 
 namespace SpaceRPG.Source.Gameplay.Combat.Actors
 {
     public class Ally : Agent
     {
-        public Stats Stats;
-        public bool IsActive;
-        public bool IsPlayerControlled;
-        public List<Behavior> Behaviors;
-        [XmlElement("Behavior")]
-        public List<string> BehaviorLoadList;
-        
+        private Stats _stats;
+        private bool _isActive;
+        private bool _isPlayerControlled;
+        private List<Behavior> _behaviors;
+        private List<string> _behaviorLoadList;
 
+        #region Accessors
+        public Stats Stats
+        {
+            get { return _stats; }
+            set { _stats = value; }
+        }
+        public bool IsActive
+        {
+            get { return _isActive; }
+            set { _isActive = value; }
+        }
+        public bool IsPlayerControlled
+        {
+            get { return _isPlayerControlled; }
+            set { _isPlayerControlled = value; }
+        }
+        public List<Behavior> Behaviors
+        {
+            get { return _behaviors; }
+            set { _behaviors = value; }
+        }
+        [XmlElement("Behavior")]
+        public List<string> BehaviorLoadList
+        {
+            get { return _behaviorLoadList; }
+            set { _behaviorLoadList = value; }
+        }
+        #endregion
+        
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public Ally()
         {
-            Stats = new Stats();
-            IsActive = false;
-            IsPlayerControlled = false;
-            BehaviorLoadList = new List<string>();
+            _stats = new Stats();
+            _behaviorLoadList = new List<string>();
         }
 
-        public void LoadContent(CombatTile[,] grid)
+        public void LoadContent(ICombatGrid grid)
         {
             base.LoadContent();
+            _combatGrid = grid;
             Image.LoadContent();
 
-            _tile = grid[Location.X, Location.Y];
-            Image.Position.X = _tile.SourceTile.Position.X + (_tile.SourceTile.Dimensions.X - _dimensions.X) / 2;
-            Image.Position.Y = _tile.SourceTile.Position.Y - (_tile.SourceTile.Dimensions.Y - _dimensions.Y);
+            _tile = grid.GetGrid()[Location.X, Location.Y];
+            _image.Position.X = _tile.SourceTile.Position.X + (_tile.SourceTile.Dimensions.X - _dimensions.X) / 2;
+            _image.Position.Y = _tile.SourceTile.Position.Y - (_tile.SourceTile.Dimensions.Y - _dimensions.Y);
 
             // Load behaviors
             foreach (string s in BehaviorLoadList)
             {
                 Type t = Type.GetType("SpaceRPG.Source.Gameplay.Combat.Behaviors." + s);
-                Behaviors.Add((Behavior)Activator.CreateInstance(t));
+                _behaviors.Add((Behavior)Activator.CreateInstance(t));
             }
         }
 
         public override void UnloadContent()
         {
             base.UnloadContent();
-            Image.UnloadContent();
+            _image.UnloadContent();
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
             // Set the image to active for now, we will set to false at the end of the update loop if necessary
-            Image.IsActive = true;
+            _image.IsActive = true;
 
             // Allow for player control, if player controlled
-            if (IsPlayerControlled)
+            if (_isPlayerControlled)
             {
                 // Vertical movement
                 if (InputManager.Instance.KeyDown(Keys.Down))
                 {
-                    Velocity.Y = MoveSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    Image.SpriteSheetEffect.CurrentFrame.Y = 0;
+                    _velocity.Y = _moveSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    _image.SpriteSheetEffect.CurrentFrame.Y = 0;
                 }
                 else if (InputManager.Instance.KeyDown(Keys.Up))
                 {
-                    Velocity.Y = -MoveSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    Image.SpriteSheetEffect.CurrentFrame.Y = 3;
+                    _velocity.Y = -_moveSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    _image.SpriteSheetEffect.CurrentFrame.Y = 3;
                 }
                 else
-                    Velocity.Y = 0;
+                    _velocity.Y = 0;
 
                 //  Horizontal movement
                 if (InputManager.Instance.KeyDown(Keys.Right))
                 {
-                    Velocity.X = MoveSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    Image.SpriteSheetEffect.CurrentFrame.Y = 2;
+                    _velocity.X = _moveSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    _image.SpriteSheetEffect.CurrentFrame.Y = 2;
                 }
                 else if (InputManager.Instance.KeyDown(Keys.Left))
                 {
-                    Velocity.X = -MoveSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    Image.SpriteSheetEffect.CurrentFrame.Y = 1;
+                    _velocity.X = -_moveSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    _image.SpriteSheetEffect.CurrentFrame.Y = 1;
                 }
                 else
-                    Velocity.X = 0;
+                    _velocity.X = 0;
             }
             // If not player controlled, update the AI behavior
             else
             {
-                foreach (Behavior behavior in Behaviors)
+                foreach (Behavior behavior in _behaviors)
                     behavior.Update(gameTime, this);
             }
 
             // Set the image.isActive to false if the player is standing still so that the correct sprite is displayed
             if (Velocity.X == 0 && Velocity.Y == 0)
-                Image.IsActive = false;
+                _image.IsActive = false;
 
             // Update our image
-            Image.Update(gameTime);
+            _image.Update(gameTime);
 
             // Update our position in the world
             //Image.Position += Velocity;
@@ -116,7 +145,7 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            Image.Draw(spriteBatch);
+            _image.Draw(spriteBatch);
         }
     }
 }

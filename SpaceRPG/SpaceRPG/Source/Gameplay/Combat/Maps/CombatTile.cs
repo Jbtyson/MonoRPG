@@ -18,7 +18,7 @@ using SpaceRPG.Source.Visuals.Maps.Isometric;
 using SpaceRPG.Source.Util.Shapes;
 using SpaceRPG.Source.Gameplay.Combat.Actors;
 
-namespace SpaceRPG.Source.Gameplay.Combat.Maps.Isometric
+namespace SpaceRPG.Source.Gameplay.Combat.Maps
 {
     /// <summary>
     /// CombatTile holds map data relevant to one specific tile on a map, such as whether it's impassable, height of the tile, etc.
@@ -28,6 +28,7 @@ namespace SpaceRPG.Source.Gameplay.Combat.Maps.Isometric
         private IsometricTile _sourceTile;
         private Diamond _hitbox;
         private Agent _agent;
+        private Point _gridPosition;
         private bool _hasCursor, _occupiedByAgent;
         private int _type, _height;
 
@@ -40,6 +41,11 @@ namespace SpaceRPG.Source.Gameplay.Combat.Maps.Isometric
         {
             get { return _sourceTile; }
             set { _sourceTile = value; }
+        }
+        public Point GridPosition
+        {
+            get { return _gridPosition; }
+            set { _gridPosition = value; }
         }
         public bool HasCursor
         {
@@ -123,10 +129,15 @@ namespace SpaceRPG.Source.Gameplay.Combat.Maps.Isometric
 
         public void Update(GameTime gameTime)
         {
-            if (_hitbox.Contains(InputManager.Instance.MousePosition))
+            if (Contains(InputManager.Instance.MousePosition))
                 _hasCursor = true;
             else
                 _hasCursor = false;
+        }
+
+        public bool Contains(Point loc)
+        {
+            return _hitbox.Contains(loc);
         }
 
         public void Draw(SpriteBatch spriteBatch)

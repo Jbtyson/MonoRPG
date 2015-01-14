@@ -60,7 +60,7 @@ namespace SpaceRPG.Source.Managers
             // Load the party
             XmlManager<Party> partyLoader = new XmlManager<Party>();
             _party = partyLoader.Load(CombatXmlPath + "Party.xml");
-            _party.LoadContent(_combatMap.Grid);
+            _party.LoadContent(_combatMap);
 
             // This is a poor way to do this, fix later
             foreach (Agent a in _party.Members)

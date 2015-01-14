@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using SpaceRPG.Source.Managers;
-using SpaceRPG.Source.Gameplay.Combat.Maps.Isometric;
+using SpaceRPG.Source.Gameplay.Combat.Maps;
 
 namespace SpaceRPG.Source.Gameplay.Combat.Actors
 {
@@ -22,7 +22,16 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
     public class Agent : GameObject
     {
         protected CombatTile _tile;
-        protected Vector2 _dimensions;
+        protected Vector2 _dimensions, _isometricOffset;
+        protected Vector2 _destination;
+        protected Point _location;
+        protected bool _moving, _busy, _myTurn, _aligned, _reachedNode, _displayMoveRange;
+        protected List<Point> _movementNodes;
+        protected int _moveRange;
+        protected Action _currentAction;
+        protected ICombatGrid _combatGrid;
+
+        #region Accessors
         public CombatTile Tile
         {
             get { return _tile; }
@@ -33,17 +42,63 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
             get { return _dimensions; }
             set { _dimensions = value; }
         }
-
-        /// <summary>
-        /// This is the location on a combat grid, not position on a screen
-        /// </summary>
-        public Vector2 Destination;
-        public Point Location;
-        public bool Moving, Busy, MyTurn, Aligned, ReachedNode, DisplayMoveRange;
-        public List<Point> MovementNodes;
-        public int MoveRange;
+        public Vector2 Destination
+        {
+            get { return _destination; }
+            set { _destination = value; }
+        }
+        public Point Location
+        {
+            get { return _location; }
+            set { _location = value; }
+        }
+        public bool Moving
+        {
+            get { return _moving; }
+            set { _moving = value; }
+        }
+        public bool Busy
+        {
+            get { return _busy; }
+            set { _busy = value; }
+        }
+        public bool MyTurn
+        {
+            get { return _myTurn; }
+            set { _myTurn = value; }
+        }
+        public bool Aligned
+        {
+            get { return _aligned; }
+            set { _aligned = value; }
+        }
+        public bool ReachedNode
+        {
+            get { return _reachedNode; }
+            set { _reachedNode = value; }
+        }
+        public bool DisplayMoveRange
+        {
+            get { return _displayMoveRange; }
+            set { _displayMoveRange = value; }
+        }
+        public List<Point> MovementNodes
+        {
+            get { return _movementNodes; }
+            set { _movementNodes = value; }
+        }
+        public int MoveRange
+        {
+            get { return _moveRange; }
+            set { _moveRange = value; }
+        }
         [XmlIgnore]
-        public Action CurrentAction;
+        public Action CurrentAction
+        {
+            get { return _currentAction; }
+            set { _currentAction = value; }
+        }
+        #endregion
 
         public delegate void TurnChange();
         [XmlIgnore]
@@ -55,9 +110,10 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
         /// </summary>
         public Agent()
         {
-            Destination = Vector2.Zero;
-            Location = Point.Zero;
+            _destination = Vector2.Zero;
+            _location = Point.Zero;
             _dimensions = Vector2.Zero;
+            _isometricOffset = Vector2.Zero;
         }
 
         /// <summary>
@@ -84,18 +140,18 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
         {
             base.Update(gameTime);
 
-            if (MyTurn)
+            if (_myTurn)
             {
-                if (Moving)
+                if (_moving)
                 {
-                    Move(gameTime);
-                    DisplayMoveRange = false;
+                    this.Move(gameTime);
+                    _displayMoveRange = false;
                 }
                 
                 if (!Busy)
                 {
                     if (InputManager.Instance.KeyPressed(Keys.M))
-                        DisplayMoveRange = !DisplayMoveRange;
+                        _displayMoveRange = !_displayMoveRange;
                 }
             }
         }
@@ -120,17 +176,17 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
             if (newLoc.X != Location.X)
             {
                 Point horNode = new Point((int)newLoc.X, (int)Location.Y);
-                MovementNodes.Add(horNode);
+                _movementNodes.Add(horNode);
             }
             if (newLoc.Y != Location.Y)
             {
                 Point endNode = new Point((int)newLoc.X, (int)newLoc.Y);
-                MovementNodes.Add(endNode);
+                _movementNodes.Add(endNode);
             }
 
             if (beginMove)
             {
-                ExecuteMove();
+                this.ExecuteMove();
             }
         }
 
@@ -141,8 +197,8 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
         public void Move(GameTime gameTime)
         {
             // Get our new position
-            Image.Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            Location = new Point((int)Image.Position.X / 32, (int)Image.Position.Y / 32);
+            _image.Position += _velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            _location = _combatGrid.GetTileAtPosition(_image.Position).GridPosition;
 
             // Check if we reaced a node
             if (ReachedNode || (int)Location.X == MovementNodes[0].X && (int)Location.Y == MovementNodes[0].Y)
@@ -151,61 +207,61 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
                 // Now we need to make sure that our image is moving to align with the top left corner of the square
                 if (Velocity.X > 0) // moving to the right, so we may need to hop back left
                 {
-                    if (Image.Position.X >= MovementNodes[0].X * 32)
+                    if (_image.Position.X >= _movementNodes[0].X * 32)
                     {
-                        Image.Position.X = MovementNodes[0].X * 32;
-                        Aligned = true;
+                        _image.Position.X = _movementNodes[0].X * 32;
+                        _aligned = true;
                     }
                 }
 
                 else if (Velocity.X < 0) // moving to the left, so we may need to hop back right
                 {
-                    if (Image.Position.X <= MovementNodes[0].X * 32)
+                    if (_image.Position.X <= _movementNodes[0].X * 32)
                     {
-                        Image.Position.X = MovementNodes[0].X * 32;
-                        Aligned = true;
+                        _image.Position.X = _movementNodes[0].X * 32;
+                        _aligned = true;
                     }
                 }
 
-                else if (Velocity.Y > 0) // moving down, so we may need to hop back up
+                if (Velocity.Y > 0) // moving down, so we may need to hop back up
                 {
-                    if (Image.Position.Y >= MovementNodes[0].Y * 32)
+                    if (_image.Position.Y >= _movementNodes[0].Y * 32)
                     {
-                        Image.Position.Y = MovementNodes[0].Y * 32;
-                        Aligned = true;
+                        _image.Position.Y = _movementNodes[0].Y * 32;
+                        _aligned = true;
                     }
                 }
 
                 else if (Velocity.Y < 0) // moving up, so we may need to hop back down
                 {
-                    if (Image.Position.Y <= MovementNodes[0].Y * 32)
+                    if (_image.Position.Y <= _movementNodes[0].Y * 32)
                     {
-                        Image.Position.Y = MovementNodes[0].Y * 32;
-                        Aligned = true;
+                        _image.Position.Y = _movementNodes[0].Y * 32;
+                        _aligned = true;
                     }
                 }
 
-                if (Aligned)
+                if (_aligned)
                 {
-                    Location = new Point((int)Image.Position.X / 32, (int)Image.Position.Y / 32);
-                    MovementNodes.RemoveAt(0);
+                    _location = new Point((int)Image.Position.X / 32, (int)Image.Position.Y / 32);
+                    _movementNodes.RemoveAt(0);
                     Console.WriteLine(">> Reached Node <<");
 
                     // Check if we reached the last node
-                    if (MovementNodes.Count == 0)
+                    if (_movementNodes.Count == 0)
                     {
-                        Velocity = Vector2.Zero;
-                        Moving = false;
-                        Busy = false;
+                        _velocity = Vector2.Zero;
+                        _moving = false;
+                        _busy = false;
                         Console.WriteLine(">>> Movement complete <<<");
-                        TurnIsOver();
+                        this.TurnIsOver();
                     }
                     else
                     {
-                        ExecuteMove();
+                        this.ExecuteMove();
                     }
-                    Aligned = false;
-                    ReachedNode = false;
+                    _aligned = false;
+                    _reachedNode = false;
                 }
             }
         }
@@ -218,37 +274,35 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
             if (MovementNodes.Count == 0)
                 return;
 
-            Moving = true;
-            Busy = true;
-            Aligned = false;
+            _moving = true;
+            _busy = true;
+            _aligned = false;
 
             // Calculate the velocity
-            Vector2 diff = new Vector2((MovementNodes[0].X - (int)Location.X) * 32, (MovementNodes[0].Y - (int)Location.Y) * 16);
+            Vector2 diff = new Vector2(MovementNodes[0].X - (int)Location.X, MovementNodes[0].Y - (int)Location.Y);
+            
             if (diff.X > 0)
             {
-                Velocity.X = MoveSpeed;
-                Image.SpriteSheetEffect.CurrentFrame.Y = 2;
+                _velocity.X = _moveSpeed;
+                _velocity.Y = _moveSpeed / 2;
+                _image.SpriteSheetEffect.CurrentFrame.Y = 2;
             }
             else if (diff.X < 0)
             {
-                Velocity.X = -MoveSpeed;
-                Image.SpriteSheetEffect.CurrentFrame.Y = 1;
+                _velocity.X = -_moveSpeed;
+                _image.SpriteSheetEffect.CurrentFrame.Y = 1;
             }
-            else
-                Velocity.X = 0;
 
             if (diff.Y > 0)
             {
-                Velocity.Y = MoveSpeed;
-                Image.SpriteSheetEffect.CurrentFrame.Y = 0;
+                _velocity.Y = _moveSpeed;
+                _image.SpriteSheetEffect.CurrentFrame.Y = 0;
             }
             else if (diff.Y < 0)
             {
-                Velocity.Y = -MoveSpeed;
-                Image.SpriteSheetEffect.CurrentFrame.Y = 3;
+                _velocity.Y = -_moveSpeed;
+                _image.SpriteSheetEffect.CurrentFrame.Y = 3;
             }
-            else
-                Velocity.Y = 0;
         }
     }
 }

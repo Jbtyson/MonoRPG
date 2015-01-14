@@ -18,10 +18,33 @@ namespace SpaceRPG.Source.Gameplay
     /// </summary>
     public class GameObject
     {
-        public string Id;
-        public float MoveSpeed;
-        public Image Image;
-        public Vector2 Velocity;
+        protected string _id;
+        protected float _moveSpeed;
+        protected Image _image;
+        protected Vector2 _velocity;
+
+        #region Accessors
+        public string Id
+        {
+            get { return _id; }
+            set { _id = value; }
+        }
+        public float MoveSpeed
+        {
+            get { return _moveSpeed; }
+            set { _moveSpeed = value; }
+        }
+        public Image Image
+        {
+            get { return _image; }
+            set { _image = value; }
+        }
+        public Vector2 Velocity
+        {
+            get { return _velocity; }
+            set { _velocity = value; }
+        }
+        #endregion
 
         /// <summary>
         /// Loads content

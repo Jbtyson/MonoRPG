@@ -47,6 +47,7 @@
     <Compile Include="Source\Gameplay\Combat\Behaviours\DefensiveMove.cs" />
     <Compile Include="Source\Gameplay\Combat\Cursor.cs" />
     <Compile Include="Source\Gameplay\Combat\Encounter.cs" />
+    <Compile Include="Source\Gameplay\Combat\Maps\ICombatGrid.cs" />
     <Compile Include="Source\Gameplay\Combat\Maps\CombatMap.cs" />
     <Compile Include="Source\Gameplay\Combat\Maps\CombatTile.cs" />
     <Compile Include="Source\Gameplay\Combat\Party.cs" />

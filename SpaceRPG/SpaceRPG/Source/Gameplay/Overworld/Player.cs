@@ -24,70 +24,70 @@ namespace SpaceRPG.Source.Gameplay.Overworld
         /// </summary>
         public Player()
         {
-            Velocity = Vector2.Zero;
+            
         }
 
         public override void LoadContent()
         {
             base.LoadContent();
-            Image.LoadContent();
+            _image.LoadContent();
         }
 
         public override void UnloadContent()
         {
             base.UnloadContent();
-            Image.UnloadContent();
+            _image.UnloadContent();
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
             // Set the image to active for now, we will set to false at the end of the update loop if necessary
-            Image.IsActive = true;
+            _image.IsActive = true;
 
             // Vertical movement
             if (InputManager.Instance.KeyDown(Keys.Down))
             {
-                Velocity.Y = MoveSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                Image.SpriteSheetEffect.CurrentFrame.Y = 0;
+                _velocity.Y = _moveSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                _image.SpriteSheetEffect.CurrentFrame.Y = 0;
             }
             else if (InputManager.Instance.KeyDown(Keys.Up))
             {
-                Velocity.Y = -MoveSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                Image.SpriteSheetEffect.CurrentFrame.Y = 3;
+                _velocity.Y = -_moveSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                _image.SpriteSheetEffect.CurrentFrame.Y = 3;
             }
             else
-                Velocity.Y = 0;
+                _velocity.Y = 0;
 
             //  Horizontal movement
             if (InputManager.Instance.KeyDown(Keys.Right))
             {
-                Velocity.X = MoveSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                Image.SpriteSheetEffect.CurrentFrame.Y = 2;
+                _velocity.X = _moveSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                _image.SpriteSheetEffect.CurrentFrame.Y = 2;
             }
             else if (InputManager.Instance.KeyDown(Keys.Left))
             {
-                Velocity.X = -MoveSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                Image.SpriteSheetEffect.CurrentFrame.Y = 1;
+                _velocity.X = -_moveSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                _image.SpriteSheetEffect.CurrentFrame.Y = 1;
             }
             else
-                Velocity.X = 0;
+                _velocity.X = 0;
 
             // Set the image.isActive to false if the player is standing still so that the correct sprite is displayed
-            if (Velocity.X == 0 && Velocity.Y == 0)
-                Image.IsActive = false;
+            if (_velocity.X == 0 && _velocity.Y == 0)
+                _image.IsActive = false;
 
             // Update our image
-            Image.Update(gameTime);
+            _image.Update(gameTime);
 
             // Update our position in the world
-            Image.Position += Velocity;
+            _image.Position += _velocity;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            Image.Draw(spriteBatch);
+            _image.Draw(spriteBatch);
         }
     }
 }
