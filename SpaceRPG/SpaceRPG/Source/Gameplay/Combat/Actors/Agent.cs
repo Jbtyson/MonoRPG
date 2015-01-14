@@ -13,6 +13,7 @@ using Microsoft.Xna.Framework.Input;
 
 using SpaceRPG.Source.Managers;
 using SpaceRPG.Source.Gameplay.Combat.Maps;
+using SpaceRPG.Source.Gameplay.Combat.Behaviours;
 
 namespace SpaceRPG.Source.Gameplay.Combat.Actors
 {
@@ -21,21 +22,27 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
     /// </summary>
     public class Agent : GameObject
     {
-        protected CombatTile _tile;
+        protected CombatTile _currentTile, _destinationTile;
         protected Vector2 _dimensions, _isometricOffset;
         protected Vector2 _destination;
         protected Point _location;
         protected bool _moving, _busy, _myTurn, _aligned, _reachedNode, _displayMoveRange;
         protected List<Point> _movementNodes;
         protected int _moveRange;
-        protected Action _currentAction;
+        protected Activity _currentAction;
         protected ICombatGrid _combatGrid;
+        protected Direction _movingDirection;
 
         #region Accessors
-        public CombatTile Tile
+        public CombatTile CurrentTile
         {
-            get { return _tile; }
-            set { _tile = value; }
+            get { return _currentTile; }
+            set { _currentTile = value; }
+        }
+        public CombatTile DestinationTile
+        {
+            get { return _destinationTile; }
+            set { _destinationTile = value; }
         }
         public Vector2 Dimensions
         {
@@ -93,27 +100,35 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
             set { _moveRange = value; }
         }
         [XmlIgnore]
-        public Action CurrentAction
+        public Activity CurrentAction
         {
             get { return _currentAction; }
             set { _currentAction = value; }
+        }
+        public Direction MovingDirection
+        {
+            get { return _movingDirection; }
+            set { _movingDirection = value; }
         }
         #endregion
 
         public delegate void TurnChange();
         [XmlIgnore]
         public TurnChange TurnIsOver;
+
+        public enum Direction { None, Northwest, Northeast, Southeast, Southwest }
         
 
         /// <summary>
-        /// Defauly constructor
+        /// Default constructor
         /// </summary>
         public Agent()
         {
-            _destination = Vector2.Zero;
+            _destination = _dimensions =_isometricOffset = Vector2.Zero;
             _location = Point.Zero;
-            _dimensions = Vector2.Zero;
-            _isometricOffset = Vector2.Zero;
+            _currentTile = _destinationTile = new CombatTile();
+            _movementNodes = new List<Point>();
+            _currentAction = Activity.None;
         }
 
         /// <summary>
@@ -196,54 +211,60 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
         /// <param name="gameTime"></param>
         public void Move(GameTime gameTime)
         {
-            // Get our new position
+            // Get our new position and location, and update our current tile if our location has changed
             _image.Position += _velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            _location = _combatGrid.GetTileAtPosition(_image.Position).GridPosition;
+            Point newLoc = _combatGrid.GetTileAtPosition(_image.Position + _dimensions / 2).GridPosition;
+            if (!_reachedNode && _location != newLoc)
+            {
+                _location = newLoc;
+                _currentTile = _combatGrid.GetTileAtPosition(_image.Position + _dimensions / 2);
+            }
 
             // Check if we reaced a node
-            if (ReachedNode || (int)Location.X == MovementNodes[0].X && (int)Location.Y == MovementNodes[0].Y)
+            if (_reachedNode || _currentTile == _destinationTile)
             {
-                ReachedNode = true;
+                _reachedNode = true;
+
                 // Now we need to make sure that our image is moving to align with the top left corner of the square
-                if (Velocity.X > 0) // moving to the right, so we may need to hop back left
+                // Left up
+                if (_movingDirection == Direction.Northwest)
                 {
-                    if (_image.Position.X >= _movementNodes[0].X * 32)
+                    if (_image.Position.X <= _destinationTile.Position.X + _isometricOffset.X)
                     {
-                        _image.Position.X = _movementNodes[0].X * 32;
+                        _image.Position = _destinationTile.Position + _isometricOffset;
                         _aligned = true;
                     }
                 }
-
-                else if (Velocity.X < 0) // moving to the left, so we may need to hop back right
+                // Right up
+                else if (_movingDirection == Direction.Northeast)
                 {
-                    if (_image.Position.X <= _movementNodes[0].X * 32)
+                    if (_image.Position.X >= _destinationTile.Position.X + _isometricOffset.X)
                     {
-                        _image.Position.X = _movementNodes[0].X * 32;
+                        _image.Position = _destinationTile.Position + _isometricOffset;
                         _aligned = true;
                     }
                 }
-
-                if (Velocity.Y > 0) // moving down, so we may need to hop back up
+                // Right down
+                else if (_movingDirection == Direction.Southeast)
                 {
-                    if (_image.Position.Y >= _movementNodes[0].Y * 32)
+                    if (_image.Position.X >= _destinationTile.Position.X + _isometricOffset.X)
                     {
-                        _image.Position.Y = _movementNodes[0].Y * 32;
+                        _image.Position = _destinationTile.Position + _isometricOffset;
                         _aligned = true;
                     }
                 }
-
-                else if (Velocity.Y < 0) // moving up, so we may need to hop back down
+                // Left down
+                else if (_movingDirection == Direction.Southwest)
                 {
-                    if (_image.Position.Y <= _movementNodes[0].Y * 32)
+                    if (_image.Position.X <= _destinationTile.Position.X + _isometricOffset.X)
                     {
-                        _image.Position.Y = _movementNodes[0].Y * 32;
+                        _image.Position = _destinationTile.Position + _isometricOffset;
                         _aligned = true;
                     }
                 }
 
                 if (_aligned)
                 {
-                    _location = new Point((int)Image.Position.X / 32, (int)Image.Position.Y / 32);
                     _movementNodes.RemoveAt(0);
                     Console.WriteLine(">> Reached Node <<");
 
@@ -271,7 +292,7 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
         /// </summary>
         public void ExecuteMove()
         {
-            if (MovementNodes.Count == 0)
+            if (_movementNodes.Count == 0)
                 return;
 
             _moving = true;
@@ -279,30 +300,39 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
             _aligned = false;
 
             // Calculate the velocity
-            Vector2 diff = new Vector2(MovementNodes[0].X - (int)Location.X, MovementNodes[0].Y - (int)Location.Y);
+            Vector2 diff = new Vector2(MovementNodes[0].X - (int)_location.X, _movementNodes[0].Y - (int)_location.Y);
             
             if (diff.X > 0)
             {
                 _velocity.X = _moveSpeed;
                 _velocity.Y = _moveSpeed / 2;
                 _image.SpriteSheetEffect.CurrentFrame.Y = 2;
+                _movingDirection = Direction.Southeast;
             }
             else if (diff.X < 0)
             {
                 _velocity.X = -_moveSpeed;
+                _velocity.Y = -_moveSpeed / 2;
                 _image.SpriteSheetEffect.CurrentFrame.Y = 1;
+                _movingDirection = Direction.Northwest;
             }
-
-            if (diff.Y > 0)
+            else if (diff.Y > 0)
             {
-                _velocity.Y = _moveSpeed;
+                _velocity.X = -_moveSpeed;
+                _velocity.Y = _moveSpeed / 2;
                 _image.SpriteSheetEffect.CurrentFrame.Y = 0;
+                _movingDirection = Direction.Southwest;
             }
             else if (diff.Y < 0)
             {
-                _velocity.Y = -_moveSpeed;
+                _velocity.X = _moveSpeed;
+                _velocity.Y = -_moveSpeed / 2;
                 _image.SpriteSheetEffect.CurrentFrame.Y = 3;
+                _movingDirection = Direction.Northeast;
             }
+
+            // Save our destination tile
+            _destinationTile = _combatGrid[_movementNodes[0].X, _movementNodes[0].Y];
         }
     }
 }

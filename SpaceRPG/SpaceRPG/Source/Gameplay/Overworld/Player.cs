@@ -30,13 +30,11 @@ namespace SpaceRPG.Source.Gameplay.Overworld
         public override void LoadContent()
         {
             base.LoadContent();
-            _image.LoadContent();
         }
 
         public override void UnloadContent()
         {
             base.UnloadContent();
-            _image.UnloadContent();
         }
 
         public override void Update(GameTime gameTime)

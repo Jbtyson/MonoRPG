@@ -152,7 +152,7 @@ namespace SpaceRPG.Source.Gameplay.Combat.Maps
         }
 
         /// <summary>
-        /// Returns a tile at a given location
+        /// Returns a tile at a given location, can return null
         /// </summary>
         /// <param name="loc">Location to look for a tile</param>
         /// <returns>The tile containing the point</returns>
@@ -163,7 +163,7 @@ namespace SpaceRPG.Source.Gameplay.Combat.Maps
                 if (tile.Contains(loc))
                     return tile;
             }
-            return new CombatTile();
+            return null;
         }
 
         /// <summary>
@@ -183,6 +183,12 @@ namespace SpaceRPG.Source.Gameplay.Combat.Maps
         public CombatTile[,] GetGrid()
         {
             return _grid;
+        }
+
+        public CombatTile this[int x, int y]
+        {
+            get { return _grid[x, y]; }
+            set { _grid[x, y] = value; }
         }
     }
 }

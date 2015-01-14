@@ -58,6 +58,7 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
         /// Default constructor
         /// </summary>
         public Ally()
+            : base() 
         {
             _stats = new Stats();
             _behaviorLoadList = new List<string>();
@@ -67,11 +68,13 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
         {
             base.LoadContent();
             _combatGrid = grid;
-            Image.LoadContent();
 
-            _tile = grid.GetGrid()[Location.X, Location.Y];
-            _image.Position.X = _tile.SourceTile.Position.X + (_tile.SourceTile.Dimensions.X - _dimensions.X) / 2;
-            _image.Position.Y = _tile.SourceTile.Position.Y - (_tile.SourceTile.Dimensions.Y - _dimensions.Y);
+            _currentTile = grid.GetGrid()[Location.X, Location.Y];
+            // Center the duders on the tiles
+            _isometricOffset.X = (_currentTile.SourceTile.Dimensions.X - _dimensions.X) / 2; //64 - 32 / 2
+            _isometricOffset.Y = -(_currentTile.SourceTile.Dimensions.Y - _dimensions.Y);
+
+            _image.Position = _currentTile.SourceTile.Position +_isometricOffset;
 
             // Load behaviors
             foreach (string s in BehaviorLoadList)
@@ -84,7 +87,6 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
         public override void UnloadContent()
         {
             base.UnloadContent();
-            _image.UnloadContent();
         }
 
         public override void Update(GameTime gameTime)

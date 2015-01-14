@@ -27,8 +27,9 @@ namespace SpaceRPG.Source.Gameplay.Combat.Maps
     {
         private IsometricTile _sourceTile;
         private Diamond _hitbox;
-        private Agent _agent;
+        private Agent _agentOccupying;
         private Point _gridPosition;
+        private Vector2 _position;
         private bool _hasCursor, _occupiedByAgent;
         private int _type, _height;
 
@@ -47,6 +48,11 @@ namespace SpaceRPG.Source.Gameplay.Combat.Maps
             get { return _gridPosition; }
             set { _gridPosition = value; }
         }
+        public Vector2 Position
+        {
+            get { return _position; }
+            set { _position = value; }
+        }
         public bool HasCursor
         {
             get { return _hasCursor; }
@@ -57,10 +63,10 @@ namespace SpaceRPG.Source.Gameplay.Combat.Maps
             get { return _occupiedByAgent; }
             set { _occupiedByAgent = value; }
         }
-        public Agent Agent
+        public Agent AgentOccupying
         {
-            get { return _agent; }
-            set { _agent = value; }
+            get { return _agentOccupying; }
+            set { _agentOccupying = value; }
         }
         public int Type
         {
@@ -90,7 +96,9 @@ namespace SpaceRPG.Source.Gameplay.Combat.Maps
         public CombatTile() {
             _hitbox = new Diamond();
             _sourceTile = new IsometricTile();
-            _agent = new Agent();
+            _agentOccupying = null; // need to find a way to make this not null
+            _gridPosition = Point.Zero;
+            _position = Vector2.Zero;
         }
 
         public void LoadContent(IsometricTile tile)
@@ -99,6 +107,7 @@ namespace SpaceRPG.Source.Gameplay.Combat.Maps
             _hitbox = new Diamond(new Rectangle((int)tile.Position.X, (int)tile.Position.Y, tile.SourceRect.Width, tile.SourceRect.Height));
             _type = tile.Value1;
             _height = tile.Height;
+            _position = tile.Position;
 
             //We can come up with many types, not just 3. (Double digit ints and negative ints can be read as well.)
             switch (Type)

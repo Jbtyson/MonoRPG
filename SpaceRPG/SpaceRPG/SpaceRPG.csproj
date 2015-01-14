@@ -41,7 +41,7 @@
     <Compile Include="Source\Gameplay\Combat\Actors\Agent.cs" />
     <Compile Include="Source\Gameplay\Combat\Actors\Ally.cs" />
     <Compile Include="Source\Gameplay\Combat\Actors\Enemy.cs" />
-    <Compile Include="Source\Gameplay\Combat\Behaviours\Action.cs" />
+    <Compile Include="Source\Gameplay\Combat\Behaviours\Activity.cs" />
     <Compile Include="Source\Gameplay\Combat\Behaviours\AggressiveMove.cs" />
     <Compile Include="Source\Gameplay\Combat\Behaviours\Behavior.cs" />
     <Compile Include="Source\Gameplay\Combat\Behaviours\DefensiveMove.cs" />

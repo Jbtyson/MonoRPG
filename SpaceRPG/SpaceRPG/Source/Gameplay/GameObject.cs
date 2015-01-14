@@ -46,12 +46,19 @@ namespace SpaceRPG.Source.Gameplay
         }
         #endregion
 
+        public GameObject()
+        {
+            _id = String.Empty;
+            _image = new Image();
+            _velocity = Vector2.Zero;
+        }
+
         /// <summary>
         /// Loads content
         /// </summary>
         public virtual void LoadContent()
         {
-
+            _image.LoadContent();
         }
 
         /// <summary>
@@ -59,7 +66,7 @@ namespace SpaceRPG.Source.Gameplay
         /// </summary>
         public virtual void UnloadContent()
         {
-
+            _image.UnloadContent();
         }
 
         /// <summary>

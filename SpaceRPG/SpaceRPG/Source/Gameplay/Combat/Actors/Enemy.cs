@@ -27,13 +27,11 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
         public override void LoadContent()
         {
             base.LoadContent();
-            Image.LoadContent();
         }
 
         public override void UnloadContent()
         {
             base.UnloadContent();
-            Image.UnloadContent();
         }
 
         public override void Update(GameTime gameTime)
