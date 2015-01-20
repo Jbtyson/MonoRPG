@@ -213,11 +213,11 @@ namespace SpaceRPG.Source.Gameplay.Combat.Actors
         {
             // Get our new position and location, and update our current tile if our location has changed
             _image.Position += _velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            Point newLoc = _combatGrid.GetTileAtPosition(_image.Position + _dimensions / 2).GridPosition;
+            Point newLoc = _combatGrid.GetTileAtPosition(_image.Position + _dimensions / 2, _currentTile.Height).GridPosition;
             if (!_reachedNode && _location != newLoc)
             {
                 _location = newLoc;
-                _currentTile = _combatGrid.GetTileAtPosition(_image.Position + _dimensions / 2);
+                _currentTile = _combatGrid.GetTileAtPosition(_image.Position + _dimensions / 2, _currentTile.Height);
             }
 
             // Check if we reaced a node

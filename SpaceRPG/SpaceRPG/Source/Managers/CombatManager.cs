@@ -90,28 +90,40 @@ namespace SpaceRPG.Source.Managers
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            // If we need to draw the move range do so
             if(_currentAgent.DisplayMoveRange)
                 _combatMap.DrawMoveRange(spriteBatch);
+
+            _cursor.Draw(spriteBatch);
             _encounter.Draw(spriteBatch);
             _party.Draw(spriteBatch);
-            _cursor.Draw(spriteBatch);
         }
 
+        /// <summary>
+        /// Change turns to the next actor in the turn list
+        /// </summary>
         public void ChangeTurns()
         {
             _currentAgent.MyTurn = false;
             _currentTurn++;
+            // Reset to 0 if we've reached the end of the list
             if(_currentTurn >= _party.Members.Count)
                 _currentTurn = 0;
+            // Get our new agent
             _currentAgent = _party.Members[_currentTurn];
             _currentAgent.MyTurn = true;
+            // Set our new move range data
             _combatMap.MoveOverlays.Clear();
             _combatMap.DisplayMoveRange(_currentAgent.MoveRange, _currentAgent.Location);
         }
 
-        public void SetCursorPosition(Vector2 location) 
+        /// <summary>
+        /// Sets the cursor to a specific position on the screen
+        /// </summary>
+        /// <param name="position"></param>
+        public void SetCursorPosition(Vector2 position) 
         {
-            _cursor.Image.Position = location;
+            _cursor.Image.Position = position;
         }
     }
 }

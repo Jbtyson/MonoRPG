@@ -74,7 +74,7 @@ namespace SpaceRPG.Source.Overlays
             }
         }
 
-        public void HandleButtonClick(object sender)
+        public void HandleButtonClick(object sender, EventArgs e)
         {
             Button b = (Button)sender;
             Console.WriteLine(b.Value);

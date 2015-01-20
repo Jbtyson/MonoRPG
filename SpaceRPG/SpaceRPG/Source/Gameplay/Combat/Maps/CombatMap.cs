@@ -156,11 +156,11 @@ namespace SpaceRPG.Source.Gameplay.Combat.Maps
         /// </summary>
         /// <param name="loc">Location to look for a tile</param>
         /// <returns>The tile containing the point</returns>
-        public CombatTile GetTileAtPosition(Point loc)
+        public CombatTile GetTileAtPosition(Point loc, int height)
         {
             foreach (CombatTile tile in _grid)
             {
-                if (tile.Contains(loc))
+                if (tile.Contains(loc) && tile.Height == height)
                     return tile;
             }
             return null;
@@ -171,9 +171,9 @@ namespace SpaceRPG.Source.Gameplay.Combat.Maps
         /// </summary>
         /// <param name="loc">Location to look for a tile</param>
         /// <returns>The tile containing the point</returns>
-        public CombatTile GetTileAtPosition(Vector2 loc)
+        public CombatTile GetTileAtPosition(Vector2 loc, int height)
         {
-            return GetTileAtPosition(new Point((int)loc.X, (int)loc.Y));
+            return GetTileAtPosition(new Point((int)loc.X, (int)loc.Y), height);
         }
 
         /// <summary>

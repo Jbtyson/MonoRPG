@@ -36,15 +36,16 @@ namespace SpaceRPG.Source.Overlays
 
         [XmlElement("Image")]
         public List<Image> Images; //Will hold one for each button state
-        
 
-        /// <summary>
-        /// A Click event. When the button is clicked (called on release),
-        ///  it calls this event.
-        /// </summary>
-        public delegate void ButtonEvent(object sender);
-        [XmlIgnore]
-        public ButtonEvent ButtonClicked;
+
+
+        public event EventHandler ButtonClicked;
+        protected virtual void OnButtonClicked(EventArgs e)
+        {
+            if (ButtonClicked != null)
+                ButtonClicked(this, e);
+        }
+        
 
         public Rectangle HitBox
         {
@@ -74,7 +75,7 @@ namespace SpaceRPG.Source.Overlays
             _visible = true;
         }
 
-        public void LoadContent(Vector2 position, ButtonEvent handle)
+        public void LoadContent(Vector2 position, EventHandler handle)
         {
             foreach (Image i in Images)
             {
@@ -141,7 +142,7 @@ namespace SpaceRPG.Source.Overlays
                             _state = ButtonState.Over;
                         else
                             _state = ButtonState.Neutral;
-                        ButtonClicked(this);
+                        OnButtonClicked(new EventArgs());
                         SetCurrentImage();
                     }
                     else if (!isMouseOver)
