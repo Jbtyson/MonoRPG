@@ -31,13 +31,9 @@ namespace SpaceRPG.Source.Overlays
         private bool _maintainPressedState; //Used if the mouse presses down on button but then leaves the button, so if it re-enters it will re-press it
         private bool _visible;
         private Image _currentImage;
+        private List<Image> _images;
         private Rectangle _hitbox;
         private object _value; //  Additional value that can be stored in the Button
-
-        [XmlElement("Image")]
-        public List<Image> Images; //Will hold one for each button state
-
-
 
         public event EventHandler ButtonClicked;
         protected virtual void OnButtonClicked(EventArgs e)
@@ -45,29 +41,37 @@ namespace SpaceRPG.Source.Overlays
             if (ButtonClicked != null)
                 ButtonClicked(this, e);
         }
-        
 
+        #region Accessors
         public Rectangle HitBox
         {
             get { return _hitbox; }
             set { _hitbox = value; }
         }
-
         public object Value
         {
             get { return _value; }
             set { _value = value; }
         }
-        
         public bool Visible
         {
             get { return _visible; }
             set { _visible = value; }
         }
+        [XmlElement("Image")]
+        public List<Image> Images
+        {
+            get { return _images; }
+            set { _images = value; }
+        }
+        #endregion
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public Button()
         {
-            Images = new List<Image>();
+            _images = new List<Image>();
             _hitbox = Rectangle.Empty;
             _state = ButtonState.Neutral;
             _maintainPressedState = false;
@@ -77,12 +81,12 @@ namespace SpaceRPG.Source.Overlays
 
         public void LoadContent(Vector2 position, EventHandler handle)
         {
-            foreach (Image i in Images)
+            foreach (Image i in _images)
             {
                 i.LoadContent();
                 i.Position = position;
             }
-            _currentImage = Images[0];
+            _currentImage = _images[0];
             _hitbox = new Rectangle((int)position.X, (int)position.Y, _currentImage.SourceRect.Width, _currentImage.SourceRect.Height);
             ButtonClicked = handle;
             Value = _currentImage.Text;
@@ -90,7 +94,7 @@ namespace SpaceRPG.Source.Overlays
 
         public void UnloadContent()
         {
-            foreach (Image i in Images)
+            foreach (Image i in _images)
                 i.UnloadContent();
         }
 
@@ -175,13 +179,13 @@ namespace SpaceRPG.Source.Overlays
             switch (_state)
             {
                 case ButtonState.Neutral:
-                    _currentImage = Images[0];
+                    _currentImage = _images[0];
                     break;
                 case ButtonState.Over:
-                    _currentImage = Images[1];
+                    _currentImage = _images[1];
                     break;
                 case ButtonState.Pressed:
-                    _currentImage = Images[2];
+                    _currentImage = _images[2];
                     break;
             }
             _currentImage.Position = pos;

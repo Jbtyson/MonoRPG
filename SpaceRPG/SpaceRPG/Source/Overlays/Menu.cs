@@ -21,22 +21,36 @@ namespace SpaceRPG.Source.Overlays
     {
         private int _itemNumber;
         private string _id;
+        public List<MenuItem> _items;
+        public string _axis;
+        public string _effects;
 
         /// <summary>
         /// Event that handles a menu being changed
         /// </summary>
         public event EventHandler OnMenuChange;
 
+        #region Accessors
         [XmlElement("Item")]
-        public List<MenuItem> Items;
-        public string Axis;
-        public string Effects;
-
+        public List<MenuItem> Items
+        {
+            get { return _items; }
+            set { _items = value; }
+        }
+        public string Axis
+        {
+            get { return _axis; }
+            set { _axis = value; }
+        }
+        public string Effects
+        {
+            get { return _effects; }
+            set { _effects = value; }
+        }
         public int ItemNumber
         {
             get { return _itemNumber; }
         }
-
         public string ID
         {
             get { return _id; }
@@ -46,6 +60,7 @@ namespace SpaceRPG.Source.Overlays
                 OnMenuChange(this, null);
             }
         }
+        #endregion
 
         /// <summary>
         /// Default Constructor
@@ -54,9 +69,9 @@ namespace SpaceRPG.Source.Overlays
         {
             _id = String.Empty;
             _itemNumber = 0;
-            Effects = String.Empty;
-            Axis = "Y";
-            Items = new List<MenuItem>();
+            _effects = String.Empty;
+            _axis = "Y";
+            _items = new List<MenuItem>();
         }
 
         /// <summary>
@@ -65,7 +80,7 @@ namespace SpaceRPG.Source.Overlays
         /// <param name="alpha"></param>
         public void Transition(float alpha)
         {
-            foreach (MenuItem item in Items)
+            foreach (MenuItem item in _items)
             {
                 item.Image.IsActive = true;
                 item.Image.Alpha = alpha;
@@ -83,13 +98,13 @@ namespace SpaceRPG.Source.Overlays
         {
             Vector2 dimensions = Vector2.Zero;
             // Add the size of each item to the dimensions and find the middle
-            foreach (MenuItem item in Items)
+            foreach (MenuItem item in _items)
                 dimensions += new Vector2(item.Image.SourceRect.Width, item.Image.SourceRect.Height);
             dimensions = new Vector2((ScreenManager.Instance.Dimensions.X - dimensions.X) / 2,
                 (ScreenManager.Instance.Dimensions.Y - dimensions.Y) / 2);
 
             // Place each item in its correct spot based on the axis of alignment
-            foreach (MenuItem item in Items)
+            foreach (MenuItem item in _items)
             {
                 if (Axis == "X")
                     item.Image.Position = new Vector2(dimensions.X,
@@ -105,8 +120,8 @@ namespace SpaceRPG.Source.Overlays
         public void LoadContent()
         {
             // Load all of the effects
-            string[] split = Effects.Split(':');
-            foreach (MenuItem item in Items)
+            string[] split = _effects.Split(':');
+            foreach (MenuItem item in _items)
             {
                 item.Image.LoadContent();
                 foreach (string s in split)
@@ -117,21 +132,21 @@ namespace SpaceRPG.Source.Overlays
 
         public void UnloadContent()
         {
-            foreach (MenuItem item in Items)
+            foreach (MenuItem item in _items)
                 item.Image.UnloadContent();
         }
 
         public void Update(GameTime gameTime)
         {
             // Change the item number based on input
-            if (Axis == "X")
+            if (_axis == "X")
             {
                 if (InputManager.Instance.KeyPressed(Keys.Right))
                     _itemNumber++;
                 else if (InputManager.Instance.KeyPressed(Keys.Left))
                     _itemNumber--;
             }
-            else if (Axis == "Y")
+            else if (_axis == "Y")
             {
                 if (InputManager.Instance.KeyPressed(Keys.Down))
                     _itemNumber++;
@@ -142,24 +157,24 @@ namespace SpaceRPG.Source.Overlays
             // Clamp the menu selection
             if (_itemNumber < 0)
                 _itemNumber = 0;
-            else if (_itemNumber > Items.Count - 1)
-                _itemNumber = Items.Count - 1;
+            else if (_itemNumber > _items.Count - 1)
+                _itemNumber = _items.Count - 1;
 
             // Highlight the item currently selected
-            for (int i = 0; i < Items.Count; i++)
+            for (int i = 0; i < _items.Count; i++)
             {
                 if (i == _itemNumber)
-                    Items[i].Image.IsActive = true;
+                    _items[i].Image.IsActive = true;
                 else
-                    Items[i].Image.IsActive = false;
+                    _items[i].Image.IsActive = false;
 
-                Items[i].Image.Update(gameTime);
+                _items[i].Image.Update(gameTime);
             }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach (MenuItem item in Items)
+            foreach (MenuItem item in _items)
                 item.Image.Draw(spriteBatch);
         }
     }

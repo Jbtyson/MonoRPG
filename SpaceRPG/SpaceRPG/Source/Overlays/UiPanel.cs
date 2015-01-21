@@ -15,65 +15,125 @@ using SpaceRPG.Source.Managers;
 
 namespace SpaceRPG.Source.Overlays
 {
+    /// <summary>
+    /// UiPanel acts as a block style container for ui controls
+    /// </summary>
     public class UiPanel
     {
-        public Rectangle Hitbox;
-        public Image Image;
-        public int SelectedItem;
-        [XmlElement("Button")]
-        public List<Button> Buttons;
-        public Vector2 Dimensions, ButtonDimensions, ButtonOffset, ButtonOrigin;
-        public bool Visible;
+        private Rectangle _hitbox;
+        private Image _image;
+        private int _selectedItem;
+        private List<Button> _buttons;
+        private Vector2 _dimensions, _buttonDimensions, _buttonOffset, _buttonOrigin;
+        private bool _visible;
 
+        #region Accessors
+        public Rectangle Hitbox
+        {
+            get { return _hitbox; }
+            set { _hitbox = value; }
+        }
+        public Image Image
+        {
+            get { return _image; }
+            set { _image = value; }
+        }
+        public int SelectedItem
+        {
+            get { return _selectedItem; }
+            set { _selectedItem = value; }
+        }
+        [XmlElement("Button")]
+        public List<Button> Buttons
+        {
+            get { return _buttons; }
+            set { _buttons = value; }
+        }
+        public Vector2 Dimensions 
+        {
+            get { return _dimensions; }
+            set { _dimensions = value; }
+        }
+        public Vector2 ButtonDimensions
+        {
+            get { return _buttonDimensions; }
+            set { _buttonDimensions = value; }
+        }
+        public Vector2 ButtonOffset
+        {
+            get { return _buttonOffset; }
+            set { _buttonOffset = value; }
+        }
+        public Vector2 ButtonOrigin
+        {
+            get { return _buttonOrigin; }
+            set { _buttonOrigin = value; }
+        }
+        public bool Visible
+        {
+            get { return _visible; }
+            set { _visible = value; }
+        }
+        #endregion
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public UiPanel()
         {
-            Hitbox = Rectangle.Empty;
-            Image = new Image();
-            Buttons = new List<Button>();
-            Dimensions = Vector2.Zero;
-            ButtonDimensions = Vector2.Zero;
-            ButtonOffset = Vector2.Zero;
-            ButtonOrigin = Vector2.Zero;
+            _hitbox = Rectangle.Empty;
+            _image = new Image();
+            _buttons = new List<Button>();
+            _dimensions = Vector2.Zero;
+            _buttonDimensions = Vector2.Zero;
+            _buttonOffset = Vector2.Zero;
+            _buttonOrigin = Vector2.Zero;
         }
 
         public virtual void LoadContent()
         {
-            ButtonOrigin += Image.Position;
+            _buttonOrigin += _image.Position;
 
-            Image.LoadContent();
+            _image.LoadContent();
             int count = 0;
-            foreach (Button b in Buttons)
-                b.LoadContent(ButtonOrigin + (count++ * ButtonOffset), HandleButtonClick);
+            // Add each button, starting at button origin and adding the number of buttons so far * the button offset
+            foreach (Button b in _buttons)
+                b.LoadContent(_buttonOrigin + (count++ * _buttonOffset), HandleButtonClick);
 
         }
 
         public virtual void UnloadContent()
         {
-            Image.UnloadContent();
-            foreach (Button b in Buttons)
+            _image.UnloadContent();
+            foreach (Button b in _buttons)
                 b.UnloadContent();
         }
 
         public virtual void Update(GameTime gameTime)
         {
-            Image.Update(gameTime);
-            foreach (Button b in Buttons)
+            _image.Update(gameTime);
+            foreach (Button b in _buttons)
                 b.Update(gameTime);
 
             // Update position based on camera
-            Image.Position -= ScreenManager.Instance.Camera.WorldChange;
+            _image.Position -= ScreenManager.Instance.Camera.WorldChange;
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             if (Visible)
             {
-                Image.Draw(spriteBatch);
-                foreach (Button b in Buttons)
+                _image.Draw(spriteBatch);
+                foreach (Button b in _buttons)
                     b.Draw(spriteBatch);
             }
         }
 
+        /// <summary>
+        /// Handles a click on a button within this panel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void HandleButtonClick(object sender, EventArgs e)
         {
             Button b = (Button)sender;

@@ -14,8 +14,26 @@ namespace SpaceRPG.Source.Overlays
     /// </summary>
     public class MenuItem
     {
-        public string LinkType;
-        public string LinkID;
-        public Image Image;
+        private string _linkType;
+        private string _linkID;
+        private Image _image;
+
+        #region Accessors
+        public string LinkType
+        {
+            get { return _linkType; }
+            set { _linkType = value; }
+        }
+        public string LinkID
+        {
+            get { return _linkID; }
+            set { _linkID = value; }
+        }
+        public Image Image
+        {
+            get { return _image; }
+            set { _image = value; }
+        }
+        #endregion
     }
 }

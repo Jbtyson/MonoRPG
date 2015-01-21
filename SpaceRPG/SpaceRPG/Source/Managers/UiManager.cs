@@ -1,4 +1,6 @@
-﻿using System;
+﻿// UiManager.cs
+// James Tyson
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,50 +16,70 @@ namespace SpaceRPG.Source.Managers
 {
     public class UiManager
     {
-        [XmlElement("UiPanel")]
-        public List<UiPanel> Panels;
-        public List<Rectangle> HitBoxes;
+        private List<UiPanel> _panels;
+        private List<Rectangle> _hitBoxes;
 
+        #region Accessors
+        [XmlElement("UiPanel")]
+        public List<UiPanel> Panels
+        {
+            get { return _panels; }
+            set { _panels = value; }
+        }
+        public List<Rectangle> HitBoxes
+        {
+            get { return _hitBoxes; }
+            set { _hitBoxes = value; }
+        }
+        #endregion
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public UiManager()
         {
-            Panels = new List<UiPanel>();
-            HitBoxes = new List<Rectangle>();
+            _panels = new List<UiPanel>();
+            _hitBoxes = new List<Rectangle>();
         }
 
         public void LoadContent()
         {
-            foreach (UiPanel p in Panels)
+            foreach (UiPanel p in _panels)
             {
                 p.LoadContent();
                 p.Visible = false;
-                HitBoxes.Add(p.Hitbox);
+                _hitBoxes.Add(p.Hitbox);
             }
         }
 
         public void UnloadContent()
         {
-            foreach (UiPanel p in Panels)
+            foreach (UiPanel p in _panels)
                 p.UnloadContent();
         }
 
         public void Update(GameTime gameTime)
         {
-            foreach (UiPanel p in Panels)
+            foreach (UiPanel p in _panels)
                 p.Update(gameTime);
             if (gameTime.TotalGameTime.Seconds > 5)
-                Panels[0].Visible = true;
+                _panels[0].Visible = true;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach (UiPanel p in Panels)
+            foreach (UiPanel p in _panels)
                 p.Draw(spriteBatch);
         }
 
+        /// <summary>
+        /// Returns true if the mouse if over the UI
+        /// </summary>
+        /// <returns>True if mouse is over the UI</returns>
         public bool IsMouseOnUi()
         {
             Point m = InputManager.Instance.MousePosition;
-            foreach (Rectangle r in HitBoxes)
+            foreach (Rectangle r in _hitBoxes)
             {
                 if (r.Contains(m))
                     return true;
@@ -65,12 +87,16 @@ namespace SpaceRPG.Source.Managers
             return false;
         }
 
+        /// <summary>
+        /// Loads a panel from a specified string path and adds it to the list
+        /// </summary>
+        /// <param name="path">Path to load the panel from</param>
         public void LoadPanel(string path)
         {
             XmlManager<UiPanel> panelLoader = new XmlManager<UiPanel>();
             UiPanel panel = panelLoader.Load(path);
             panel.LoadContent();
-            Panels.Add(panel);
+            _panels.Add(panel);
         }
     }
 }
