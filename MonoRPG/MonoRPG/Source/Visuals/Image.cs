@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 using MonoRPG.Source.Visuals.Effects;
-using MonoRPG.Source.Managers;
+using MonoRPG.Source.Screens;
 
 namespace MonoRPG.Source.Visuals
 {

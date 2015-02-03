@@ -11,9 +11,9 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-using MonoRPG.Source.Managers;
 using MonoRPG.Source.Gameplay.Combat.Maps;
 using MonoRPG.Source.Gameplay.Combat.Behaviours;
+using MonoRPG.Source.Input;
 
 namespace MonoRPG.Source.Gameplay.Combat.Actors
 {

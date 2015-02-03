@@ -10,10 +10,10 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-using MonoRPG.Source.Gameplay;
 using MonoRPG.Source.Gameplay.Overworld;
-using MonoRPG.Source.Managers;
 using MonoRPG.Source.Visuals.Maps.Orthogonal;
+using MonoRPG.Source.Input;
+using MonoRPG.Source.Util;
 
 namespace MonoRPG.Source.Screens
 {

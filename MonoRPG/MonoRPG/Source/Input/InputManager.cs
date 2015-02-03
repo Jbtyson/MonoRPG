@@ -8,7 +8,9 @@ using System.Text;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 
-namespace MonoRPG.Source.Managers
+using MonoRPG.Source.Screens;
+
+namespace MonoRPG.Source.Input
 {
     /// <summary>
     /// Input manager is a singleton class to help us manage inputs

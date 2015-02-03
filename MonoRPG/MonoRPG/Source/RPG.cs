@@ -10,8 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.GamerServices;
 #endregion
-
-using MonoRPG.Source.Managers;
+using MonoRPG.Source.Screens;
 
 namespace MonoRPG.Source
 {

@@ -8,7 +8,6 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using MonoRPG.Source.Managers;
 using MonoRPG.Source.Util.Shapes;
 
 namespace MonoRPG.Source.Visuals.Maps.Isometric

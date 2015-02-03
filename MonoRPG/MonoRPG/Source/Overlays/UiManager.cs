@@ -8,9 +8,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-using MonoRPG.Source.Overlays;
+using MonoRPG.Source.Input;
+using MonoRPG.Source.Util;
 
-namespace MonoRPG.Source.Managers
+namespace MonoRPG.Source.Overlays
 {
     public class UiManager
     {

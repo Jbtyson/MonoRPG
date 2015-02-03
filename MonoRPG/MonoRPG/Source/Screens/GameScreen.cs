@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-using MonoRPG.Source.Managers;
+using MonoRPG.Source.Input;
 
 namespace MonoRPG.Source.Screens
 {

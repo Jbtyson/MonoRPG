@@ -11,10 +11,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-using MonoRPG.Source.Screens;
+using MonoRPG.Source.Util;
 using MonoRPG.Source.Visuals;
 
-namespace MonoRPG.Source.Managers
+namespace MonoRPG.Source.Screens
 {
     /// <summary>
     /// ScreenManager is a class to help facilitate screen transistions as well

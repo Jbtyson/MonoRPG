@@ -9,9 +9,11 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-using MonoRPG.Source.Overlays;
+using MonoRPG.Source.Input;
+using MonoRPG.Source.Screens;
+using MonoRPG.Source.Util;
 
-namespace MonoRPG.Source.Managers
+namespace MonoRPG.Source.Overlays
 {
     /// <summary>
     /// MenuManager helps facilite menu transitions

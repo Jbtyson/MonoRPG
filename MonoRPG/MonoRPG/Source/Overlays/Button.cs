@@ -11,7 +11,8 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 using MonoRPG.Source.Visuals;
-using MonoRPG.Source.Managers;
+using MonoRPG.Source.Input;
+using MonoRPG.Source.Screens;
 
 namespace MonoRPG.Source.Overlays
 {

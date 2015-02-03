@@ -10,9 +10,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-using MonoRPG.Source.Managers;
 using MonoRPG.Source.Visuals;
 using MonoRPG.Source.Visuals.Maps.Isometric;
+using MonoRPG.Source.Input;
 
 namespace MonoRPG.Source.Gameplay.Combat
 {

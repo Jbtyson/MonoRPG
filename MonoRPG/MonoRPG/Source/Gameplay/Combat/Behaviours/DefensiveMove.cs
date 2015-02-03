@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 
 using MonoRPG.Source.Gameplay.Combat.Actors;
-using MonoRPG.Source.Managers;
+using MonoRPG.Source.Input;
 
 namespace MonoRPG.Source.Gameplay.Combat.Behaviors
 {

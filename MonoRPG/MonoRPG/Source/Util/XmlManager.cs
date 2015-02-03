@@ -7,7 +7,7 @@ using System.Text;
 using System.Xml.Serialization;
 using System.IO;
 
-namespace MonoRPG.Source.Managers
+namespace MonoRPG.Source.Util
 {
     /// <summary>
     /// XmlManager provides xml serialization and deserialization functionality

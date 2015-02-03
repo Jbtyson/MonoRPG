@@ -12,12 +12,12 @@ using Microsoft.Xna.Framework.Graphics;
 
 using MonoRPG.Source.Screens;
 using MonoRPG.Source.Visuals.Maps;
-using MonoRPG.Source.Gameplay.Combat;
 using MonoRPG.Source.Gameplay.Combat.Actors;
 using MonoRPG.Source.Gameplay.Combat.Maps;
 using MonoRPG.Source.Visuals.Maps.Isometric;
+using MonoRPG.Source.Util;
 
-namespace MonoRPG.Source.Managers
+namespace MonoRPG.Source.Gameplay.Combat
 {
     public class CombatManager
     {
